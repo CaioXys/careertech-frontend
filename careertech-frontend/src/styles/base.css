@@ -1,0 +1,7 @@
+/* Estilos globais de base. Estilos de cada tela ficam na pasta da própria tela. */
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  background: var(--color-bg);
+}

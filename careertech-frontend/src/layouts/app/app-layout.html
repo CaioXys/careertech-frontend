@@ -1,0 +1,20 @@
+<!--
+  LAYOUT DA ÁREA LOGADA (cabeçalho + menu + conteúdo)
+  >>> Substitua pelo layout do Design System. <<<
+  Regras para o JavaScript continuar funcionando:
+    [data-outlet]    -> onde a tela atual é inserida (obrigatório)
+    [data-nav]       -> onde os links do menu são gerados (conforme o profile)
+    [data-user-name] -> recebe o name do usuário logado
+    [data-logout]    -> botão que encerra a sessão
+-->
+<div class="app-layout">
+  <header class="app-layout__header">
+    <a class="app-layout__brand" href="#/">CareerTech</a>
+    <span class="app-layout__user" data-user-name></span>
+    <button type="button" data-logout>Sair</button>
+  </header>
+
+  <nav class="app-layout__nav" data-nav aria-label="Navegação principal"></nav>
+
+  <main class="app-layout__main" data-outlet></main>
+</div>

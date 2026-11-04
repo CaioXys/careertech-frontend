@@ -1,0 +1,7 @@
+/* Estilos da tela "Usuários (Tela Cadastros)".
+   Tudo dentro de .users-page, senão o CSS vaza para as outras telas
+   (em SPA, o CSS importado continua na página depois de trocar de tela).
+   Use as variáveis do Design System (src/styles/tokens.css): var(--color-primary)... */
+.users-page {
+  /* seus estilos aqui. CSS nesting é aceito: .x { h1 { ... } } */
+}

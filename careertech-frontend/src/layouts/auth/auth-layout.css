@@ -1,0 +1,11 @@
+.auth-layout {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: var(--space-3);
+}
+
+.auth-layout__main {
+  width: 100%;
+  max-width: 32rem;
+}

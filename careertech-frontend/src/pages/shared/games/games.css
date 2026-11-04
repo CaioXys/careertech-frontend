@@ -1,0 +1,7 @@
+/* Estilos da tela "Jogos".
+   Tudo dentro de .games-page, senão o CSS vaza para as outras telas
+   (em SPA, o CSS importado continua na página depois de trocar de tela).
+   Use as variáveis do Design System (src/styles/tokens.css): var(--color-primary)... */
+.games-page {
+  /* seus estilos aqui. CSS nesting é aceito: .x { h1 { ... } } */
+}

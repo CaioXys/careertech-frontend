@@ -1,0 +1,7 @@
+/* Estilos da tela "Detalhe do curso (lessons)".
+   Tudo dentro de .course-details-page, senão o CSS vaza para as outras telas
+   (em SPA, o CSS importado continua na página depois de trocar de tela).
+   Use as variáveis do Design System (src/styles/tokens.css): var(--color-primary)... */
+.course-details-page {
+  /* seus estilos aqui. CSS nesting é aceito: .x { h1 { ... } } */
+}
