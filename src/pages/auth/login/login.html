@@ -1,12 +1,62 @@
-<!--
-  TELA: Login
-  Requisitos: Aluno RF001-RF003 | Professor RF032-RF036 | ADM RF001-RF002
-  Onde editar:
-    - Estrutura (HTML)   -> login.html   (este arquivo)
-    - Estilos (CSS)      -> login.css
-    - Comportamento (JS) -> login.js
--->
-<section class="login-page">
-  <h1>Login</h1>
-  <p>Tela ainda não criada. Edite <code>src/pages/auth/login/login.html</code>.</p>
+<section class="login-page" aria-labelledby="login-title">
+  <div class="login-page__story">
+    <a class="login-brand" href="#/login" aria-label="CareerTech — início">
+      <span class="login-brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none"><path d="M13.5 21.8338C13.5 23.2146 12.3807 24.334 11 24.334C9.61929 24.334 8.5 23.2146 8.5 21.8338C8.5 20.453 9.61929 19.3336 11 19.3336C12.3807 19.3336 13.5 20.453 13.5 21.8338ZM13.5 21.8338H20.5833C21.3569 21.8338 22.0987 21.5265 22.6457 20.9795C23.1927 20.4325 23.5 19.6905 23.5 18.9169C23.5 18.1433 23.1927 17.4014 22.6457 16.8544C22.0987 16.3073 21.3569 16 20.5833 16H11.4167C10.6431 16 9.90125 15.6927 9.35427 15.1457C8.80729 14.5986 8.5 13.8567 8.5 13.0831C8.5 12.3095 8.80729 11.5676 9.35427 11.0206C9.90125 10.4735 10.6431 10.1662 11.4167 10.1662H18.5M18.5 10.1662C18.5 11.547 19.6193 12.6664 21 12.6664C22.3807 12.6664 23.5 11.547 23.5 10.1662C23.5 8.78539 22.3807 7.66602 21 7.66602C19.6193 7.66602 18.5 8.78539 18.5 10.1662Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </span>
+      <span>career<span class="login-brand__accent">tech</span></span>
+    </a>
+
+    <div class="login-story-copy">
+      <span class="login-eyebrow"><span></span> SEU FUTURO COMEÇA AQUI</span>
+      <h2>Aprenda hoje.<br><span>Transforme</span> o amanhã.</h2>
+      <p>Conhecimento, orientação e oportunidades para você construir uma carreira do seu jeito.</p>
+    </div>
+
+    <div class="login-orbit login-orbit--one" aria-hidden="true"></div>
+    <div class="login-orbit login-orbit--two" aria-hidden="true"></div>
+    <div class="login-path login-path--one" aria-hidden="true"><span>✦</span></div>
+    <div class="login-path login-path--two" aria-hidden="true"><span>↗</span></div>
+    <div class="login-path login-path--three" aria-hidden="true"><span>✳</span></div>
+    <div class="login-story-foot"><span>IDEIAS QUE ABREM CAMINHOS</span></div>
+  </div>
+
+  <div class="login-page__form-side">
+    <div class="login-form-wrap">
+      <div class="login-heading">
+        <span class="login-eyebrow login-eyebrow--light">BOM TER VOCÊ DE VOLTA</span>
+        <h1 id="login-title">Entre na sua conta</h1>
+        <p>Acesse sua jornada de aprendizado.</p>
+      </div>
+
+      <form class="login-form" novalidate>
+        <label class="login-field" for="login-email">
+          <span>E-mail</span>
+          <span class="login-input-wrap">
+            <svg class="login-input-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="m5 7 7 5.5L19 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <input id="login-email" name="email" type="email" placeholder="voce@exemplo.com" autocomplete="email" inputmode="email" required aria-describedby="login-message" />
+          </span>
+        </label>
+
+        <label class="login-field" for="login-password">
+          <span>Senha</span>
+          <span class="login-input-wrap">
+            <svg class="login-input-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 14v2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            <input id="login-password" name="password" type="password" placeholder="Digite sua senha" autocomplete="current-password" required minlength="6" aria-describedby="login-message" />
+            <button class="login-password-toggle" type="button" aria-label="Mostrar senha" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="2.7" stroke="currentColor" stroke-width="1.7"/></svg>
+            </button>
+          </span>
+        </label>
+
+        <div class="login-options"><label class="login-remember"><input type="checkbox" name="remember" /><span class="login-check" aria-hidden="true"></span><span>Manter conectado</span></label><a href="#/forgot-password">Esqueceu a senha?</a></div>
+        <p class="login-message" id="login-message" role="status" aria-live="polite"></p>
+        <button class="login-submit" type="submit"><span>Entrar</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </form>
+
+      <p class="login-signup">Ainda não tem uma conta? <a href="#/register">Criar conta grátis</a></p>
+      <p class="login-terms">Ao continuar, você concorda com nossos <a href="#/terms">Termos de Uso</a> e <a href="#/privacy">Política de Privacidade</a>.</p>
+    </div>
+    <span class="login-copyright">© 2026 CareerTech. Seu próximo passo começa aqui.</span>
+  </div>
 </section>

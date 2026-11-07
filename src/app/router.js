@@ -4,8 +4,6 @@ import { auth } from '../core/auth.js';
 import { checkAccess, getHomePath } from '../core/guards.js';
 import { navigate } from '../core/navigate.js';
 
-const root = document.getElementById('app');
-
 // Transforma '/courses/:id' em uma expressão regular + lista de names de parâmetros.
 const compiled = routes.map((route) => {
   const keys = [];
@@ -70,6 +68,10 @@ async function resolve() {
 
     const page = pageModule.default;
     const layout = layoutModule.default;
+    const root = document.getElementById('app');
+    if (!root) {
+      throw new Error('Outlet principal da aplicação não foi encontrado.');
+    }
 
     // Só recria o layout se ele mudou (assim o menu não "pisca" a cada tela).
     const layoutKey = `${route.layout}:${user?.role ?? 'guest'}`;
@@ -90,7 +92,10 @@ async function resolve() {
     window.scrollTo(0, 0);
   } catch (error) {
     console.error('Erro ao abrir a tela:', error);
-    root.textContent = 'Não foi possível carregar esta tela. Tente recarregar a página.';
+    const root = document.getElementById('app');
+    if (root) {
+      root.textContent = 'Não foi possível carregar esta tela. Tente recarregar a página.';
+    }
     state.layoutKey = null;
   }
 }
