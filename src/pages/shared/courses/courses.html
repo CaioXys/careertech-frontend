@@ -1,12 +1,47 @@
-<!--
-  TELA: Cursos
-  Requisitos: Aluno RF012, RF014, RF015 | Professor RF043
-  Onde editar:
-    - Estrutura (HTML)   -> courses.html   (este arquivo)
-    - Estilos (CSS)      -> courses.css
-    - Comportamento (JS) -> courses.js
--->
-<section class="courses-page">
-  <h1>Cursos</h1>
-  <p>Tela ainda não criada. Edite <code>src/pages/shared/courses/courses.html</code>.</p>
+<section class="courses-page" aria-labelledby="courses-title">
+  <header class="courses-page__hero">
+    <div class="courses-page__hero-copy">
+      <span class="courses-page__eyebrow"><span></span> BIBLIOTECA DE CURSOS</span>
+      <h1 id="courses-title">Explore os cursos</h1>
+      <p>Encontre uma formação para dar o próximo passo na sua jornada.</p>
+    </div>
+    <div class="courses-page__orbit courses-page__orbit--one" aria-hidden="true"></div>
+    <div class="courses-page__orbit courses-page__orbit--two" aria-hidden="true"></div>
+    <div class="courses-page__path courses-page__path--one" aria-hidden="true">✦</div>
+    <div class="courses-page__path courses-page__path--two" aria-hidden="true">↗</div>
+  </header>
+
+  <div class="courses-page__content-wrap">
+    <div class="courses-page__heading">
+      <h2>Encontre seu próximo curso</h2>
+      <p>Busque por nome ou área de conhecimento.</p>
+    </div>
+    <div class="courses-page__toolbar" role="search">
+      <label class="courses-page__field" for="courses-search">
+        <span>Buscar cursos</span>
+        <span class="courses-page__input-wrap">
+          <svg class="courses-page__search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.7" />
+            <path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+          </svg>
+          <input
+            id="courses-search"
+            type="search"
+            placeholder="Digite o nome ou a área do curso"
+            autocomplete="off"
+            aria-describedby="courses-count"
+          />
+        </span>
+      </label>
+      <p class="courses-page__count" id="courses-count" aria-live="polite"></p>
+    </div>
+
+    <p class="courses-page__loading" role="status" hidden>Carregando cursos...</p>
+    <div class="courses-page__error" role="alert" hidden>
+      <p>Não foi possível carregar os cursos. Tente novamente.</p>
+      <button class="courses-page__retry" type="button">Tentar novamente</button>
+    </div>
+    <div class="courses-page__list" aria-label="Cursos disponíveis" aria-busy="false"></div>
+    <p class="courses-page__empty" role="status" hidden></p>
+  </div>
 </section>
