@@ -2,6 +2,12 @@
 body {
   font-family: var(--font-family-base);
   font-size: var(--font-size-base);
+  line-height: var(--line-height-body);
   color: var(--color-text);
   background: var(--color-bg);
+}
+
+:focus-visible {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: var(--focus-offset);
 }

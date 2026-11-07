@@ -1,24 +1,25 @@
 # CareerTech — Front-end (protótipo)
 
-SPA (Single Page Application) em **HTML, CSS e JavaScript puro**, usando o **Vite** apenas como
-servidor de desenvolvimento e empacotador. Ainda **não há back-end**: os dados vêm de mocks.
+SPA (Single Page Application) com **Angular 21** integrado ao **Vite**. As telas existentes
+continuam em HTML, CSS e JavaScript e são iniciadas pelo componente raiz Angular, permitindo uma
+migração gradual para componentes Angular. Ainda **não há back-end**: os dados vêm de mocks.
 
 > O back-end será outro repositório (ex.: `careertech-backend`). Este repositório contém só o front.
 
 ## Como rodar
 
-Pré-requisito: **Node.js 20.19+** (ou 22.12+). Confira com `node -v`.
+Pré-requisito: **Node.js 20.19.x**, **22.12.x** ou **24.x**. Confira com `node -v`.
 
 ```bash
 npm install        # instala as dependências (só precisa na primeira vez)
-npm run dev        # abre o projeto em http://localhost:4200
+npm start          # abre o projeto em http://localhost:4200
 ```
 
 | Comando | O que faz |
 |---|---|
-| `npm run dev` | Servidor de desenvolvimento com recarga automática |
-| `npm run build` | Gera a versão final na pasta `dist/` |
-| `npm run preview` | Serve a pasta `dist/` para testar o build |
+| `npm start` ou `npm run dev` | Servidor Vite com compilação Angular e recarga automática |
+| `npm run build` | Gera a versão final na pasta `dist/careertech-frontend/` |
+| `npm run preview` | Serve o build em modo de produção para conferência |
 | `npm run new:page -- grupo/nome` | Cria uma tela nova (HTML + CSS + JS) |
 
 ## Como testar os perfis (sem back-end)
@@ -43,7 +44,7 @@ O atalho só existe no `npm run dev`, não no build.
 
 ## ONDE CRIAR AS TELAS
 
-Cada tela é uma **pasta** em `src/pages/<grupo>/<screen>/` com 3 arquivos que já existem como
+As telas legadas ficam em uma **pasta** em `src/pages/<grupo>/<screen>/` com 3 arquivos que já existem como
 placeholder. **Edite os arquivos existentes**, não precisa criar nada do zero:
 
 | Arquivo | Para quê |
@@ -56,7 +57,8 @@ Além das telas, o Design System entra em:
 
 | O quê | Onde |
 |---|---|
-| Cores, fontes, espaçamentos (tokens) | `src/styles/tokens.css` |
+| Tokens de cor, tipografia, espaçamento, forma e foco | `src/styles/tokens.css` |
+| Regras de uso para telas e componentes | [`DESIGN_SYSTEM.md`](./DESIGN_SYSTEM.md) |
 | Moldura das telas públicas (login etc.) | `src/layouts/auth/` |
 | Moldura da área logada (cabeçalho + menu) | `src/layouts/app/` |
 | Componentes reutilizáveis (botão, card, modal...) | `src/components/` |
@@ -134,14 +136,16 @@ Isso cria `src/pages/student/openings/` com os 3 arquivos. Depois registre a rot
 
 ```
 careertech-frontend/
-├── index.html              # única página HTML real (a SPA desenha tudo dentro de #app)
-├── vite.config.js
+├── index.html              # documento inicial com o componente raiz Angular
+├── vite.config.js           # Vite com o plugin de compilação do Angular
 ├── .env.example            # variáveis de ambiente (mock x API real)
 ├── scripts/new-page.js     # gerador de telas
-├── public/                 # arquivos estáticos (favicon, imagens fixas)
+├── public/                  # arquivos estáticos (favicon, imagens fixas)
 └── src/
-    ├── main.js             # ponto de entrada: carrega estilos e liga o router
+    ├── main.ts              # inicializa a aplicação Angular
     ├── app/
+    │   ├── app.component.ts # componente raiz da SPA
+    │   ├── legacy-router.ts # inicializa as telas legadas durante a migração
     │   ├── router.js       # troca de telas, guards, layouts
     │   └── routes.js       # TABELA DE ROTAS (path -> tela, layout, perfis)
     ├── core/               # base do app, normalmente não precisa mexer
@@ -164,10 +168,10 @@ careertech-frontend/
 
 ## Como o código funciona
 
-**Rotas com `#`.** O endereço fica como `index.html#/courses`. O navegador não recarrega a página
+**Rotas legadas com `#`.** O endereço fica como `index.html#/courses`. O navegador não recarrega a página
 ao mudar o `#`, então o JavaScript só troca o conteúdo. Funciona em qualquer hospedagem estática.
 
-**Contrato de uma tela.** Cada `<tela>.js` exporta `{ title, html, mount(root, ctx) }`.
+**Contrato de uma tela legada.** Cada `<tela>.js` exporta `{ title, html, mount(root, ctx) }`.
 O router insere o `html`, depois chama `mount`, que é onde você liga eventos.
 Se `mount` devolver uma função, ela roda ao sair da tela (para limpar listeners e timers).
 
@@ -185,7 +189,7 @@ Para criar um service novo, copie `courses.service.js`.
 1. **CSS escopado.** Em SPA, o CSS importado por uma tela **continua na página** quando você
    navega. Por isso o elemento raiz de cada tela tem uma classe própria (`.login-page`) e todo o
    CSS fica dentro dela.
-2. **Nada de valores soltos.** Use `var(--color-primary)`, `var(--space-3)` etc. (tokens do Design System).
+2. **Nada de valores soltos.** Prefira os tokens semânticos, como `var(--action)`, `var(--surface)`, `var(--spacing-4)` e `var(--radius-card)`. Os aliases `--color-*` e `--space-*` existem para compatibilidade com as telas legadas.
 3. **Dados de usuário nunca entram por `innerHTML`.** Posts, comentários e nomes (rede social!) devem
    ser inseridos com `textContent` ou `createElement`, senão abrem brecha para XSS.
 4. **Mobile first.** A plataforma precisa ser responsiva (Matriz CSD): escreva o CSS base para celular
@@ -199,7 +203,7 @@ Para criar um service novo, copie `courses.service.js`.
 
 ## Próximos passos
 
-1. Colar os tokens do Design System em `src/styles/tokens.css`.
-2. Ajustar os layouts (`src/layouts/`).
-3. Criar as telas, começando por `login`, `cadastro` e `home`.
+1. Migrar as telas de `src/pages/` para componentes standalone Angular aos poucos, mantendo os mesmos fluxos e mocks.
+2. Adotar `Router` do Angular e seus guards ao migrar as rotas atuais.
+3. Ajustar tokens e layouts em `src/styles/` e `src/layouts/` durante a migração.
 4. Quando o back-end existir: `VITE_USE_MOCKS=false` e `VITE_API_URL`.
