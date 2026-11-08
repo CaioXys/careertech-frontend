@@ -1,12 +1,75 @@
-<!--
-  TELA: Cadastro
-  Requisitos: Aluno RF004-RF007 | Professor RF037-RF040
-  Onde editar:
-    - Estrutura (HTML)   -> register.html   (este arquivo)
-    - Estilos (CSS)      -> register.css
-    - Comportamento (JS) -> register.js
--->
-<section class="register-page">
-  <h1>Cadastro</h1>
-  <p>Tela ainda não criada. Edite <code>src/pages/auth/register/register.html</code>.</p>
+<section class="register-page" aria-labelledby="register-title">
+  <aside class="register-page__story">
+    <a class="register-brand" href="#/login" aria-label="CareerTech — entrar">
+      <span class="register-brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.5 21.8338C13.5 23.2146 12.3807 24.334 11 24.334C9.61929 24.334 8.5 23.2146 8.5 21.8338C8.5 20.453 9.61929 19.3336 11 19.3336C12.3807 19.3336 13.5 20.453 13.5 21.8338ZM13.5 21.8338H20.5833C21.3569 21.8338 22.0987 21.5265 22.6457 20.9795C23.1927 20.4325 23.5 19.6905 23.5 18.9169C23.5 18.1433 23.1927 17.4014 22.6457 16.8544C22.0987 16.3073 21.3569 16 20.5833 16H11.4167C10.6431 16 9.90125 15.6927 9.35427 15.1457C8.80729 14.5986 8.5 13.8567 8.5 13.0831C8.5 12.3095 8.80729 11.5676 9.35427 11.0206C9.90125 10.4735 10.6431 10.1662 11.4167 10.1662H18.5M18.5 10.1662C18.5 11.547 19.6193 12.6664 21 12.6664C22.3807 12.6664 23.5 11.547 23.5 10.1662C23.5 8.78539 22.3807 7.66602 21 7.66602C19.6193 7.66602 18.5 8.78539 18.5 10.1662Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+      </span>
+      <span>career<span>tech</span></span>
+    </a>
+    <div class="register-story-copy">
+      <span class="register-eyebrow"><i></i> UM NOVO CAMINHO COMEÇA AQUI</span>
+      <h2>Seu próximo passo começa <span>com uma escolha.</span></h2>
+      <p>Aprenda, compartilhe conhecimento e construa novas oportunidades para o seu futuro.</p>
+    </div>
+    <div class="register-story-foot">IDEIAS QUE ABREM CAMINHOS</div>
+    <div class="register-orbit register-orbit--one" aria-hidden="true"></div>
+    <div class="register-orbit register-orbit--two" aria-hidden="true"></div>
+  </aside>
+
+  <div class="register-page__form-side">
+    <div class="register-form-wrap">
+      <header class="register-heading">
+        <span class="register-eyebrow register-eyebrow--light">CRIE SUA CONTA</span>
+        <h1 id="register-title">Faça parte da CareerTech</h1>
+        <p>Preencha seus dados para começar sua jornada.</p>
+      </header>
+
+      <form class="register-form" novalidate>
+        <fieldset class="register-role">
+          <legend>Quero me cadastrar como <span aria-hidden="true">*</span></legend>
+          <label class="register-role-card">
+            <input type="radio" name="tipo" value="aluno" checked required />
+            <span class="register-role-card__icon" aria-hidden="true">↗</span>
+            <span><strong>Aluno</strong><small>Quero aprender e desenvolver minha carreira</small></span>
+            <span class="register-role-card__radio" aria-hidden="true"></span>
+          </label>
+          <label class="register-role-card">
+            <input type="radio" name="tipo" value="professor" required />
+            <span class="register-role-card__icon" aria-hidden="true">✳</span>
+            <span><strong>Professor</strong><small>Quero ensinar e compartilhar conhecimento</small></span>
+            <span class="register-role-card__radio" aria-hidden="true"></span>
+          </label>
+        </fieldset>
+
+        <div class="register-fields">
+          <label class="register-field register-field--full" for="register-name"><span>Nome completo <b>*</b></span><input id="register-name" name="nome" type="text" autocomplete="name" placeholder="Como podemos chamar você?" minlength="3" maxlength="120" required /></label>
+          <label class="register-field register-field--full" for="register-email"><span>E-mail <b>*</b></span><input id="register-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="voce@exemplo.com" maxlength="160" required /></label>
+          <label class="register-field" for="register-cpf"><span>CPF <b>*</b></span><input id="register-cpf" name="cpf" type="text" autocomplete="off" inputmode="numeric" placeholder="000.000.000-00" maxlength="14" required /></label>
+          <label class="register-field" for="register-rg"><span>RG <b>*</b></span><input id="register-rg" name="rg" type="text" autocomplete="off" placeholder="Seu número de RG" minlength="5" maxlength="20" required /></label>
+          <label class="register-field" for="register-birth"><span>Data de nascimento <b>*</b></span><input id="register-birth" name="dataNascimento" type="date" autocomplete="bday" required /></label>
+          <label class="register-field" for="register-phone"><span>Telefone <small>opcional</small></span><input id="register-phone" name="telefone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(00) 00000-0000" maxlength="15" /></label>
+          <label class="register-field register-field--full" for="register-address"><span>Endereço <small>opcional</small></span><input id="register-address" name="endereco" type="text" autocomplete="street-address" placeholder="Rua, número, cidade" maxlength="255" /></label>
+          <label class="register-field" for="register-password"><span>Senha <b>*</b></span><input id="register-password" name="senha" type="password" autocomplete="new-password" placeholder="Mínimo de 8 caracteres" minlength="8" maxlength="72" required /></label>
+          <label class="register-field" for="register-confirm-password"><span>Confirmar senha <b>*</b></span><input id="register-confirm-password" name="confirmarSenha" type="password" autocomplete="new-password" placeholder="Digite a senha novamente" minlength="8" maxlength="72" required /></label>
+        </div>
+
+        <p class="register-hint"><b>*</b> Campos obrigatórios. A confirmação de senha é usada apenas para validar o cadastro.</p>
+        <p class="register-message" id="register-message" role="status" aria-live="polite"></p>
+        <button class="register-submit" type="submit"><span>Criar minha conta</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </form>
+
+      <section class="register-success" id="register-success" hidden aria-live="polite">
+        <span class="register-success__icon" aria-hidden="true">✓</span>
+        <h2 id="register-success-title">Cadastro realizado</h2>
+        <p id="register-success-message"></p>
+        <a class="register-submit register-success__link" href="#/login">Ir para o login <span aria-hidden="true">→</span></a>
+      </section>
+
+      <p class="register-login">Já tem uma conta? <a href="#/login">Entrar</a></p>
+      <p class="register-terms">Ao criar sua conta, você concorda com nossos <a href="#/terms">Termos de Uso</a> e <a href="#/privacy">Política de Privacidade</a>.</p>
+    </div>
+    <span class="register-copyright">© 2026 CareerTech. Seu próximo passo começa aqui.</span>
+  </div>
 </section>
