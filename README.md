@@ -115,6 +115,18 @@ Os RFs referem-se ao documento de requisitos (a numeração se repete entre perf
 | `approvals/` | `#/admin/approvals` | ADM RF006-008 |
 | `management/` | `#/admin/management` | ADM RF009-017 |
 
+### Relação de telas por perfil (briefing)
+
+Nesta relação, **Usuário** corresponde ao perfil **Aluno** usado pelo sistema. Login é um fluxo compartilhado, com acesso definido pelo perfil da conta; cadastro é oferecido a Aluno e Professor. **Sair** é uma ação do layout da área logada, não uma tela.
+
+| Perfil do briefing | Telas e ações previstas | Rotas e requisitos mapeados |
+|---|---|---|
+| Administrador | Login, gerenciador de usuário e sair | `#/login` (ADM RF001-002); `#/admin/users` (ADM RF002-004); sair pelo layout (ADM RF018) |
+| Usuário (Aluno) | Login, cadastro, início, perfil, questionário de vocação, cursos, mapa de carreira, chat com IA, salas de aula, rede social, jogos, certificações e sair | `#/login` (RF001-003); `#/register` (RF004-007); `#/home` (RF009); `#/profile` (RF010); `#/career-quiz` (RF011); `#/courses` (RF012, RF014-015); `#/career-map` (RF019-020); `#/ai-chat` (RF021); `#/classrooms` (RF016-018); `#/social-network` (RF023-029); `#/games` (RF022); `#/certifications` (RF030); sair pelo layout (RF031) |
+| Professor | Login, cadastro, início, perfil, cursos, chat com IA, salas de aula, rede social, certificações e sair | `#/login` (Prof. RF032-036); `#/register` (RF037-040); `#/home` (RF041); `#/profile` (RF042); `#/courses` (RF043); `#/ai-chat` (RF057); `#/classrooms` (RF046-047); `#/social-network` (RF059-065); `#/certifications` (RF066); sair pelo layout (RF067) |
+
+**Diferenças entre a lista do briefing e o mapa atual do projeto:** o mapa também permite Jogos ao Professor (`#/games`, RF058), embora essa tela não esteja na lista enviada. Ele ainda inclui Área do professor, Turmas, Aulas, Avaliações e Alunos (RF048-056), e Aprovações e Gerenciamento do Administrador (ADM RF006-017). Essas telas já estão previstas no projeto, mas não foram acrescentadas à lista de briefing acima. Recuperação de senha também está mapeada para Aluno (RF006) e Professor (RF035), embora não apareça na lista enviada.
+
 **Erro** — `src/pages/errors/not-found/` (rota inexistente, 404).
 
 > Logout (RF031, RF067, RF018-ADM) é o botão "Sair" do layout `app`, e as notificações, moderação e

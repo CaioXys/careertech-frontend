@@ -27,6 +27,11 @@ Use este guia ao criar ou ajustar telas, componentes e estilos da SPA. Os valore
 - Campos devem ter rótulo persistente, foco visível, estado de erro descritivo e estado desabilitado legível. Não use apenas placeholder como rótulo.
 - Mantenha alvo de toque de pelo menos 44 × 44 px, ordem de teclado lógica e rótulos acessíveis para controles sem texto.
 
+## Ícones
+
+- Nas telas novas, prefira SVG inline para ícones de interface quando isso mantiver o markup simples e o desenho pequeno. Use `currentColor` para acompanhar o estado visual e `aria-hidden="true"` em ícones decorativos; controles formados apenas por ícone precisam de nome acessível.
+- Não adicione Ionic ou Ionicons apenas para fornecer ícones a uma tela. Se uma biblioteca de ícones passar a ser necessária de forma recorrente, registre e avalie essa dependência como decisão do projeto.
+
 ## CSS das telas
 
 - Mantenha os estilos dentro da classe raiz exclusiva da tela para evitar vazamento entre rotas.

@@ -1,12 +1,177 @@
-<!--
-  TELA: Início
-  Requisitos: Aluno RF009 | Professor RF041
-  Onde editar:
-    - Estrutura (HTML)   -> home.html   (este arquivo)
-    - Estilos (CSS)      -> home.css
-    - Comportamento (JS) -> home.js
--->
-<section class="home-page">
-  <h1>Início</h1>
-  <p>Tela ainda não criada. Edite <code>src/pages/shared/home/home.html</code>.</p>
+<section class="home-page" aria-labelledby="home-title">
+  <div class="home-page__content">
+    <header class="home-page__welcome">
+      <div>
+        <p class="home-page__eyebrow" data-home-eyebrow>SEU ESPAÇO DE APRENDIZAGEM</p>
+        <h1 id="home-title">Olá, <span data-home-name>pessoa estudante</span>!</h1>
+        <p class="home-page__intro" data-home-intro>Continue sua jornada e descubra seu próximo passo.</p>
+      </div>
+      <span class="home-page__welcome-mark" aria-hidden="true">
+        <svg viewBox="0 0 96 96" fill="none">
+          <circle cx="48" cy="48" r="39" fill="var(--action-soft)" />
+          <path d="M29 59.5 43 46l10 9 15-20" stroke="var(--action)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M58 35h10v10" stroke="var(--action)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="29" cy="59.5" r="4" fill="var(--progress)" />
+        </svg>
+      </span>
+    </header>
+
+    <div class="home-page__student" data-home-profile="student" hidden>
+      <section class="home-page__metrics" aria-label="Seu progresso demonstrativo">
+        <article class="home-page__metric">
+          <span class="home-page__metric-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5m0 14h17M8 15l4-4 3 2 5-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </span>
+          <div><p>Progresso da jornada</p><strong>32%</strong></div>
+          <span class="home-page__metric-note">2 de 6 etapas</span>
+        </article>
+        <article class="home-page__metric home-page__metric--xp">
+          <span class="home-page__metric-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="m13 2-8 12h6l-1 8 9-13h-6l1-7Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </span>
+          <div><p>Experiência acumulada</p><strong>450 XP</strong></div>
+          <span class="home-page__metric-note">Continue aprendendo</span>
+        </article>
+      </section>
+
+      <section class="home-page__section" aria-labelledby="home-continue-title">
+        <div class="home-page__section-heading">
+          <div><p class="home-page__eyebrow">DE ONDE VOCÊ PAROU</p><h2 id="home-continue-title">Continue aprendendo</h2></div>
+          <a class="home-page__text-link" href="#/courses">Ver cursos</a>
+        </div>
+        <article class="home-page__continue-card">
+          <span class="home-page__course-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-2-13-4 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </span>
+          <div class="home-page__course-copy">
+            <span class="home-page__tag">DESENVOLVIMENTO FRONT-END</span>
+            <h3>HTML e CSS na prática</h3>
+            <p>Construa páginas e layouts para a web.</p>
+            <div class="home-page__progress-label"><span>Progresso demonstrativo</span><strong>67%</strong></div>
+            <div class="home-page__progress-track" role="progressbar" aria-label="Progresso demonstrativo no curso HTML e CSS na prática" aria-valuemin="0" aria-valuemax="100" aria-valuenow="67"><span></span></div>
+          </div>
+          <a class="home-page__button" href="#/courses" aria-label="Continuar curso HTML e CSS na prática">Continuar curso</a>
+        </article>
+      </section>
+
+      <div class="home-page__dashboard-grid">
+        <section class="home-page__section home-page__panel" aria-labelledby="home-agenda-title">
+          <div class="home-page__section-heading">
+            <div><p class="home-page__eyebrow">ORGANIZE SUA ROTINA</p><h2 id="home-agenda-title">Próximas atividades</h2></div>
+            <span class="home-page__demo-label">Exemplo</span>
+          </div>
+          <div class="home-page__activity-list">
+            <a class="home-page__activity" href="#/classrooms">
+              <span class="home-page__activity-date"><strong>14</strong><small>HOJE</small></span>
+              <span><strong>Aula de lógica de programação</strong><small>Sala de aula · 14h</small></span>
+              <span class="home-page__arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="home-page__activity" href="#/classrooms">
+              <span class="home-page__activity-date home-page__activity-date--soft"><strong>16</strong><small>QUI</small></span>
+              <span><strong>Desafio: primeiros passos no código</strong><small>Atividade · Sala de aula</small></span>
+              <span class="home-page__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </section>
+
+        <aside class="home-page__career-tip" aria-labelledby="home-career-tip-title">
+          <span class="home-page__career-tip-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 18h6m-5 3h4m-2-19a7 7 0 0 0-4 12.7c.6.4 1 1.1 1 1.8h4c0-.7.4-1.4 1-1.8A7 7 0 0 0 12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 5v4m-2-2h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </span>
+          <p class="home-page__eyebrow">INSPIRAÇÃO PARA SUA JORNADA</p>
+          <h2 id="home-career-tip-title">Dica de carreira</h2>
+          <p>Explore áreas que conectam seus interesses às habilidades que você quer desenvolver.</p>
+          <a class="home-page__text-link" href="#/career-map">Explore seu mapa de carreira <span aria-hidden="true">→</span></a>
+          <small class="home-page__demo-caption">Conteúdo demonstrativo</small>
+        </aside>
+      </div>
+
+      <section class="home-page__section" aria-labelledby="home-recommendations-title">
+        <div class="home-page__section-heading">
+          <div><p class="home-page__eyebrow">IDEIAS PARA CONTINUAR</p><h2 id="home-recommendations-title">Cursos para explorar</h2></div>
+          <a class="home-page__text-link" href="#/courses">Ver todos os cursos</a>
+        </div>
+        <p class="home-page__section-note">Sugestões demonstrativas do catálogo de exemplo.</p>
+        <div class="home-page__recommendation-grid" data-recommended-courses aria-label="Cursos sugeridos"></div>
+      </section>
+
+      <section class="home-page__section" aria-labelledby="home-shortcuts-title">
+        <div class="home-page__section-heading"><div><p class="home-page__eyebrow">EXPLORE A PLATAFORMA</p><h2 id="home-shortcuts-title">Seus próximos passos</h2></div></div>
+        <div class="home-page__shortcut-grid">
+          <a class="home-page__shortcut" href="#/career-quiz">
+            <span class="home-page__shortcut-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M9.5 9a2.6 2.6 0 1 1 4.7 1.5c-.9 1.1-2.2 1.3-2.2 3m0 3h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+            <span><strong>Questionário vocacional</strong><small>Conheça seus interesses</small></span><span class="home-page__arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="home-page__shortcut" href="#/career-map">
+            <span class="home-page__shortcut-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6.5 8 4l8 3 5-2.5v13L16 20l-8-3-5 2.5v-13Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 4v13m8-10v13" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            <span><strong>Mapa de carreira</strong><small>Planeje seu futuro</small></span><span class="home-page__arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="home-page__shortcut" href="#/classrooms">
+            <span class="home-page__shortcut-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 5h18v12H3zM8 21h8m-4-4v4m-5-9 3-3 3 3 3-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span><strong>Salas de aula</strong><small>Acesse suas atividades</small></span><span class="home-page__arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="home-page__shortcut" href="#/games">
+            <span class="home-page__shortcut-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 9h10a4 4 0 0 1 3.8 5.2l-1 3a2 2 0 0 1-3.3.8L14 15h-4l-2.5 3a2 2 0 0 1-3.3-.8l-1-3A4 4 0 0 1 7 9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M7 12v4m-2-2h4m7-1h.01M18 15h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+            <span><strong>Jogos educativos</strong><small>Aprenda enquanto joga</small></span><span class="home-page__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <div class="home-page__teacher" data-home-profile="teacher" hidden>
+      <section class="home-page__metrics" aria-label="Resumo demonstrativo das turmas">
+        <article class="home-page__metric">
+          <span class="home-page__metric-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2m7-10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm13 10v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+          <div><p>Alunos acompanhados</p><strong>42</strong></div><span class="home-page__metric-note">Resumo demonstrativo</span>
+        </article>
+        <article class="home-page__metric">
+          <span class="home-page__metric-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="17" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M16 2v4M8 2v4M3 10h18m-13 4h3m-3 3h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+          <div><p>Turmas ativas</p><strong>3</strong></div><span class="home-page__metric-note">Neste período</span>
+        </article>
+        <article class="home-page__metric home-page__metric--pending">
+          <span class="home-page__metric-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8v4l3 2m5-2a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><p>Atividades pendentes</p><strong>5</strong></div><span class="home-page__metric-note">Revisão necessária</span>
+        </article>
+      </section>
+
+      <section class="home-page__section" aria-labelledby="home-teacher-tasks-title">
+        <div class="home-page__section-heading"><div><p class="home-page__eyebrow">ACOMPANHE SUA ROTINA</p><h2 id="home-teacher-tasks-title">O que precisa da sua atenção</h2></div><a class="home-page__text-link" href="#/teacher/assignments-assessments">Ver avaliações</a></div>
+        <div class="home-page__task-list">
+          <a class="home-page__task" href="#/teacher/assignments-assessments"><span class="home-page__task-dot" aria-hidden="true"></span><span><strong>Avaliações para revisar</strong><small>Há entregas aguardando correção</small></span><span class="home-page__task-count">3</span><span class="home-page__arrow" aria-hidden="true">→</span></a>
+          <a class="home-page__task" href="#/teacher/classes"><span class="home-page__task-dot home-page__task-dot--soft" aria-hidden="true"></span><span><strong>Preparar próxima aula</strong><small>Consulte sua agenda de turmas</small></span><span class="home-page__task-count home-page__task-count--quiet">2</span><span class="home-page__arrow" aria-hidden="true">→</span></a>
+        </div>
+      </section>
+
+      <section class="home-page__section home-page__panel" aria-labelledby="home-teacher-agenda-title">
+        <div class="home-page__section-heading">
+          <div><p class="home-page__eyebrow">AGENDA DA TURMA</p><h2 id="home-teacher-agenda-title">Próximas aulas</h2></div>
+          <span class="home-page__demo-label">Exemplo</span>
+        </div>
+        <div class="home-page__activity-list">
+          <a class="home-page__activity" href="#/teacher/classes">
+            <span class="home-page__activity-date"><strong>14</strong><small>HOJE</small></span>
+            <span><strong>Introdução à programação</strong><small>Turma Desenvolvimento Web · 14h</small></span>
+            <span class="home-page__arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="home-page__activity" href="#/teacher/classes">
+            <span class="home-page__activity-date home-page__activity-date--soft"><strong>16</strong><small>QUI</small></span>
+            <span><strong>Projeto de banco de dados</strong><small>Turma Fundamentos de Dados · 10h</small></span>
+            <span class="home-page__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="home-page__section" aria-labelledby="home-teacher-shortcuts-title">
+        <div class="home-page__section-heading"><div><p class="home-page__eyebrow">ACESSO RÁPIDO</p><h2 id="home-teacher-shortcuts-title">Gestão do ensino</h2></div><a class="home-page__text-link" href="#/teacher/dashboard">Abrir área do professor</a></div>
+        <div class="home-page__shortcut-grid home-page__shortcut-grid--teacher">
+          <a class="home-page__shortcut" href="#/teacher/classes"><span class="home-page__shortcut-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 5h18v14H3zM8 9h8m-8 4h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>Turmas</strong><small>Organize suas classes</small></span><span class="home-page__arrow" aria-hidden="true">→</span></a>
+          <a class="home-page__shortcut" href="#/teacher/lessons"><span class="home-page__shortcut-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 3h14v18H5zM8 7h8m-8 4h8m-8 4h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>Aulas</strong><small>Planeje conteúdos</small></span><span class="home-page__arrow" aria-hidden="true">→</span></a>
+          <a class="home-page__shortcut" href="#/teacher/students"><span class="home-page__shortcut-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M3 20v-2a6 6 0 0 1 12 0v2m3-9a3 3 0 1 0 0-6m3 15v-2a6 6 0 0 0-3-5.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span><strong>Alunos</strong><small>Acompanhe o progresso</small></span><span class="home-page__arrow" aria-hidden="true">→</span></a>
+          <a class="home-page__shortcut" href="#/teacher/assignments-assessments"><span class="home-page__shortcut-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M8 4h11v17H5V4h3Zm0-2h8v4H8zM8 12h8m-8 4h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>Avaliações</strong><small>Crie e revise atividades</small></span><span class="home-page__arrow" aria-hidden="true">→</span></a>
+        </div>
+      </section>
+    </div>
+
+    <p class="home-page__data-note">Os indicadores desta tela são demonstrativos e não representam dados de uma conta real.</p>
+  </div>
 </section>
