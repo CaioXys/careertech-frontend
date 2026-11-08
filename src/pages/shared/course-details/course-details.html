@@ -1,12 +1,48 @@
-<!--
-  TELA: Detalhe do curso (lessons)
-  Requisitos: Aluno RF013 | Professor RF044-RF045
-  Onde editar:
-    - Estrutura (HTML)   -> course-details.html   (este arquivo)
-    - Estilos (CSS)      -> course-details.css
-    - Comportamento (JS) -> course-details.js
--->
-<section class="course-details-page">
-  <h1>Detalhe do curso (lessons)</h1>
-  <p>Tela ainda não criada. Edite <code>src/pages/shared/course-details/course-details.html</code>.</p>
+<section class="course-details-page" aria-labelledby="course-details-title">
+  <a class="course-details-page__back" href="#/courses">
+    <span aria-hidden="true">←</span>
+    Voltar aos cursos
+  </a>
+
+  <p class="course-details-page__loading" role="status">Carregando curso...</p>
+  <p class="course-details-page__error" role="alert" hidden></p>
+
+  <div class="course-details-page__content" hidden>
+    <header class="course-details-page__hero">
+      <h1 id="course-details-title" class="course-details-page__title"></h1>
+    </header>
+
+    <section class="course-details-page__overview" aria-label="Informações e descrição do curso">
+      <section class="course-details-page__information" aria-labelledby="course-information-title">
+        <div class="course-details-page__section-heading">
+          <span class="course-details-page__eyebrow">INFORMAÇÕES DO CURSO</span>
+          <h2 id="course-information-title">Detalhes da formação</h2>
+        </div>
+        <dl class="course-details-page__metadata">
+          <div class="course-details-page__metadata-item">
+            <dt>Carga horária</dt>
+            <dd class="course-details-page__workload"></dd>
+          </div>
+          <div class="course-details-page__metadata-item">
+            <dt>Professores</dt>
+            <dd class="course-details-page__teachers"></dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="course-details-page__description-panel" aria-labelledby="course-description-title">
+        <span id="course-description-title" class="course-details-page__eyebrow">DESCRIÇÃO DO CURSO</span>
+        <p class="course-details-page__long-description"></p>
+      </section>
+    </section>
+
+    <footer class="course-details-page__footer">
+      <div>
+        <h2>Pronto para começar?</h2>
+        <p>Inicie sua jornada neste curso.</p>
+      </div>
+      <button class="course-details-page__start" type="button">Iniciar curso</button>
+      <p class="course-details-page__start-status" role="status" aria-live="polite"></p>
+    </footer>
+  </div>
 </section>
