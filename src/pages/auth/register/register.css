@@ -6,7 +6,7 @@
   min-height: 100vh;
   min-height: 100svh;
   display: grid;
-  grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr);
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1.28fr);
   color: var(--register-ink);
   background: #fff;
   font-family: var(--font-family);
