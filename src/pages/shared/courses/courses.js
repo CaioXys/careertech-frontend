@@ -29,7 +29,7 @@ export default {
     function render() {
       const term = normalize(search.value.trim());
       const items = courses.filter((course) =>
-        normalize(`${course.title} ${course.area}`).includes(term),
+        normalize(`${course.title} ${course.area} ${course.description}`).includes(term),
       );
       list.replaceChildren();
       list.setAttribute('aria-busy', 'false');
@@ -50,7 +50,11 @@ export default {
 
         const area = document.createElement('span');
         area.className = 'courses-page__area';
-        area.textContent = course.area;
+        area.textContent = course.type ?? course.area;
+
+        const description = document.createElement('p');
+        description.className = 'courses-page__description';
+        description.textContent = course.description;
 
         const workload = document.createElement('p');
         workload.className = 'courses-page__workload';
@@ -65,7 +69,7 @@ export default {
         details.textContent = 'Ver detalhes';
         details.addEventListener('click', () => navigate(`/courses/${course.id}`));
 
-        card.append(name, area, workload, details);
+        card.append(name, area, description, workload, details);
         list.append(card);
       });
     }

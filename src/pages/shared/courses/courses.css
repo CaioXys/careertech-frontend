@@ -230,6 +230,12 @@
   font-weight: var(--font-weight-semibold);
 }
 
+.courses-page__description {
+  color: var(--text-2);
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-body);
+}
+
 .courses-page__workload {
   color: var(--text-2);
   font-size: var(--font-size-12);
