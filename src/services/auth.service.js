@@ -11,7 +11,10 @@ export async function signIn({ email, password }) {
   if (config.useMocks) {
     await delay();
     const registeredUsers = JSON.parse(localStorage.getItem('careertech:registered-users') ?? '[]');
-    const found = [...mockUsers, ...registeredUsers].find((u) => u.email === email && u.password === password);
+    const passwordOverrides = JSON.parse(localStorage.getItem('careertech:password-overrides') ?? '{}');
+    const found = [...mockUsers, ...registeredUsers].find((u) => (
+      u.email === email && (passwordOverrides[u.email] ?? u.password) === password
+    ));
     if (!found) throw new Error('E-mail ou senha incorretos.');
     if (found.status === 'pendente') throw new Error('Seu cadastro ainda está em análise pelo administrador.');
 
@@ -51,4 +54,45 @@ export async function signUp(data) {
       ? 'Cadastro enviado para aprovação. Você poderá entrar quando o administrador aprovar.'
       : 'Cadastro realizado com sucesso.',
   };
+}
+
+/** A recuperação de senha ainda não possui endpoint no backend. */
+export async function requestPasswordReset(email) {
+  if (!config.useMocks) {
+    throw new Error('A recuperação automática de senha ainda não está disponível. Entre em contato com o suporte.');
+  }
+
+  await delay();
+  return {
+    mensagem: `Enviamos um código para ${email}. No protótipo, use 123456 para continuar.`,
+  };
+}
+
+/** Confere o código temporário usado pelo fluxo demonstrativo. */
+export async function verifyPasswordResetCode(email, code) {
+  if (!config.useMocks) {
+    throw new Error('A validação do código ainda não está disponível no serviço de autenticação.');
+  }
+  await delay();
+  if (code !== '123456') throw new Error('Esse código não está correto. Confira seu e-mail e tente novamente.');
+  return { email };
+}
+
+/** Atualiza a senha local no modo demonstrativo. */
+export async function resetPassword(email, password) {
+  if (!config.useMocks) {
+    throw new Error('A alteração de senha ainda não está disponível no serviço de autenticação.');
+  }
+  await delay();
+  const registeredUsers = JSON.parse(localStorage.getItem('careertech:registered-users') ?? '[]');
+  const registeredUser = registeredUsers.find((user) => user.email.toLowerCase() === email.toLowerCase());
+  if (registeredUser) {
+    registeredUser.password = password;
+    localStorage.setItem('careertech:registered-users', JSON.stringify(registeredUsers));
+  } else {
+    const passwordOverrides = JSON.parse(localStorage.getItem('careertech:password-overrides') ?? '{}');
+    passwordOverrides[email] = password;
+    localStorage.setItem('careertech:password-overrides', JSON.stringify(passwordOverrides));
+  }
+  return { mensagem: 'Senha atualizada com sucesso.' };
 }
