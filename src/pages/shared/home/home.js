@@ -6,7 +6,7 @@ import { mockCourses } from '../../../mocks/courses.js';
 function renderRecommendedCourses(root) {
   const list = root.querySelector('[data-recommended-courses]');
 
-  for (const course of mockCourses) {
+  for (const course of mockCourses.slice(0, 5)) {
     const card = document.createElement('a');
     card.className = 'home-page__recommendation';
     card.href = `#/courses/${encodeURIComponent(course.id)}`;
@@ -40,6 +40,25 @@ function renderRecommendedCourses(root) {
     card.append(icon, area, title, workload, cta);
     list.append(card);
   }
+
+  const allCourses = document.createElement('a');
+  allCourses.className = 'home-page__recommendation home-page__recommendation--all';
+  allCourses.href = '#/courses';
+  allCourses.setAttribute('aria-label', 'Conhecer mais cursos');
+
+  const moreIcon = document.createElement('span');
+  moreIcon.className = 'home-page__recommendation-more-icon';
+  moreIcon.setAttribute('aria-hidden', 'true');
+  moreIcon.textContent = '→';
+
+  const moreLabel = document.createElement('strong');
+  moreLabel.textContent = 'Conhecer mais cursos';
+
+  const moreDescription = document.createElement('span');
+  moreDescription.textContent = 'Explore o catálogo completo';
+
+  allCourses.append(moreIcon, moreLabel, moreDescription);
+  list.append(allCourses);
 }
 
 export default {
