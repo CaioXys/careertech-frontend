@@ -1,7 +1,385 @@
-/* Estilos da tela "Questionário vocacional".
-   Tudo dentro de .career-quiz-page, senão o CSS vaza para as outras telas
-   (em SPA, o CSS importado continua na página depois de trocar de tela).
-   Use as variáveis do Design System (src/styles/tokens.css): var(--color-primary)... */
 .career-quiz-page {
-  /* seus estilos aqui. CSS nesting é aceito: .x { h1 { ... } } */
+  min-height: 100%;
+  padding: var(--spacing-5) var(--spacing-4) var(--spacing-7);
+  background: var(--page);
+  color: var(--ink);
+}
+
+.career-quiz-page [hidden] {
+  display: none !important;
+}
+
+.career-quiz-page__content {
+  width: min(100%, 840px);
+  margin: 0 auto;
+}
+
+.career-quiz-page__header {
+  padding: var(--spacing-4) 0 var(--spacing-5);
+}
+
+.career-quiz-page__eyebrow {
+  margin: 0 0 var(--spacing-2);
+  color: var(--action);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+}
+
+.career-quiz-page__header h1 {
+  margin: 0;
+  font-size: clamp(var(--font-size-24), 4vw, var(--font-size-32));
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+  letter-spacing: -0.03em;
+}
+
+.career-quiz-page__intro {
+  max-width: 620px;
+  margin: var(--spacing-2) 0 0;
+  color: var(--text-2);
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-body);
+}
+
+.career-quiz-page__card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  box-shadow: var(--shadow-overlay);
+}
+
+.career-quiz-page__welcome,
+.career-quiz-page__question-view,
+.career-quiz-page__result {
+  padding: clamp(var(--spacing-4), 5vw, var(--spacing-7));
+}
+
+.career-quiz-page__welcome {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.career-quiz-page__illustration,
+.career-quiz-page__result-icon {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--spacing-4);
+  place-items: center;
+  border-radius: 20px;
+  background: var(--action-soft);
+  color: var(--action);
+  font-size: 32px;
+}
+
+.career-quiz-page__welcome h2,
+.career-quiz-page__result h2 {
+  margin: 0;
+  font-size: clamp(var(--font-size-20), 4vw, var(--font-size-24));
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+}
+
+.career-quiz-page__welcome > p:not(.career-quiz-page__eyebrow) {
+  max-width: 520px;
+  margin: var(--spacing-3) auto 0;
+  color: var(--text-2);
+  line-height: var(--line-height-body);
+}
+
+.career-quiz-page__details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-3) var(--spacing-5);
+  margin: var(--spacing-5) 0;
+  padding: 0;
+  color: var(--text-2);
+  font-size: var(--font-size-14);
+  list-style: none;
+}
+
+.career-quiz-page__details li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.career-quiz-page__details li span {
+  color: var(--progress-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+.career-quiz-page__button {
+  min-height: var(--button-height);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  padding: 0 var(--spacing-4);
+  border: 1px solid var(--action);
+  border-radius: var(--radius-control);
+  background: var(--action);
+  color: #ffffff;
+  font: inherit;
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.career-quiz-page__button:hover {
+  border-color: var(--action-hover);
+  background: var(--action-hover);
+  color: #ffffff;
+}
+
+.career-quiz-page__button:focus-visible,
+.career-quiz-page__option:focus-within {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: var(--focus-offset);
+}
+
+.career-quiz-page__button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.career-quiz-page__button--quiet {
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--text-2);
+}
+
+.career-quiz-page__button--quiet:hover {
+  border-color: var(--line);
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.career-quiz-page__progress-copy {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+  color: var(--muted);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.04em;
+}
+
+.career-quiz-page__progress-track,
+.career-quiz-page__score-track {
+  height: 8px;
+  overflow: hidden;
+  margin-top: var(--spacing-2);
+  border-radius: var(--radius-pill);
+  background: var(--surface-3);
+}
+
+.career-quiz-page__progress-track span,
+.career-quiz-page__score-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--progress);
+  transition: width 180ms ease;
+}
+
+.career-quiz-page__fieldset {
+  min-width: 0;
+  margin: var(--spacing-6) 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.career-quiz-page__fieldset legend {
+  width: 100%;
+  font-size: clamp(var(--font-size-20), 4vw, var(--font-size-24));
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+}
+
+.career-quiz-page__hint {
+  margin: var(--spacing-2) 0 var(--spacing-4);
+  color: var(--muted);
+  font-size: var(--font-size-14);
+}
+
+.career-quiz-page__options {
+  display: grid;
+  gap: var(--spacing-3);
+}
+
+.career-quiz-page__option {
+  position: relative;
+  width: 100%;
+  min-height: 64px;
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  cursor: pointer;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.career-quiz-page__option:hover {
+  border-color: var(--focus);
+  background: var(--action-soft);
+}
+
+.career-quiz-page__option:has(input:checked) {
+  border-color: var(--action);
+  background: var(--action-soft);
+}
+
+.career-quiz-page__option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.career-quiz-page__radio {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--muted);
+  border-radius: 50%;
+}
+
+.career-quiz-page__option input:checked + .career-quiz-page__radio {
+  border: 5px solid var(--action);
+  background: var(--surface);
+}
+
+.career-quiz-page__option-text {
+  min-width: 0;
+  color: var(--ink);
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-body);
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.career-quiz-page__error {
+  margin: var(--spacing-3) 0 0;
+  color: var(--error-text);
+  font-size: var(--font-size-14);
+}
+
+.career-quiz-page__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-5);
+}
+
+.career-quiz-page__result {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.career-quiz-page__result-icon {
+  margin-left: 0;
+}
+
+.career-quiz-page__result-copy {
+  margin: var(--spacing-3) 0 0;
+  color: var(--text-2);
+  line-height: var(--line-height-body);
+}
+
+.career-quiz-page__score-card {
+  margin-top: var(--spacing-5);
+  padding: var(--spacing-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface-2);
+}
+
+.career-quiz-page__score-card h3 {
+  margin: 0 0 var(--spacing-4);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+}
+
+.career-quiz-page__scores {
+  display: grid;
+  gap: var(--spacing-3);
+}
+
+.career-quiz-page__score-copy {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+  color: var(--text-2);
+  font-size: var(--font-size-14);
+}
+
+.career-quiz-page__score-copy strong {
+  flex: 0 0 auto;
+  color: var(--ink);
+  font-size: var(--font-size-12);
+}
+
+.career-quiz-page__score-track {
+  height: 6px;
+  margin-top: var(--spacing-1);
+}
+
+.career-quiz-page__disclaimer {
+  margin: var(--spacing-4) 0 0;
+  color: var(--muted);
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-body);
+}
+
+@media (max-width: 600px) {
+  .career-quiz-page {
+    padding: var(--spacing-4) var(--spacing-3) var(--spacing-6);
+  }
+
+  .career-quiz-page__header {
+    padding-top: var(--spacing-2);
+  }
+
+  .career-quiz-page__welcome,
+  .career-quiz-page__question-view,
+  .career-quiz-page__result {
+    padding: var(--spacing-4);
+  }
+
+  .career-quiz-page__details {
+    align-items: flex-start;
+    flex-direction: column;
+    width: fit-content;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .career-quiz-page__welcome > .career-quiz-page__button {
+    width: 100%;
+  }
+
+  .career-quiz-page__actions {
+    align-items: stretch;
+  }
+
+  .career-quiz-page__actions .career-quiz-page__button {
+    flex: 1;
+    padding-right: var(--spacing-2);
+    padding-left: var(--spacing-2);
+    font-size: var(--font-size-12);
+  }
 }

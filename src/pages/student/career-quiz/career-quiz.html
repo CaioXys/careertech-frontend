@@ -1,12 +1,62 @@
 <!--
   TELA: Questionário vocacional
   Requisitos: Aluno RF011
-  Onde editar:
-    - Estrutura (HTML)   -> career-quiz.html   (este arquivo)
-    - Estilos (CSS)      -> career-quiz.css
-    - Comportamento (JS) -> career-quiz.js
 -->
 <section class="career-quiz-page">
-  <h1>Questionário vocacional</h1>
-  <p>Tela ainda não criada. Edite <code>src/pages/student/career-quiz/career-quiz.html</code>.</p>
+  <div class="career-quiz-page__content">
+    <header class="career-quiz-page__header">
+      <p class="career-quiz-page__eyebrow">AUTOCONHECIMENTO</p>
+      <h1>Questionário vocacional</h1>
+      <p class="career-quiz-page__intro">Descubra quais atividades despertam seu interesse e explore caminhos que combinam com você.</p>
+    </header>
+
+    <div class="career-quiz-page__card" data-quiz-root>
+      <div class="career-quiz-page__welcome" data-quiz-view="welcome">
+        <div class="career-quiz-page__illustration" aria-hidden="true">✦</div>
+        <p class="career-quiz-page__eyebrow">SEU PRÓXIMO PASSO</p>
+        <h2>Uma jornada de descobertas</h2>
+        <p>Responda pensando no que você gosta de fazer. Não existem respostas certas ou erradas: este resultado é um ponto de partida para conhecer seus interesses.</p>
+        <ul class="career-quiz-page__details">
+          <li><span aria-hidden="true">◷</span> Cerca de 3 minutos</li>
+          <li><span aria-hidden="true">✓</span> 8 perguntas rápidas</li>
+          <li><span aria-hidden="true">◎</span> Resultado para explorar</li>
+        </ul>
+        <button class="career-quiz-page__button" type="button" data-quiz-start>Começar questionário <span aria-hidden="true">→</span></button>
+      </div>
+
+      <div class="career-quiz-page__question-view" data-quiz-view="question" hidden>
+        <div class="career-quiz-page__progress-copy">
+          <span data-quiz-step>PERGUNTA 1 DE 8</span>
+          <span data-quiz-percent>12%</span>
+        </div>
+        <div class="career-quiz-page__progress-track" role="progressbar" aria-label="Progresso do questionário" aria-valuemin="0" aria-valuemax="8" aria-valuenow="1"><span data-quiz-progress></span></div>
+        <fieldset class="career-quiz-page__fieldset">
+          <legend data-quiz-question></legend>
+          <p class="career-quiz-page__hint">Escolha a alternativa que mais combina com você.</p>
+          <div class="career-quiz-page__options" data-quiz-options></div>
+        </fieldset>
+        <p class="career-quiz-page__error" data-quiz-error role="alert" hidden>Escolha uma alternativa para continuar.</p>
+        <div class="career-quiz-page__actions">
+          <button class="career-quiz-page__button career-quiz-page__button--quiet" type="button" data-quiz-back>← Voltar</button>
+          <button class="career-quiz-page__button" type="button" data-quiz-next>Próxima pergunta <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+
+      <div class="career-quiz-page__result" data-quiz-view="result" hidden>
+        <div class="career-quiz-page__result-icon" aria-hidden="true">✦</div>
+        <p class="career-quiz-page__eyebrow">SEU RESULTADO</p>
+        <h2 data-result-title></h2>
+        <p class="career-quiz-page__result-copy" data-result-copy></p>
+        <div class="career-quiz-page__score-card">
+          <h3>Interesses que apareceram nas suas respostas</h3>
+          <div class="career-quiz-page__scores" data-result-scores></div>
+        </div>
+        <p class="career-quiz-page__disclaimer">Este questionário é uma ferramenta de autoconhecimento e não substitui orientação profissional. Seus interesses podem mudar com o tempo.</p>
+        <div class="career-quiz-page__actions">
+          <button class="career-quiz-page__button career-quiz-page__button--quiet" type="button" data-quiz-restart>Refazer questionário</button>
+          <a class="career-quiz-page__button" href="#/career-map">Ver meu mapa de carreira <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
