@@ -1,12 +1,66 @@
-<!--
-  TELA: Perfil
-  Requisitos: Aluno RF010 | Professor RF042
-  Onde editar:
-    - Estrutura (HTML)   -> profile.html   (este arquivo)
-    - Estilos (CSS)      -> profile.css
-    - Comportamento (JS) -> profile.js
--->
-<section class="profile-page">
-  <h1>Perfil</h1>
-  <p>Tela ainda não criada. Edite <code>src/pages/shared/profile/profile.html</code>.</p>
+<section class="profile-page" aria-labelledby="profile-title">
+  <div class="profile-page__content">
+    <header class="profile-page__heading">
+      <div>
+        <p class="profile-page__eyebrow">SUA CONTA</p>
+        <h1 id="profile-title">Meu perfil</h1>
+        <p>Gerencie suas informações pessoais e acompanhe sua jornada na CareerTech.</p>
+      </div>
+      <span class="profile-page__heading-icon" aria-hidden="true">✳</span>
+    </header>
+
+    <div class="profile-page__grid">
+      <aside class="profile-page__summary" aria-label="Resumo do perfil">
+        <div class="profile-page__avatar" data-profile-initials aria-hidden="true">CT</div>
+        <h2 data-profile-name>Seu nome</h2>
+        <p data-profile-email>seu@email.com</p>
+        <span class="profile-page__role" data-profile-role>Estudante</span>
+        <div class="profile-page__summary-divider"></div>
+        <p class="profile-page__summary-note">Este perfil ajuda a personalizar sua experiência de aprendizagem.</p>
+      </aside>
+
+      <div class="profile-page__main">
+        <section class="profile-page__card" aria-labelledby="profile-info-title">
+          <div class="profile-page__card-heading">
+            <div><p class="profile-page__eyebrow">INFORMAÇÕES PESSOAIS</p><h2 id="profile-info-title">Seus dados</h2></div>
+            <span class="profile-page__private-note"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 10V7a4 4 0 1 1 8 0v3m-4 4v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> Visível apenas para você</span>
+          </div>
+
+          <form class="profile-page__form" novalidate>
+            <div class="profile-page__fields">
+              <label class="profile-page__field profile-page__field--wide" for="profile-name">
+                <span>Nome completo</span><input id="profile-name" name="name" type="text" autocomplete="name" minlength="3" maxlength="120" required />
+              </label>
+              <label class="profile-page__field" for="profile-email">
+                <span>E-mail</span><input id="profile-email" name="email" type="email" autocomplete="email" maxlength="160" required />
+              </label>
+              <label class="profile-page__field" for="profile-phone">
+                <span>Telefone <small>opcional</small></span><input id="profile-phone" name="telefone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(00) 00000-0000" maxlength="15" />
+              </label>
+              <label class="profile-page__field" for="profile-cpf">
+                <span>CPF</span><input id="profile-cpf" name="cpf" type="text" inputmode="numeric" autocomplete="off" disabled aria-describedby="profile-cpf-note" />
+                <small id="profile-cpf-note">O CPF não pode ser alterado por aqui.</small>
+              </label>
+              <label class="profile-page__field" for="profile-role-input">
+                <span>Tipo de conta</span><input id="profile-role-input" name="role" type="text" disabled />
+              </label>
+              <label class="profile-page__field profile-page__field--wide" for="profile-address">
+                <span>Endereço <small>opcional</small></span><input id="profile-address" name="endereco" type="text" autocomplete="street-address" maxlength="255" placeholder="Rua, número, cidade" />
+              </label>
+            </div>
+            <p class="profile-page__message" data-profile-message role="status" aria-live="polite"></p>
+            <div class="profile-page__actions">
+              <button class="profile-page__button profile-page__button--quiet" type="reset">Descartar alterações</button>
+              <button class="profile-page__button" type="submit"><span>Salvar alterações</span><span aria-hidden="true">→</span></button>
+            </div>
+          </form>
+        </section>
+
+        <section class="profile-page__tip" aria-label="Dica">
+          <span class="profile-page__tip-icon" aria-hidden="true">✦</span>
+          <div><strong>Seu próximo passo começa com você.</strong><p>Mantenha seus dados atualizados para aproveitar melhor sua jornada de aprendizagem.</p></div>
+        </section>
+      </div>
+    </div>
+  </div>
 </section>

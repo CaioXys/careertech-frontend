@@ -12,13 +12,16 @@ export async function signIn({ email, password }) {
     await delay();
     const registeredUsers = JSON.parse(localStorage.getItem('careertech:registered-users') ?? '[]');
     const passwordOverrides = JSON.parse(localStorage.getItem('careertech:password-overrides') ?? '{}');
+    const profileOverrides = JSON.parse(localStorage.getItem('careertech:profile-overrides') ?? '{}');
     const found = [...mockUsers, ...registeredUsers].find((u) => (
-      u.email === email && (passwordOverrides[u.email] ?? u.password) === password
+      (u.email === email || profileOverrides[String(u.id)]?.email === email)
+      && (passwordOverrides[u.email] ?? u.password) === password
     ));
     if (!found) throw new Error('E-mail ou senha incorretos.');
     if (found.status === 'pendente') throw new Error('Seu cadastro ainda está em análise pelo administrador.');
 
-    const { password: _omit, ...user } = found; // never returns the password
+    const { password: _omit, ...baseUser } = found; // never returns the password
+    const user = { ...baseUser, ...(profileOverrides[String(baseUser.id)] ?? {}) };
     return { token: `mock-token-${user.role}`, user };
   }
 
