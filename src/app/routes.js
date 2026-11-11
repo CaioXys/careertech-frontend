@@ -47,8 +47,6 @@ export const routes = [
 
   // ---------- Somente Administrador ----------
   { path: '/admin/users', layout: 'app', roles: [ADMIN], load: () => import('../pages/admin/users/users.js') },
-  { path: '/admin/approvals', layout: 'app', roles: [ADMIN], load: () => import('../pages/admin/approvals/approvals.js') },
-  { path: '/admin/management', layout: 'app', roles: [ADMIN], load: () => import('../pages/admin/management/management.js') },
 
   // ---------- 404 (sempre a última) ----------
   { path: '*', layout: 'auth', public: true, load: () => import('../pages/errors/not-found/not-found.js') },

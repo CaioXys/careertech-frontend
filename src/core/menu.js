@@ -42,7 +42,5 @@ export const menuByRole = {
   ],
   [ROLES.ADMIN]: [
     { label: 'Usuários', path: '/admin/users' },
-    { label: 'Aprovações', path: '/admin/approvals' },
-    { label: 'Gerenciamento', path: '/admin/management' },
   ],
 };

@@ -1,12 +1,85 @@
-<!--
-  TELA: Usuários (Tela Cadastros)
-  Requisitos: ADM RF002-RF004
-  Onde editar:
-    - Estrutura (HTML)   -> users.html   (este arquivo)
-    - Estilos (CSS)      -> users.css
-    - Comportamento (JS) -> users.js
--->
-<section class="users-page">
-  <h1>Usuários (Tela Cadastros)</h1>
-  <p>Tela ainda não criada. Edite <code>src/pages/admin/users/users.html</code>.</p>
+<section class="users-page" aria-labelledby="users-title">
+  <header class="users-page__header">
+    <div>
+      <p class="users-page__eyebrow">ADMINISTRAÇÃO</p>
+      <h1 id="users-title">Gerenciador de usuário</h1>
+      <p class="users-page__intro">Consulte as contas, aprove professores e gerencie o acesso à plataforma.</p>
+    </div>
+  </header>
+
+  <section class="users-page__panel" aria-label="Lista de usuários">
+    <div class="users-page__panel-head">
+      <div>
+        <h2>Usuários cadastrados</h2>
+        <p data-summary aria-live="polite">Carregando lista…</p>
+      </div>
+    </div>
+
+    <form class="users-page__filters" data-user-filters role="search">
+      <label class="users-page__search-field">
+        <span>Buscar usuário</span>
+        <span class="users-page__search-wrap">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+          <input name="busca" type="search" maxlength="100" placeholder="Nome, e-mail ou ID" autocomplete="off" />
+        </span>
+      </label>
+      <label>
+        <span>Perfil</span>
+        <select name="role">
+          <option value="">Todos os perfis</option>
+          <option value="aluno">Aluno</option>
+          <option value="professor">Professor</option>
+          <option value="admin">Administrador</option>
+        </select>
+      </label>
+      <label>
+        <span>Status</span>
+        <select name="status">
+          <option value="">Todos os status</option>
+          <option value="pendente">Pendente</option>
+          <option value="ativo">Ativo</option>
+          <option value="bloqueado">Bloqueado</option>
+          <option value="rejeitado">Rejeitado</option>
+        </select>
+      </label>
+      <button class="users-page__filter-button" type="submit">Filtrar</button>
+    </form>
+
+    <p class="users-page__notice" data-notice role="status" aria-live="polite" hidden></p>
+
+    <div class="users-page__table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Usuário</th>
+            <th scope="col">ID</th>
+            <th scope="col">Perfil</th>
+            <th scope="col">Status</th>
+            <th scope="col">Cadastro</th>
+            <th scope="col"><span class="users-page__sr-only">Ações</span></th>
+          </tr>
+        </thead>
+        <tbody data-user-rows>
+          <tr class="users-page__message-row"><td colspan="6">Carregando usuários…</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <nav class="users-page__pagination" data-pagination aria-label="Paginação de usuários"></nav>
+  </section>
+
+  <dialog class="users-page__dialog" data-reject-dialog aria-labelledby="reject-title">
+    <form method="dialog" data-reject-form>
+      <p class="users-page__eyebrow">APROVAÇÃO DE PROFESSOR</p>
+      <h2 id="reject-title">Rejeitar cadastro?</h2>
+      <p>Informe o motivo para registrar a decisão e orientar o professor.</p>
+      <label>
+        <span>Motivo da rejeição <span aria-hidden="true">*</span></span>
+        <textarea name="motivo" rows="4" maxlength="255" required placeholder="Descreva o motivo (até 255 caracteres)"></textarea>
+      </label>
+      <div class="users-page__dialog-actions">
+        <button class="users-page__filter-button users-page__filter-button--secondary" data-cancel type="button">Cancelar</button>
+        <button class="users-page__filter-button users-page__filter-button--danger" type="submit">Confirmar rejeição</button>
+      </div>
+    </form>
+  </dialog>
 </section>
