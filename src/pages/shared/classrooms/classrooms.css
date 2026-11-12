@@ -1,7 +1,663 @@
-/* Estilos da tela "Salas de aula".
-   Tudo dentro de .classrooms-page, senão o CSS vaza para as outras telas
-   (em SPA, o CSS importado continua na página depois de trocar de tela).
-   Use as variáveis do Design System (src/styles/tokens.css): var(--color-primary)... */
 .classrooms-page {
-  /* seus estilos aqui. CSS nesting é aceito: .x { h1 { ... } } */
+  min-height: 100%;
+  padding: var(--spacing-4) var(--spacing-3) var(--spacing-6);
+  color: var(--ink);
+  background: var(--page);
+}
+
+.classrooms-page [hidden] {
+  display: none !important;
+}
+
+.classrooms-page__content {
+  width: min(100%, 1120px);
+  margin: 0 auto;
+}
+
+.classrooms-page__header {
+  padding: var(--spacing-2) 0 var(--spacing-4);
+}
+
+.classrooms-page__eyebrow {
+  margin: 0 0 var(--spacing-2);
+  color: var(--action);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+}
+
+.classrooms-page__header h1,
+.classrooms-page__room-header h2 {
+  margin: 0;
+  font-size: clamp(var(--font-size-24), 4vw, var(--font-size-32));
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+  letter-spacing: -0.03em;
+}
+
+.classrooms-page__intro {
+  margin: var(--spacing-2) 0 0;
+  color: var(--text-2);
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-body);
+}
+
+.classrooms-page__loading,
+.classrooms-page__empty {
+  color: var(--text-2);
+  font-size: var(--font-size-14);
+}
+
+.classrooms-page__search {
+  display: grid;
+  gap: var(--spacing-2);
+  max-width: 32rem;
+  margin-bottom: var(--spacing-4);
+  color: var(--ink);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+}
+
+.classrooms-page__search input {
+  width: 100%;
+  min-width: 0;
+  min-height: var(--control-height);
+  padding: 0 var(--spacing-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  background: var(--surface);
+  font: inherit;
+  font-weight: var(--font-weight-regular);
+}
+
+.classrooms-page__search input:focus-visible {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: var(--focus-offset);
+}
+
+.classrooms-page__error {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+  padding: var(--spacing-4);
+  border: 1px solid var(--error);
+  border-radius: var(--radius-card);
+  color: var(--error-text);
+  background: var(--error-soft);
+  font-size: var(--font-size-14);
+}
+
+.classrooms-page__error p {
+  margin: 0;
+}
+
+.classrooms-page__retry,
+.classrooms-page__close {
+  min-height: var(--button-height);
+  padding: 0 var(--spacing-4);
+  border: 1px solid var(--action);
+  border-radius: var(--radius-control);
+  color: var(--surface);
+  background: var(--action);
+  font: inherit;
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  cursor: pointer;
+}
+
+.classrooms-page__retry:hover,
+.classrooms-page__close:hover {
+  border-color: var(--action-hover);
+  background: var(--action-hover);
+}
+
+.classrooms-page__retry:focus-visible,
+.classrooms-page__close:focus-visible,
+.classrooms-page__play:focus-visible,
+.classrooms-page__access:focus-visible {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: var(--focus-offset);
+}
+
+.classrooms-page__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--spacing-3);
+}
+
+.classrooms-page__card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 150ms ease, transform 150ms ease;
+}
+
+.classrooms-page__card:hover {
+  border-color: var(--action);
+  transform: translateY(-2px);
+}
+
+.classrooms-page__cover {
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  min-height: 148px;
+  display: grid;
+  place-items: center;
+  color: var(--action);
+  background: linear-gradient(135deg, var(--action-soft), var(--surface-2));
+}
+
+.classrooms-page__cover--data {
+  color: var(--progress-text);
+  background: linear-gradient(135deg, var(--progress-soft), var(--surface-2));
+}
+
+.classrooms-page__cover--infrastructure {
+  color: var(--xp-text);
+  background: linear-gradient(135deg, var(--xp-soft), var(--surface-2));
+}
+
+.classrooms-page__cover img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.classrooms-page__cover svg {
+  width: 96px;
+  height: 96px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.classrooms-page__card-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  padding: var(--spacing-4);
+}
+
+.classrooms-page__card-area {
+  align-self: flex-start;
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-pill);
+  color: var(--action);
+  background: var(--action-soft);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+}
+
+.classrooms-page__card-area--data {
+  color: var(--progress-text);
+  background: var(--progress-soft);
+}
+
+.classrooms-page__card-area--infrastructure {
+  color: var(--xp-text);
+  background: var(--xp-soft);
+}
+
+.classrooms-page__card-title {
+  margin: 0;
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+}
+
+.classrooms-page__teacher {
+  margin: 0;
+  color: var(--text-2);
+  font-size: var(--font-size-14);
+}
+
+.classrooms-page__visual {
+  position: relative;
+}
+
+.classrooms-page__rating {
+  position: absolute;
+  z-index: 1;
+  top: var(--spacing-2);
+  right: var(--spacing-2);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  padding: var(--spacing-1) var(--spacing-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(calc(-1 * var(--spacing-1)));
+  transition: opacity 150ms ease, transform 150ms ease, visibility 150ms ease;
+}
+
+.classrooms-page__card:hover .classrooms-page__rating,
+.classrooms-page__card:focus-within .classrooms-page__rating {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.classrooms-page__rating-star {
+  font-size: var(--font-size-20);
+  line-height: 1;
+}
+
+.classrooms-page__rating-star--full {
+  color: var(--xp);
+}
+
+.classrooms-page__rating-star--half {
+  background: linear-gradient(90deg, var(--xp) 50%, var(--muted) 50%);
+  background-clip: text;
+  color: transparent;
+}
+
+.classrooms-page__rating-star--empty {
+  color: var(--muted);
+}
+
+.classrooms-page__card-footer {
+  display: grid;
+  gap: var(--spacing-3);
+  margin-top: auto;
+  padding-top: var(--spacing-2);
+}
+
+.classrooms-page__progress {
+  display: grid;
+  gap: var(--spacing-1);
+}
+
+.classrooms-page__progress-copy {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-2);
+  color: var(--muted);
+  font-size: var(--font-size-12);
+}
+
+.classrooms-page__progress-copy strong {
+  color: var(--progress-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+.classrooms-page__progress-track {
+  height: 7px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--surface-3);
+}
+
+.classrooms-page__progress-track span {
+  height: 100%;
+  display: block;
+  border-radius: inherit;
+  background: var(--progress);
+}
+
+.classrooms-page__access {
+  min-height: var(--button-height);
+  display: flex;
+  justify-self: end;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-2);
+  min-width: 9rem;
+  padding: 0 var(--spacing-3);
+  border: 0;
+  border-radius: var(--radius-control);
+  color: var(--surface);
+  background: var(--action);
+  font-family: inherit;
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  cursor: pointer;
+}
+
+.classrooms-page__card:hover .classrooms-page__access,
+.classrooms-page__access[aria-expanded='true'] {
+  background: var(--action-hover);
+}
+
+.classrooms-page__room {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  min-height: 100%;
+  padding: var(--spacing-4) var(--spacing-3) var(--spacing-6);
+  background: var(--page);
+}
+
+.classrooms-page__room-header {
+  width: min(100%, 1120px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+  margin: 0 auto var(--spacing-4);
+}
+
+.classrooms-page__room-header h2 {
+  font-size: var(--font-size-20);
+}
+
+.classrooms-page__room-teacher {
+  margin: var(--spacing-2) 0 0;
+  color: var(--text-2);
+  font-size: var(--font-size-14);
+}
+
+.classrooms-page__room-layout {
+  width: min(100%, 960px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--spacing-4);
+  margin: 0 auto;
+}
+
+.classrooms-page__lessons {
+  min-width: 0;
+  padding: var(--spacing-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+
+.classrooms-page__lessons h3 {
+  margin: 0 0 var(--spacing-3);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+}
+
+.classrooms-page__lessons ol {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.classrooms-page__lesson-item {
+  width: 100%;
+  min-height: var(--button-height);
+  display: grid;
+  grid-template-columns: var(--spacing-6) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-2) 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  background: transparent;
+  font: inherit;
+  font-size: var(--font-size-14);
+  text-align: left;
+  cursor: pointer;
+}
+
+.classrooms-page__lesson-number {
+  width: var(--spacing-6);
+  height: var(--spacing-6);
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-pill);
+  background: var(--surface-2);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+}
+
+.classrooms-page__lesson-item--completed .classrooms-page__lesson-number {
+  background: var(--progress-soft);
+}
+
+.classrooms-page__lesson-item--current .classrooms-page__lesson-number {
+  background: var(--action-soft);
+}
+
+.classrooms-page__lesson-title {
+  min-width: 0;
+}
+
+.classrooms-page__lesson-item:hover {
+  background: var(--surface-2);
+}
+
+.classrooms-page__lesson-item:focus-visible,
+.classrooms-page__lesson-nav-button:focus-visible {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: var(--focus-offset);
+}
+
+.classrooms-page__lesson-item--completed {
+  color: var(--progress-text);
+}
+
+.classrooms-page__lesson-item--current {
+  color: var(--action);
+  font-weight: var(--font-weight-semibold);
+}
+
+.classrooms-page__lesson-item--upcoming {
+  color: var(--muted);
+}
+
+.classrooms-page__lesson-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-3);
+}
+
+.classrooms-page__lesson-nav-button {
+  min-height: var(--button-height);
+  padding: 0 var(--spacing-3);
+  border: 1px solid var(--action);
+  border-radius: var(--radius-control);
+  color: var(--surface);
+  background: var(--action);
+  font: inherit;
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+}
+
+.classrooms-page__lesson-nav-button:hover:not(:disabled) {
+  border-color: var(--action-hover);
+  background: var(--action-hover);
+}
+
+.classrooms-page__lesson-nav-button:disabled {
+  border-color: var(--line);
+  color: var(--muted);
+  background: var(--surface-2);
+  cursor: not-allowed;
+}
+
+.classrooms-page__lesson-navigation > span {
+  color: var(--text-2);
+  font-size: var(--font-size-12);
+}
+
+.classrooms-page__lesson {
+  min-width: 0;
+}
+
+.classrooms-page__player {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface-2);
+}
+
+.classrooms-page__player-screen {
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-4);
+  color: var(--surface);
+  background: linear-gradient(145deg, var(--ink), var(--action-pressed), var(--action));
+  text-align: center;
+}
+
+.classrooms-page__player-mark {
+  color: var(--focus);
+  font-size: var(--font-size-32);
+  font-weight: var(--font-weight-semibold);
+}
+
+.classrooms-page__player-screen p {
+  margin: 0;
+  color: var(--action-soft);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.1em;
+}
+
+.classrooms-page__player-screen h3 {
+  max-width: 36rem;
+  margin: 0;
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+}
+
+.classrooms-page__player-state {
+  color: var(--surface-2);
+  font-size: var(--font-size-12);
+}
+
+.classrooms-page__player-controls {
+  display: grid;
+  grid-template-columns: var(--button-height) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3);
+}
+
+.classrooms-page__play {
+  width: var(--button-height);
+  height: var(--button-height);
+  border: 0;
+  border-radius: var(--radius-pill);
+  color: var(--surface);
+  background: var(--action);
+  cursor: pointer;
+}
+
+.classrooms-page__play:hover {
+  background: var(--action-hover);
+}
+
+.classrooms-page__timeline-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.classrooms-page__timeline {
+  width: 100%;
+  accent-color: var(--progress);
+}
+
+.classrooms-page__time {
+  grid-column: 2;
+  color: var(--text-2);
+  font-size: var(--font-size-12);
+  font-variant-numeric: tabular-nums;
+}
+
+.classrooms-page__description {
+  margin-top: var(--spacing-4);
+}
+
+.classrooms-page__description h3 {
+  font-size: var(--font-size-20);
+}
+
+.classrooms-page__description > p:not(.classrooms-page__eyebrow) {
+  margin: var(--spacing-2) 0 0;
+}
+
+.classrooms-page__description .classrooms-page__demo-note {
+  color: var(--muted);
+  font-size: var(--font-size-12);
+}
+
+@media (min-width: 640px) {
+  .classrooms-page {
+    padding: var(--spacing-5) var(--spacing-4) var(--spacing-7);
+  }
+
+  .classrooms-page__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-4);
+  }
+
+  .classrooms-page__room {
+    padding: var(--spacing-5);
+  }
+
+  .classrooms-page__player-screen {
+    min-height: 300px;
+  }
+}
+
+@media (min-width: 960px) {
+  .classrooms-page__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .classrooms-page__room-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+    gap: var(--spacing-5);
+  }
+
+  .classrooms-page__lessons {
+    position: sticky;
+    top: var(--spacing-4);
+    max-height: calc(100dvh - var(--spacing-8));
+    overflow-y: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .classrooms-page *,
+  .classrooms-page *::before,
+  .classrooms-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

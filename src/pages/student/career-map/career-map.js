@@ -1,6 +1,7 @@
 import html from './career-map.html?raw';
 import './career-map.css';
 import { listCourses } from '../../../services/courses.service.js';
+import { getDemoCourseProgress } from '../../../utils/course-progress.js';
 
 const careerPaths = [
   { id: 'development', title: 'Desenvolvimento', aliases: ['desenvolvimento'], completed: 3 },
@@ -267,7 +268,7 @@ export default {
           const progress = status === 'completed'
             ? 100
             : status === 'progress'
-              ? Math.floor(Math.random() * 60) + 30
+              ? getDemoCourseProgress(course.id)
               : 0;
           return { course, status, progress };
         }),

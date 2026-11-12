@@ -1,12 +1,71 @@
-<!--
-  TELA: Salas de aula
-  Requisitos: Aluno RF016 | Professor RF046-RF047
-  Onde editar:
-    - Estrutura (HTML)   -> classrooms.html   (este arquivo)
-    - Estilos (CSS)      -> classrooms.css
-    - Comportamento (JS) -> classrooms.js
--->
-<section class="classrooms-page">
-  <h1>Salas de aula</h1>
-  <p>Tela ainda não criada. Edite <code>src/pages/shared/classrooms/classrooms.html</code>.</p>
+<section class="classrooms-page" aria-labelledby="classrooms-title">
+  <div class="classrooms-page__content">
+    <header class="classrooms-page__header">
+      <p class="classrooms-page__eyebrow">APRENDIZADO EM ANDAMENTO</p>
+      <h1 id="classrooms-title">Salas de aula</h1>
+      <p class="classrooms-page__intro">Acompanhe seus cursos e continue de onde parou.</p>
+    </header>
+
+    <p class="classrooms-page__loading" data-classrooms-loading role="status">Carregando salas de aula...</p>
+    <div class="classrooms-page__error" data-classrooms-error role="alert" hidden>
+      <p>Não foi possível carregar as salas de aula. Tente novamente.</p>
+      <button class="classrooms-page__retry" data-classrooms-retry type="button">Tentar novamente</button>
+    </div>
+    <div class="classrooms-page__search" data-classrooms-search-wrap hidden>
+      <label for="classrooms-search">Buscar salas pelo nome</label>
+      <input id="classrooms-search" data-classrooms-search type="search" placeholder="Digite o nome de um curso">
+    </div>
+    <p class="classrooms-page__empty" data-classrooms-empty role="status" hidden></p>
+    <div class="classrooms-page__grid" data-classrooms-list aria-busy="true"></div>
+
+    <section class="classrooms-page__room" id="classroom-room" data-classroom-room aria-labelledby="classroom-room-title" hidden>
+      <header class="classrooms-page__room-header">
+        <div>
+          <p class="classrooms-page__eyebrow">SUA SALA</p>
+          <h2 id="classroom-room-title" data-classroom-title></h2>
+          <p class="classrooms-page__room-teacher" data-classroom-teacher></p>
+        </div>
+        <button class="classrooms-page__close" data-classroom-close type="button">Fechar sala</button>
+      </header>
+
+      <div class="classrooms-page__room-layout">
+        <div class="classrooms-page__lesson">
+          <section class="classrooms-page__player" aria-label="Player demonstrativo da aula">
+            <div class="classrooms-page__player-screen">
+              <span class="classrooms-page__player-mark" aria-hidden="true">&lt;/&gt;</span>
+              <p data-classroom-lesson-number>AULA 01</p>
+              <h3 data-classroom-lesson-title></h3>
+              <span class="classrooms-page__player-state" data-classroom-player-state>Prévia demonstrativa</span>
+            </div>
+            <div class="classrooms-page__player-controls">
+              <button class="classrooms-page__play" data-classroom-play type="button" aria-label="Reproduzir prévia">
+                <span data-classroom-play-icon aria-hidden="true">▶</span>
+              </button>
+              <label class="classrooms-page__timeline-label" for="classroom-timeline">Progresso da aula</label>
+              <input class="classrooms-page__timeline" data-classroom-timeline id="classroom-timeline" type="range" min="0" max="750" value="0">
+              <span class="classrooms-page__time" data-classroom-time>00:00 / 12:30</span>
+            </div>
+          </section>
+
+          <nav class="classrooms-page__lesson-navigation" aria-label="Navegar entre aulas">
+            <button class="classrooms-page__lesson-nav-button" data-classroom-previous type="button">← Aula anterior</button>
+            <span data-classroom-lesson-position></span>
+            <button class="classrooms-page__lesson-nav-button" data-classroom-next type="button">Próxima aula →</button>
+          </nav>
+
+          <section class="classrooms-page__description" aria-labelledby="classroom-description-title">
+            <p class="classrooms-page__eyebrow">AULA ATUAL</p>
+            <h3 id="classroom-description-title" data-classroom-description-title></h3>
+            <p data-classroom-description></p>
+            <p class="classrooms-page__demo-note">Os controles e o conteúdo da aula são demonstrativos; o vídeo será integrado futuramente.</p>
+          </section>
+        </div>
+
+        <aside class="classrooms-page__lessons" aria-labelledby="classroom-lessons-title">
+          <h3 id="classroom-lessons-title">Aulas do curso</h3>
+          <ol data-classroom-lessons></ol>
+        </aside>
+      </div>
+    </section>
+  </div>
 </section>
