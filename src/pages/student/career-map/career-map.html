@@ -1,12 +1,25 @@
-<!--
-  TELA: Mapa de carreira
-  Requisitos: Aluno RF019-RF020
-  Onde editar:
-    - Estrutura (HTML)   -> career-map.html   (este arquivo)
-    - Estilos (CSS)      -> career-map.css
-    - Comportamento (JS) -> career-map.js
--->
-<section class="career-map-page">
-  <h1>Mapa de carreira</h1>
-  <p>Tela ainda não criada. Edite <code>src/pages/student/career-map/career-map.html</code>.</p>
+<section class="career-map-page" aria-labelledby="career-map-title">
+  <div class="career-map-page__content">
+    <div>
+      <header class="career-map-page__header">
+        <p class="career-map-page__eyebrow">SUA JORNADA PROFISSIONAL</p>
+        <h1 id="career-map-title">Mapa de carreira</h1>
+        <p class="career-map-page__intro">Explore cursos e acompanhe cada passo do seu caminho em tecnologia.</p>
+      </header>
+
+      <div class="career-map-page__path-switcher" data-career-map-switcher hidden>
+        <div class="career-map-page__path-options" data-career-map-options role="group" aria-label="Selecionar trilha de cursos"></div>
+      </div>
+      <div class="career-map-page__journeys" data-career-map-journeys aria-label="Trilha de cursos selecionada" aria-busy="true"></div>
+
+    </div>
+
+    <p class="career-map-page__loading" data-career-map-loading role="status">Carregando trilhas de cursos...</p>
+    <div class="career-map-page__error" data-career-map-error role="alert" hidden>
+      <p>Não foi possível carregar os cursos. Tente novamente.</p>
+      <button class="career-map-page__retry" data-career-map-retry type="button">Tentar novamente</button>
+    </div>
+    <p class="career-map-page__empty" data-career-map-empty role="status" hidden></p>
+    <div class="career-map-page__detail" data-career-map-detail aria-live="polite" hidden></div>
+  </div>
 </section>

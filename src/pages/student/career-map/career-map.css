@@ -1,7 +1,499 @@
-/* Estilos da tela "Mapa de carreira".
-   Tudo dentro de .career-map-page, senão o CSS vaza para as outras telas
-   (em SPA, o CSS importado continua na página depois de trocar de tela).
-   Use as variáveis do Design System (src/styles/tokens.css): var(--color-primary)... */
 .career-map-page {
-  /* seus estilos aqui. CSS nesting é aceito: .x { h1 { ... } } */
+  min-height: 100%;
+  padding: var(--spacing-5) var(--spacing-4) var(--spacing-7);
+  background: var(--page);
+  color: var(--ink);
+}
+
+.career-map-page [hidden] {
+  display: none !important;
+}
+
+.career-map-page__content {
+  width: min(100%, 840px);
+  margin: 0 auto;
+}
+
+.career-map-page__header {
+  padding: var(--spacing-3) 0 var(--spacing-4);
+}
+
+.career-map-page__eyebrow {
+  margin: 0 0 var(--spacing-2);
+  color: var(--action);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+}
+
+.career-map-page__header h1 {
+  margin: 0;
+  font-size: clamp(var(--font-size-24), 4vw, var(--font-size-32));
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+  letter-spacing: -0.03em;
+}
+
+.career-map-page__intro {
+  max-width: 620px;
+  margin: var(--spacing-2) 0 0;
+  color: var(--text-2);
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-body);
+}
+
+.career-map-page__path-switcher {
+  display: flex;
+  justify-content: flex-end;
+  padding: var(--spacing-4) 0 var(--spacing-2);
+}
+
+.career-map-page__path-options {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-5);
+}
+
+.career-map-page__path-button {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  cursor: pointer;
+}
+
+.career-map-page__path-button--development,
+.career-map-page__track--development {
+  --career-map-path-color: var(--action);
+}
+
+.career-map-page__path-button--data,
+.career-map-page__track--data {
+  --career-map-path-color: var(--progress);
+}
+
+.career-map-page__path-button--infrastructure,
+.career-map-page__track--infrastructure {
+  --career-map-path-color: var(--xp);
+}
+
+.career-map-page__path-dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: var(--radius-pill);
+  background: var(--career-map-path-color);
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.career-map-page__path-button:hover .career-map-page__path-dot {
+  transform: scale(1.15);
+}
+
+.career-map-page__path-button[aria-pressed='true'] .career-map-page__path-dot {
+  box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--career-map-path-color);
+}
+
+.career-map-page__path-tooltip {
+  position: absolute;
+  z-index: 2;
+  bottom: calc(100% + var(--spacing-1));
+  left: 50%;
+  padding: var(--spacing-1) var(--spacing-2);
+  border: 1px solid var(--career-map-path-color);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, var(--spacing-1));
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.career-map-page__path-button:hover .career-map-page__path-tooltip,
+.career-map-page__path-button:focus-visible .career-map-page__path-tooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.career-map-page__path-button:focus-visible {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: var(--focus-offset);
+}
+
+.career-map-page__journeys {
+  display: grid;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+
+.career-map-page__track {
+  min-width: 0;
+}
+
+.career-map-page__track-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spacing-2);
+  margin: 0 0 var(--spacing-1);
+}
+
+.career-map-page__track-heading h2 {
+  margin: 0;
+  color: var(--career-map-path-color);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+}
+
+.career-map-page__track-heading span {
+  color: var(--muted);
+  font-size: var(--font-size-12);
+  white-space: nowrap;
+}
+
+.career-map-page__track-scroll {
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-color: var(--line) transparent;
+  scrollbar-width: thin;
+}
+
+.career-map-page__steps {
+  position: relative;
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  gap: var(--spacing-2);
+  margin: 0;
+  padding: var(--spacing-2) 0;
+  list-style: none;
+}
+
+.career-map-page__steps::before {
+  position: absolute;
+  top: 25px;
+  right: var(--spacing-6);
+  left: var(--spacing-6);
+  height: 2px;
+  background: var(--career-map-path-color);
+  content: '';
+}
+
+.career-map-page__step {
+  z-index: 1;
+  flex: 0 0 88px;
+}
+
+.career-map-page__module {
+  width: 100%;
+  min-height: 88px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-1);
+  padding: 0 var(--spacing-1);
+  border: 0;
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+
+.career-map-page__module:hover .career-map-page__module-marker,
+.career-map-page__module:focus-visible .career-map-page__module-marker {
+  transform: scale(1.08);
+}
+
+.career-map-page__module:focus-visible,
+.career-map-page__retry:focus-visible,
+.career-map-page__details-link:focus-visible {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: var(--focus-offset);
+}
+
+.career-map-page__module-marker {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--surface);
+  border-radius: var(--radius-pill);
+  background: var(--surface-3);
+  color: var(--muted);
+  box-shadow: 0 0 0 1px var(--line);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.career-map-page__module--completed .career-map-page__module-marker {
+  background: var(--progress);
+  color: var(--surface);
+  box-shadow: 0 0 0 1px var(--progress);
+}
+
+.career-map-page__module--progress .career-map-page__module-marker {
+  background: var(--action);
+  color: var(--surface);
+  box-shadow: 0 0 0 1px var(--action);
+}
+
+.career-map-page__module--unavailable .career-map-page__module-marker {
+  background: var(--surface-3);
+  color: var(--muted);
+}
+
+.career-map-page__module[aria-pressed='true'] .career-map-page__module-marker {
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--focus);
+}
+
+.career-map-page__module-name {
+  display: -webkit-box;
+  overflow: hidden;
+  max-width: 100%;
+  color: var(--text-2);
+  font-size: 10px;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.career-map-page__module--completed .career-map-page__module-name,
+.career-map-page__module--progress .career-map-page__module-name {
+  color: var(--ink);
+}
+
+.career-map-page__loading,
+.career-map-page__empty {
+  margin: var(--spacing-5) 0;
+  color: var(--muted);
+  font-size: var(--font-size-14);
+}
+
+.career-map-page__error {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-5);
+  padding: var(--spacing-4);
+  border: 1px solid var(--error);
+  border-radius: var(--radius-card);
+  color: var(--error-text);
+  background: var(--error-soft);
+  font-size: var(--font-size-14);
+}
+
+.career-map-page__error p {
+  margin: 0;
+}
+
+.career-map-page__retry,
+.career-map-page__details-link {
+  min-height: var(--button-height);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--spacing-4);
+  border: 1px solid var(--action);
+  border-radius: var(--radius-control);
+  background: var(--action);
+  color: var(--surface);
+  font: inherit;
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.career-map-page__detail {
+  margin-top: var(--spacing-5);
+  padding: var(--spacing-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+
+.career-map-page__detail-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+}
+
+.career-map-page__detail-heading h2 {
+  margin: var(--spacing-2) 0 0;
+  font-size: clamp(var(--font-size-20), 4vw, var(--font-size-24));
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+}
+
+.career-map-page__area {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-pill);
+  background: var(--action-soft);
+  color: var(--action);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+}
+
+.career-map-page__area--data {
+  background: var(--progress-soft);
+  color: var(--progress-text);
+}
+
+.career-map-page__area--infrastructure {
+  background: var(--xp-soft);
+  color: var(--xp-text);
+}
+
+.career-map-page__description {
+  margin: var(--spacing-3) 0 0;
+  color: var(--text-2);
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-body);
+}
+
+.career-map-page__facts {
+  display: grid;
+  gap: var(--spacing-2);
+  margin: var(--spacing-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.career-map-page__facts li {
+  color: var(--text-2);
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-body);
+}
+
+.career-map-page__facts strong {
+  color: var(--ink);
+  font-weight: var(--font-weight-semibold);
+}
+
+.career-map-page__progress {
+  margin-top: var(--spacing-4);
+}
+
+.career-map-page__progress-label {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-2);
+  color: var(--muted);
+  font-size: var(--font-size-12);
+}
+
+.career-map-page__progress-label strong {
+  color: var(--progress-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+.career-map-page__progress-track {
+  height: 7px;
+  overflow: hidden;
+  margin-top: var(--spacing-1);
+  border-radius: var(--radius-pill);
+  background: var(--surface-3);
+}
+
+.career-map-page__progress-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--progress);
+  transition: width 180ms ease;
+}
+
+.career-map-page__detail-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-4);
+}
+
+.career-map-page__demo-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--font-size-12);
+}
+
+.career-map-page__retry:hover,
+.career-map-page__details-link:hover {
+  border-color: var(--action-hover);
+  background: var(--action-hover);
+}
+
+.career-map-page__retry:active,
+.career-map-page__details-link:active {
+  background: var(--action-pressed);
+}
+
+.career-map-page__details-link:disabled {
+  border-color: var(--line);
+  background: var(--surface-2);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+@media (min-width: 768px) {
+  .career-map-page {
+    padding: var(--spacing-5) var(--spacing-4) var(--spacing-7);
+  }
+
+  .career-map-page__header {
+    padding: var(--spacing-4) 0 var(--spacing-5);
+  }
+
+  .career-map-page__journeys {
+    gap: var(--spacing-3);
+    padding: var(--spacing-4);
+  }
+
+  .career-map-page__step {
+    flex-basis: 96px;
+  }
+
+  .career-map-page__module-name {
+    font-size: var(--font-size-12);
+  }
+
+  .career-map-page__detail {
+    padding: var(--spacing-5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .career-map-page *,
+  .career-map-page *::before,
+  .career-map-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

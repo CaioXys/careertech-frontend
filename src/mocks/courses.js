@@ -160,6 +160,16 @@ export const mockCourses = [
     longDescription: 'O curso apresenta os fundamentos da Engenharia de Dados e da Ciência de Dados, explorando os processos envolvidos no ciclo de vida dos dados. O aluno estudará coleta, integração, transformação, armazenamento e processamento de informações, além de conhecer técnicas de análise exploratória, aprendizado de máquina e construção de modelos preditivos.',
   },
   {
+    id: 25,
+    title: 'Modelagem e Qualidade de Dados',
+    area: 'Dados',
+    type: 'Dados',
+    workloadHours: 40,
+    teachers: ['Fernanda Rocha'],
+    description: 'Planejamento de modelos de dados e aplicação de práticas para manter informações consistentes e confiáveis.',
+    longDescription: 'O curso aborda técnicas de modelagem e qualidade de dados para estruturar informações de forma clara e confiável. O aluno aprenderá a definir modelos conceituais e lógicos, identificar inconsistências, estabelecer regras de validação e documentar estruturas para apoiar análises e sistemas.',
+  },
+  {
     id: 17,
     title: 'Fundamentos de Computação e Sistemas Operacionais',
     area: 'Infraestrutura',
