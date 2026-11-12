@@ -1,7 +1,364 @@
-/* Estilos da tela "Certificações".
-   Tudo dentro de .certifications-page, senão o CSS vaza para as outras telas
-   (em SPA, o CSS importado continua na página depois de trocar de tela).
-   Use as variáveis do Design System (src/styles/tokens.css): var(--color-primary)... */
 .certifications-page {
-  /* seus estilos aqui. CSS nesting é aceito: .x { h1 { ... } } */
+  min-height: 100%;
+  padding: var(--spacing-4) var(--spacing-3) var(--spacing-6);
+  color: var(--ink);
+  background: var(--page);
+}
+
+.certifications-page [hidden] {
+  display: none !important;
+}
+
+.certifications-page__content {
+  width: min(100%, 1120px);
+  margin: 0 auto;
+}
+
+.certifications-page__header {
+  padding: var(--spacing-2) 0 var(--spacing-4);
+}
+
+.certifications-page__eyebrow {
+  margin: 0 0 var(--spacing-2);
+  color: var(--action);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+}
+
+.certifications-page__header h1 {
+  margin: 0;
+  font-size: clamp(var(--font-size-24), 4vw, var(--font-size-32));
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+  letter-spacing: -0.03em;
+}
+
+.certifications-page__intro {
+  margin: var(--spacing-2) 0 0;
+  color: var(--text-2);
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-body);
+}
+
+.certifications-page__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-4);
+}
+
+.certifications-page__filter {
+  min-height: var(--button-height);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: 0 var(--spacing-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  color: var(--text-2);
+  background: var(--surface);
+  font: inherit;
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+}
+
+.certifications-page__filter:hover {
+  border-color: var(--action);
+}
+
+.certifications-page__filter[aria-pressed='true'] {
+  border-color: var(--action);
+  color: var(--action);
+  background: var(--action-soft);
+}
+
+.certifications-page__filter span {
+  min-width: var(--spacing-5);
+  color: var(--muted);
+  text-align: center;
+}
+
+.certifications-page__filter:focus-visible,
+.certifications-page__retry:focus-visible,
+.certifications-page__download:focus-visible,
+.certifications-page__card--progress:focus-visible {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: var(--focus-offset);
+}
+
+.certifications-page__loading,
+.certifications-page__empty {
+  color: var(--text-2);
+  font-size: var(--font-size-14);
+}
+
+.certifications-page__error {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+  padding: var(--spacing-4);
+  border: 1px solid var(--error);
+  border-radius: var(--radius-card);
+  color: var(--error-text);
+  background: var(--error-soft);
+  font-size: var(--font-size-14);
+}
+
+.certifications-page__error p {
+  margin: 0;
+}
+
+.certifications-page__retry,
+.certifications-page__download {
+  min-height: var(--button-height);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  padding: 0 var(--spacing-4);
+  border: 1px solid var(--action);
+  border-radius: var(--radius-control);
+  color: var(--surface);
+  background: var(--action);
+  font: inherit;
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  cursor: pointer;
+}
+
+.certifications-page__retry:hover,
+.certifications-page__download:hover {
+  border-color: var(--action-hover);
+  background: var(--action-hover);
+}
+
+.certifications-page__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--spacing-3);
+}
+
+.certifications-page__card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+
+.certifications-page__cover {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: var(--surface-2);
+}
+
+.certifications-page__cover img {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.certifications-page__cover--locked img {
+  filter: grayscale(1);
+}
+
+.certifications-page__cover--locked::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: var(--ink);
+  content: '';
+  opacity: 0.18;
+}
+
+.certifications-page__cover-info {
+  position: absolute;
+  z-index: 3;
+  top: var(--spacing-3);
+  right: var(--spacing-3);
+  left: var(--spacing-3);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+}
+
+.certifications-page__lock {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+}
+
+.certifications-page__lock svg {
+  width: var(--spacing-8);
+  height: var(--spacing-8);
+  padding: var(--spacing-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.certifications-page__cover-title {
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  padding: var(--spacing-6) var(--spacing-3) var(--spacing-3);
+  overflow-wrap: anywhere;
+  color: var(--ink);
+  background: linear-gradient(to top, var(--surface), transparent);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+  text-align: center;
+}
+
+.certifications-page__status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 var(--spacing-2);
+  border-radius: var(--radius-pill);
+  color: var(--progress-text);
+  background: var(--progress-soft);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+}
+
+.certifications-page__status--progress {
+  color: var(--muted);
+  background: var(--surface-2);
+}
+
+.certifications-page__card h2 {
+  margin: 0;
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+}
+
+.certifications-page__progress {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  width: 100%;
+}
+
+.certifications-page__progress-copy {
+  display: flex;
+  flex: 0 0 auto;
+  font-size: var(--font-size-12);
+}
+
+.certifications-page__progress-copy strong {
+  color: var(--progress-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+.certifications-page__progress-track {
+  flex: 1;
+  height: 7px;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--surface-3);
+}
+
+.certifications-page__progress-track span {
+  height: 100%;
+  display: block;
+  border-radius: inherit;
+  background: var(--progress);
+}
+
+.certifications-page__download {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  left: 50%;
+  width: var(--spacing-8);
+  min-height: var(--spacing-8);
+  height: var(--spacing-8);
+  padding: var(--spacing-2);
+  transform: translate(-50%, -50%);
+  border-radius: var(--radius-pill);
+}
+
+.certifications-page__download svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+@media (hover: hover) {
+  .certifications-page__card--progress .certifications-page__progress {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 150ms ease;
+  }
+
+  .certifications-page__download {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 150ms ease;
+  }
+
+  .certifications-page__card--progress:hover .certifications-page__progress,
+  .certifications-page__card--progress:focus-within .certifications-page__progress,
+  .certifications-page__card:hover .certifications-page__download,
+  .certifications-page__card:focus-within .certifications-page__download {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (min-width: 640px) {
+  .certifications-page {
+    padding: var(--spacing-5) var(--spacing-4) var(--spacing-7);
+  }
+
+  .certifications-page__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-4);
+  }
+
+}
+
+@media (min-width: 960px) {
+  .certifications-page__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .certifications-page *,
+  .certifications-page *::before,
+  .certifications-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

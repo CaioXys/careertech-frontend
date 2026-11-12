@@ -2,21 +2,13 @@ import html from './classrooms.html?raw';
 import './classrooms.css';
 import { listCourses } from '../../../services/courses.service.js';
 import { getDemoCourseProgress } from '../../../utils/course-progress.js';
+import { getCourseImage } from '../../../utils/course-images.js';
 
 const careerPaths = [
   { id: 'development', aliases: ['desenvolvimento'], completed: 3 },
   { id: 'data', aliases: ['dados', 'banco de dados'], completed: 2 },
   { id: 'infrastructure', aliases: ['infraestrutura'], completed: 1 },
 ];
-
-const courseImages = {
-  1: '/images/classrooms/course-01-fundamentos-computacao-logica.webp',
-  2: '/images/classrooms/course-02-algoritmos-estruturas-dados.webp',
-  3: '/images/classrooms/course-03-programacao-orientada-objetos.webp',
-  4: '/images/classrooms/course-04-html-css-pratica.webp',
-  5: '/images/classrooms/course-05-desenvolvimento-java.webp',
-  6: '/images/classrooms/course-06-banco-dados-sql.webp',
-};
 
 const lessonDuration = 750;
 const classroomLimit = 6;
@@ -71,7 +63,7 @@ function createTextElement(tagName, className, text) {
 function createCourseCover(course, area) {
   const cover = document.createElement('div');
   cover.className = `classrooms-page__cover classrooms-page__cover--${area}`;
-  const imagePath = courseImages[course.id];
+  const imagePath = getCourseImage(course.id);
   if (imagePath) {
     const image = document.createElement('img');
     image.src = imagePath;

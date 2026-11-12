@@ -1,12 +1,29 @@
-<!--
-  TELA: Certificações
-  Requisitos: Aluno RF030 | Professor RF066
-  Onde editar:
-    - Estrutura (HTML)   -> certifications.html   (este arquivo)
-    - Estilos (CSS)      -> certifications.css
-    - Comportamento (JS) -> certifications.js
--->
-<section class="certifications-page">
-  <h1>Certificações</h1>
-  <p>Tela ainda não criada. Edite <code>src/pages/shared/certifications/certifications.html</code>.</p>
+<section class="certifications-page" aria-labelledby="certifications-title">
+  <div class="certifications-page__content">
+    <header class="certifications-page__header">
+      <p class="certifications-page__eyebrow">SUA JORNADA DE APRENDIZADO</p>
+      <h1 id="certifications-title">Meus certificados</h1>
+      <p class="certifications-page__intro">Acompanhe suas conquistas e veja quais certificados estão disponíveis.</p>
+    </header>
+
+    <div class="certifications-page__filters" data-certificate-filters role="group" aria-label="Filtrar certificados" hidden>
+      <button class="certifications-page__filter" data-certificate-filter="all" type="button" aria-pressed="true">
+        Todos <span data-certificate-count="all">0</span>
+      </button>
+      <button class="certifications-page__filter" data-certificate-filter="completed" type="button" aria-pressed="false">
+        Concluídos <span data-certificate-count="completed">0</span>
+      </button>
+      <button class="certifications-page__filter" data-certificate-filter="progress" type="button" aria-pressed="false">
+        Em progresso <span data-certificate-count="progress">0</span>
+      </button>
+    </div>
+
+    <p class="certifications-page__loading" data-certificate-loading role="status">Carregando certificados...</p>
+    <div class="certifications-page__error" data-certificate-error role="alert" hidden>
+      <p>Não foi possível carregar os certificados. Tente novamente.</p>
+      <button class="certifications-page__retry" data-certificate-retry type="button">Tentar novamente</button>
+    </div>
+    <p class="certifications-page__empty" data-certificate-empty role="status" hidden></p>
+    <div class="certifications-page__grid" data-certificate-list aria-busy="true"></div>
+  </div>
 </section>
