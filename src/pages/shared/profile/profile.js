@@ -2,18 +2,9 @@ import html from './profile.html?raw';
 import './profile.css';
 import { auth } from '../../../core/auth.js';
 import { session } from '../../../core/session.js';
+import { userInitials } from '../../../utils/user-initials.js';
 
 const roleNames = { student: 'Estudante', teacher: 'Professor', admin: 'Administrador' };
-
-function initials(name) {
-  return String(name ?? '')
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0].toLocaleUpperCase('pt-BR'))
-    .join('') || 'CT';
-}
 
 function formatPhone(value) {
   const phone = String(value ?? '').replace(/\D/g, '').slice(0, 11);
@@ -82,7 +73,7 @@ export default {
       const role = roleNames[profile.role] ?? 'Conta CareerTech';
       root.querySelector('[data-profile-name]').textContent = name || 'Seu nome';
       root.querySelector('[data-profile-email]').textContent = email || 'E-mail não informado';
-      root.querySelector('[data-profile-initials]').textContent = initials(name);
+      root.querySelector('[data-profile-initials]').textContent = userInitials(name);
       root.querySelector('[data-profile-role]').textContent = role;
     };
 
