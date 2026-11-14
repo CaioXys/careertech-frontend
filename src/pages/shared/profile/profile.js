@@ -2,9 +2,15 @@ import html from './profile.html?raw';
 import './profile.css';
 import { auth } from '../../../core/auth.js';
 import { session } from '../../../core/session.js';
+import { getTheme, setTheme } from '../../../core/theme.js';
 import { userInitials } from '../../../utils/user-initials.js';
 
 const roleNames = { student: 'Estudante', teacher: 'Professor', admin: 'Administrador' };
+const settingUpdateDelay = 450;
+
+function waitForSettingUpdate() {
+  return new Promise((resolve) => setTimeout(resolve, settingUpdateDelay));
+}
 
 function formatPhone(value) {
   const phone = String(value ?? '').replace(/\D/g, '').slice(0, 11);
@@ -60,6 +66,12 @@ export default {
     const addressInput = form.elements.endereco;
     const cpfInput = form.elements.cpf;
     const roleInput = form.elements.role;
+    const themeToggle = root.querySelector('[data-theme-toggle]');
+    const toast = root.querySelector('[data-profile-toast]');
+    const toastText = root.querySelector('[data-profile-toast-text]');
+    const toastClose = root.querySelector('[data-profile-toast-close]');
+    let toastTimer;
+    let toastCloseTimer;
     const initialValues = {
       name: user.name ?? user.nome ?? '',
       email: user.email ?? '',
@@ -136,11 +148,64 @@ export default {
     form.addEventListener('reset', onReset);
     form.addEventListener('submit', onSubmit);
 
+    themeToggle.checked = getTheme() === 'dark';
+    const settingToggles = [...root.querySelectorAll('.profile-page__switch-input')];
+    const showToast = (text, tone = 'success', autoClose = true) => {
+      clearTimeout(toastTimer);
+      clearTimeout(toastCloseTimer);
+      toast.hidden = false;
+      toast.classList.remove('profile-page__toast--closing');
+      toast.dataset.tone = tone;
+      toastText.textContent = text;
+      toast.setAttribute('role', tone === 'error' ? 'alert' : 'status');
+      if (autoClose) toastTimer = setTimeout(dismissToast, 3000);
+    };
+    const dismissToast = () => {
+      clearTimeout(toastTimer);
+      clearTimeout(toastCloseTimer);
+      if (toast.hidden) return;
+      toast.classList.add('profile-page__toast--closing');
+      toastCloseTimer = setTimeout(() => {
+        toast.hidden = true;
+        toast.classList.remove('profile-page__toast--closing');
+      }, 220);
+    };
+    const onSettingChange = async (event) => {
+      const toggle = event.currentTarget;
+      const setting = toggle.closest('.profile-page__setting');
+      const label = setting.querySelector('strong').textContent;
+      const previousValue = !toggle.checked;
+
+      toggle.disabled = true;
+      setting.setAttribute('aria-busy', 'true');
+      setting.dataset.state = 'loading';
+      showToast('Atualizando configuração…', 'loading', false);
+
+      try {
+        if (toggle === themeToggle) setTheme(toggle.checked ? 'dark' : 'light');
+        await waitForSettingUpdate();
+        showToast(`${label} ${toggle.checked ? 'ativada' : 'desativada'}.`);
+      } catch (error) {
+        toggle.checked = previousValue;
+        showToast(error?.message || 'Não foi possível atualizar esta configuração.', 'error');
+      } finally {
+        toggle.disabled = false;
+        setting.removeAttribute('aria-busy');
+        delete setting.dataset.state;
+      }
+    };
+    settingToggles.forEach((toggle) => toggle.addEventListener('change', onSettingChange));
+    toastClose.addEventListener('click', dismissToast);
+
     return () => {
       phoneInput.removeEventListener('input', onPhoneInput);
       form.removeEventListener('input', onInput);
       form.removeEventListener('reset', onReset);
       form.removeEventListener('submit', onSubmit);
+      settingToggles.forEach((toggle) => toggle.removeEventListener('change', onSettingChange));
+      toastClose.removeEventListener('click', dismissToast);
+      clearTimeout(toastTimer);
+      clearTimeout(toastCloseTimer);
     };
   },
 };

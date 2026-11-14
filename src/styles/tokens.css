@@ -26,6 +26,7 @@
   --action-pressed: #3730a3;
   --action-soft: #eef2ff;
   --focus: #a5b4fc;
+  --hero-start: #0f172a;
 
   /* Estados semânticos */
   --progress: #14b8a6;
@@ -115,6 +116,7 @@ html[data-theme='dark'] {
   --action-pressed: #3730a3;
   --action-soft: #1e1b4b;
   --focus: #a5b4fc;
+  --hero-start: #0f172a;
 
   --progress: #14b8a6;
   --progress-text: #5eead4;

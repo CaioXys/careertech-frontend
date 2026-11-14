@@ -56,11 +56,47 @@
           </form>
         </section>
 
+        <section class="profile-page__card profile-page__settings" aria-labelledby="profile-settings-title">
+          <div class="profile-page__card-heading">
+            <div><p class="profile-page__eyebrow">PREFERÊNCIAS</p><h2 id="profile-settings-title">Configurações</h2></div>
+          </div>
+          <div class="profile-page__settings-list">
+            <label class="profile-page__setting">
+              <span class="profile-page__setting-copy">
+                <strong>Modo escuro</strong>
+                <small>Use a aparência escura em toda a plataforma.</small>
+              </span>
+              <input class="profile-page__switch-input" type="checkbox" data-theme-toggle role="switch" aria-label="Ativar modo escuro" />
+              <span class="profile-page__switch" aria-hidden="true"></span>
+            </label>
+            <label class="profile-page__setting">
+              <span class="profile-page__setting-copy">
+                <strong>Lembretes de estudo</strong>
+                <small>Receba lembretes para manter sua rotina de aprendizagem.</small>
+              </span>
+              <input class="profile-page__switch-input" type="checkbox" role="switch" aria-label="Ativar lembretes de estudo" />
+              <span class="profile-page__switch" aria-hidden="true"></span>
+            </label>
+            <label class="profile-page__setting">
+              <span class="profile-page__setting-copy">
+                <strong>Notificações de cursos novos</strong>
+                <small>Encontre novidades e conteúdos recomendados para você.</small>
+              </span>
+              <input class="profile-page__switch-input" type="checkbox" role="switch" aria-label="Ativar notificações de cursos novos" />
+              <span class="profile-page__switch" aria-hidden="true"></span>
+            </label>
+          </div>
+        </section>
+
         <section class="profile-page__tip" aria-label="Dica">
           <span class="profile-page__tip-icon" aria-hidden="true">✦</span>
           <div><strong>Seu próximo passo começa com você.</strong><p>Mantenha seus dados atualizados para aproveitar melhor sua jornada de aprendizagem.</p></div>
         </section>
       </div>
     </div>
+  </div>
+  <div class="profile-page__toast" data-profile-toast hidden>
+    <span data-profile-toast-text></span>
+    <button type="button" data-profile-toast-close aria-label="Fechar aviso">×</button>
   </div>
 </section>

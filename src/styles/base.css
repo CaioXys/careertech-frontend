@@ -11,3 +11,105 @@ body {
   outline: var(--focus-width) solid var(--focus);
   outline-offset: var(--focus-offset);
 }
+
+html[data-theme='dark'] body:has(.login-page),
+html[data-theme='dark'] body:has(.register-page),
+html[data-theme='dark'] body:has(.forgot-page),
+html[data-theme='dark'] .login-page,
+html[data-theme='dark'] .register-page,
+html[data-theme='dark'] .forgot-page {
+  background: var(--page);
+  color: var(--ink);
+}
+
+html[data-theme='dark'] .login-page {
+  --login-ink: var(--ink);
+  --login-muted: var(--muted);
+}
+
+html[data-theme='dark'] .register-page {
+  --register-ink: var(--ink);
+  --register-muted: var(--muted);
+}
+
+html[data-theme='dark'] .forgot-page {
+  --forgot-ink: var(--ink);
+  --forgot-muted: var(--muted);
+}
+
+html[data-theme='dark'] .login-field,
+html[data-theme='dark'] .register-field,
+html[data-theme='dark'] .forgot-field,
+html[data-theme='dark'] .register-role legend {
+  color: var(--text-2);
+}
+
+html[data-theme='dark'] .login-input-wrap input,
+html[data-theme='dark'] .register-field input,
+html[data-theme='dark'] .forgot-input-wrap input,
+html[data-theme='dark'] .forgot-code-input,
+html[data-theme='dark'] .forgot-password-field input {
+  border-color: var(--line);
+  color: var(--ink);
+  background: var(--surface);
+}
+
+html[data-theme='dark'] .login-input-wrap input::placeholder,
+html[data-theme='dark'] .register-field input::placeholder,
+html[data-theme='dark'] .forgot-input-wrap input::placeholder {
+  color: var(--muted);
+}
+
+html[data-theme='dark'] .login-input-wrap input:hover,
+html[data-theme='dark'] .register-field input:hover,
+html[data-theme='dark'] .forgot-input-wrap input:hover {
+  border-color: var(--muted);
+}
+
+html[data-theme='dark'] .login-password-toggle:hover {
+  background: var(--action-soft);
+}
+
+html[data-theme='dark'] .login-remember,
+html[data-theme='dark'] .register-login,
+html[data-theme='dark'] .register-terms,
+html[data-theme='dark'] .forgot-back,
+html[data-theme='dark'] .forgot-help {
+  color: var(--text-2);
+}
+
+html[data-theme='dark'] .login-check,
+html[data-theme='dark'] .register-role-card,
+html[data-theme='dark'] .register-role-card:has(input:checked),
+html[data-theme='dark'] .forgot-success__icon {
+  border-color: var(--line);
+  background: var(--surface-2);
+}
+
+html[data-theme='dark'] .register-role-card strong {
+  color: var(--ink);
+}
+
+html[data-theme='dark'] .register-role-card__icon {
+  background: var(--action-soft);
+}
+
+html[data-theme='dark'] .register-success__icon {
+  background: var(--progress-soft);
+}
+
+html[data-theme='dark'] .forgot-modal__panel {
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+html[data-theme='dark'] .forgot-modal__panel > p,
+html[data-theme='dark'] .forgot-code-hint,
+html[data-theme='dark'] .forgot-password-field small {
+  color: var(--text-2);
+}
+
+html[data-theme='dark'] .app-sidebar__profile-toggle img {
+  filter: invert(1);
+}
