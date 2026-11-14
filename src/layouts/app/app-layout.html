@@ -38,5 +38,25 @@
     </footer>
   </aside>
 
+  <nav class="app-mobile-nav" data-mobile-nav aria-label="Navegação principal no celular"></nav>
+
+  <dialog class="app-mobile-more" data-mobile-more-dialog aria-labelledby="mobile-more-title">
+    <div class="app-mobile-more__panel">
+      <div class="app-mobile-more__header">
+        <h2 id="mobile-more-title">Mais opções</h2>
+        <button
+          class="app-mobile-more__close"
+          type="button"
+          data-mobile-more-close
+          aria-label="Fechar mais opções"
+          title="Fechar"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <nav class="app-mobile-more__list" data-mobile-more-list aria-label="Mais opções de navegação"></nav>
+    </div>
+  </dialog>
+
   <main class="app-layout__main" data-outlet></main>
 </div>

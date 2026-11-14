@@ -61,6 +61,34 @@ function createNavLink(item) {
   return link;
 }
 
+function createMobileNavLink(item) {
+  const link = createNavLink(item);
+  link.classList.add('app-mobile-nav__link');
+  return link;
+}
+
+function createMoreButton() {
+  const button = document.createElement('button');
+  const icon = document.createElement('span');
+  const label = document.createElement('span');
+
+  button.className = 'app-mobile-nav__link app-mobile-nav__more';
+  button.type = 'button';
+  button.dataset.mobileMoreToggle = '';
+  button.setAttribute('aria-expanded', 'false');
+  button.setAttribute('aria-controls', 'mobile-more-dialog');
+  button.title = 'Mais opções';
+
+  icon.className = 'app-mobile-nav__more-icon';
+  icon.textContent = '•••';
+  icon.setAttribute('aria-hidden', 'true');
+  label.className = 'app-sidebar__label';
+  label.textContent = 'Mais';
+
+  button.append(icon, label);
+  return button;
+}
+
 export default {
   html,
 
@@ -71,10 +99,16 @@ export default {
     const items = menuByRole[user?.role] ?? [];
     const primaryItems = items.slice(0, 5);
     const secondaryItems = items.slice(5);
+    const mobilePrimaryItems = items.length > 5 ? items.slice(0, 4) : items;
+    const mobileSecondaryItems = items.length > 5 ? items.slice(4) : [];
     const profileLink = root.querySelector('[data-profile-link]');
     const profileToggle = root.querySelector('[data-profile-toggle]');
     const profileMenu = root.querySelector('[data-profile-menu]');
     const sidebarToggle = root.querySelector('[data-sidebar-toggle]');
+    const mobileNav = root.querySelector('[data-mobile-nav]');
+    const moreDialog = root.querySelector('[data-mobile-more-dialog]');
+    const moreList = root.querySelector('[data-mobile-more-list]');
+    const moreClose = root.querySelector('[data-mobile-more-close]');
     const userMenuItems = menuByRole[user?.role] ?? [];
     const profileItem = userMenuItems.find((item) => item.path === '/profile');
 
@@ -86,6 +120,12 @@ export default {
     primaryGroup.setAttribute('aria-label', 'Navegação principal');
     primaryItems.forEach((item) => primaryGroup.append(createNavLink(item)));
     nav.append(primaryGroup);
+
+    mobilePrimaryItems.forEach((item) => mobileNav.append(createMobileNavLink(item)));
+    if (mobileSecondaryItems.length) {
+      mobileNav.append(createMoreButton());
+      mobileSecondaryItems.forEach((item) => moreList.append(createMobileNavLink(item)));
+    }
 
     if (secondaryItems.length) {
       const divider = document.createElement('img');
@@ -133,7 +173,7 @@ export default {
 
     const updateActive = () => {
       const current = location.hash.slice(1).split('?')[0];
-      nav.querySelectorAll('a[data-path]').forEach((link) => {
+      root.querySelectorAll('a[data-path]').forEach((link) => {
         if (link.dataset.path === current) link.setAttribute('aria-current', 'page');
         else link.removeAttribute('aria-current');
       });
@@ -144,6 +184,37 @@ export default {
       profileToggle.setAttribute('aria-expanded', 'false');
     };
 
+    const closeMoreDialog = () => {
+      if (moreDialog.open) moreDialog.close();
+      const moreToggle = mobileNav.querySelector('[data-mobile-more-toggle]');
+      moreToggle?.setAttribute('aria-expanded', 'false');
+    };
+
+    const handleMoreDialogClose = () => {
+      const moreToggle = mobileNav.querySelector('[data-mobile-more-toggle]');
+      moreToggle?.setAttribute('aria-expanded', 'false');
+    };
+
+    const openMoreDialog = () => {
+      if (!moreDialog.open) moreDialog.showModal();
+      const moreToggle = mobileNav.querySelector('[data-mobile-more-toggle]');
+      moreToggle?.setAttribute('aria-expanded', 'true');
+    };
+
+    const handleHashChange = () => {
+      updateActive();
+      closeMoreDialog();
+    };
+
+    const handleMobileNavClick = (event) => {
+      if (event.target.closest('[data-mobile-more-toggle]')) openMoreDialog();
+      else if (event.target.closest('a[data-path]')) closeMoreDialog();
+    };
+
+    const handleMoreDialogClick = (event) => {
+      if (event.target === moreDialog) closeMoreDialog();
+    };
+
     const toggleProfileMenu = () => {
       const willOpen = profileMenu.hidden;
       profileMenu.hidden = !willOpen;
@@ -151,10 +222,15 @@ export default {
     };
 
     updateActive();
-    window.addEventListener('hashchange', updateActive);
+    window.addEventListener('hashchange', handleHashChange);
     sidebarToggle.addEventListener('click', () => {
       setCollapsed(appLayout.dataset.collapsed !== 'true');
     });
+    moreDialog.id = 'mobile-more-dialog';
+    mobileNav.addEventListener('click', handleMobileNavClick);
+    moreClose.addEventListener('click', closeMoreDialog);
+    moreDialog.addEventListener('click', handleMoreDialogClick);
+    moreDialog.addEventListener('close', handleMoreDialogClose);
     profileToggle.addEventListener('click', toggleProfileMenu);
     profileLink.addEventListener('click', closeProfileMenu);
     root.querySelector('[data-logout]').addEventListener('click', () => {
@@ -166,7 +242,11 @@ export default {
     return {
       outlet: root.querySelector('[data-outlet]'),
       destroy: () => {
-        window.removeEventListener('hashchange', updateActive);
+        window.removeEventListener('hashchange', handleHashChange);
+        mobileNav.removeEventListener('click', handleMobileNavClick);
+        moreDialog.removeEventListener('click', handleMoreDialogClick);
+        moreDialog.removeEventListener('close', handleMoreDialogClose);
+        if (moreDialog.open) moreDialog.close();
       },
     };
   },
