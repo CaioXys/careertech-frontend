@@ -1,12 +1,31 @@
-<!--
-  TELA: Rede social
-  Requisitos: Aluno RF023-RF029 | Professor RF059-RF065
-  Onde editar:
-    - Estrutura (HTML)   -> social-network.html   (este arquivo)
-    - Estilos (CSS)      -> social-network.css
-    - Comportamento (JS) -> social-network.js
--->
 <section class="social-network-page">
-  <h1>Rede social</h1>
-  <p>Tela ainda não criada. Edite <code>src/pages/shared/social-network/social-network.html</code>.</p>
+  <div class="social-network-page__content">
+    <div class="social-network-page__composer">
+      <div class="social-network-page__composer-main">
+        <span class="social-network-page__composer-avatar" data-composer-avatar role="img" aria-label="Foto do seu perfil">CT</span>
+        <label class="social-network-page__sr-only" for="social-post-copy">Nova publicação</label>
+        <textarea id="social-post-copy" class="social-network-page__composer-input" placeholder="Nova publicação" rows="1"></textarea>
+      </div>
+      <div class="social-network-page__composer-actions">
+        <label class="social-network-page__attachment">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 7h3l1.5-2h7L17 7h3v12H4V7Zm8 9a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+            <circle cx="12" cy="12" r="2.2" fill="none" stroke="currentColor" stroke-width="1.7" />
+          </svg>
+          <span>Foto</span>
+          <input class="social-network-page__file-input" type="file" accept="image/*" aria-label="Adicionar foto" data-attachment-input>
+        </label>
+        <label class="social-network-page__attachment">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 3h8l4 4v14H6V3Zm8 0v5h5M9 12h6m-6 3h6m-6 3h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span>Certificado</span>
+          <input class="social-network-page__file-input" type="file" accept="image/*,.pdf,application/pdf" aria-label="Adicionar certificado" data-attachment-input>
+        </label>
+        <span class="social-network-page__attachment-status" data-attachment-status aria-live="polite"></span>
+      </div>
+    </div>
+
+    <div class="social-network-page__feed" data-social-feed aria-label="Publicações da comunidade"></div>
+  </div>
 </section>
