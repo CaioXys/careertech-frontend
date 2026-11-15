@@ -1,0 +1,94 @@
+<section class="management-page" aria-labelledby="management-title">
+  <header class="management-page__header">
+    <div>
+      <p class="management-page__eyebrow">ADMINISTRAÇÃO</p>
+      <h1 id="management-title">Gerenciamento da plataforma</h1>
+      <p class="management-page__intro">Cadastre, edite e remova trilhas, cursos, desafios, vagas, mentorias e conteúdos denunciados.</p>
+    </div>
+  </header>
+
+  <div class="management-page__tabs" role="tablist" aria-label="Áreas de gerenciamento">
+    <button class="management-page__tab" type="button" role="tab" data-tab="tracks" aria-selected="true" aria-controls="management-panel">Trilhas</button>
+    <button class="management-page__tab" type="button" role="tab" data-tab="courses" aria-selected="false" aria-controls="management-panel">Cursos</button>
+    <button class="management-page__tab" type="button" role="tab" data-tab="challenges" aria-selected="false" aria-controls="management-panel">Desafios e testes</button>
+    <button class="management-page__tab" type="button" role="tab" data-tab="openings" aria-selected="false" aria-controls="management-panel">Vagas</button>
+    <button class="management-page__tab" type="button" role="tab" data-tab="mentorships" aria-selected="false" aria-controls="management-panel">Mentorias</button>
+    <button class="management-page__tab" type="button" role="tab" data-tab="reports" aria-selected="false" aria-controls="management-panel">Moderação</button>
+    <button class="management-page__tab" type="button" role="tab" data-tab="notices" aria-selected="false" aria-controls="management-panel">Comunicados</button>
+  </div>
+
+  <p class="management-page__notice" data-notice role="status" aria-live="polite" hidden></p>
+
+  <section class="management-page__panel" id="management-panel" role="tabpanel" aria-labelledby="management-title">
+    <div class="management-page__panel-head">
+      <div>
+        <h2 data-panel-title>Trilhas de aprendizagem</h2>
+        <p data-panel-intro>Organize as trilhas que estruturam o mapa de carreira.</p>
+      </div>
+      <button class="management-page__button" type="button" data-new>Nova trilha</button>
+    </div>
+
+    <div class="management-page__table-wrap" data-table-wrap>
+      <table>
+        <thead data-table-head></thead>
+        <tbody data-table-body></tbody>
+      </table>
+      <p class="management-page__empty" data-empty hidden>Nenhum registro encontrado.</p>
+    </div>
+
+    <div class="management-page__notices" data-notices-panel hidden>
+      <form class="management-page__notice-form" data-notice-form>
+        <h3>Publicar comunicado</h3>
+        <label>
+          <span>Título <span aria-hidden="true">*</span></span>
+          <input name="titulo" type="text" maxlength="80" required placeholder="Ex.: Manutenção programada" />
+        </label>
+        <label>
+          <span>Mensagem <span aria-hidden="true">*</span></span>
+          <textarea name="mensagem" rows="3" maxlength="255" required placeholder="Texto que aparecerá na tela inicial dos usuários"></textarea>
+        </label>
+        <div class="management-page__notice-period">
+          <label>
+            <span>Início da exibição</span>
+            <input name="inicio" type="date" />
+          </label>
+          <label>
+            <span>Fim da exibição</span>
+            <input name="fim" type="date" />
+          </label>
+        </div>
+        <p class="management-page__form-error" data-notice-error role="alert" hidden></p>
+        <button class="management-page__button" type="submit">Publicar comunicado</button>
+      </form>
+      <section aria-labelledby="management-notices-title">
+        <h3 id="management-notices-title">Comunicados publicados</h3>
+        <ul class="management-page__notice-list" data-notice-list></ul>
+      </section>
+    </div>
+  </section>
+
+  <dialog class="management-page__dialog" data-editor-dialog aria-labelledby="management-editor-title">
+    <form method="dialog" data-editor-form>
+      <p class="management-page__eyebrow">CADASTRO</p>
+      <h2 id="management-editor-title" data-editor-title>Novo registro</h2>
+      <div class="management-page__fields" data-editor-fields></div>
+      <p class="management-page__form-error" data-editor-error role="alert" hidden></p>
+      <div class="management-page__dialog-actions">
+        <button class="management-page__button management-page__button--secondary" data-cancel type="button">Cancelar</button>
+        <button class="management-page__button" type="submit">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="management-page__dialog" data-confirm-dialog aria-labelledby="management-confirm-title">
+    <div class="management-page__confirm">
+      <p class="management-page__eyebrow">CONFIRMAÇÃO</p>
+      <h2 id="management-confirm-title">Confirmar ação?</h2>
+      <p data-confirm-message></p>
+      <div class="management-page__dialog-actions">
+        <button class="management-page__button management-page__button--secondary" data-confirm-cancel type="button">Cancelar</button>
+        <button class="management-page__button management-page__button--danger" data-confirm-yes type="button">Confirmar</button>
+      </div>
+    </div>
+  </dialog>
+</section>

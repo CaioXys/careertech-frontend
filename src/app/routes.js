@@ -33,6 +33,7 @@ export const routes = [
   { path: '/games', layout: 'app', roles: STUDENT_AND_TEACHER, load: () => import('../pages/shared/games/games.js') },
   { path: '/social-network', layout: 'app', roles: STUDENT_AND_TEACHER, load: () => import('../pages/shared/social-network/social-network.js') },
   { path: '/certifications', layout: 'app', roles: STUDENT_AND_TEACHER, load: () => import('../pages/shared/certifications/certifications.js') },
+  { path: '/messages', layout: 'app', roles: STUDENT_AND_TEACHER, load: () => import('../pages/shared/messages/messages.js') },
 
   // ---------- Somente Aluno ----------
   { path: '/career-quiz', layout: 'app', roles: [STUDENT], load: () => import('../pages/student/career-quiz/career-quiz.js') },
@@ -46,7 +47,10 @@ export const routes = [
   { path: '/teacher/students', layout: 'app', roles: [TEACHER], load: () => import('../pages/teacher/students/students.js') },
 
   // ---------- Somente Administrador ----------
+  { path: '/admin/home', layout: 'app', roles: [ADMIN], load: () => import('../pages/admin/home/home.js') },
   { path: '/admin/users', layout: 'app', roles: [ADMIN], load: () => import('../pages/admin/users/users.js') },
+  { path: '/admin/approvals', layout: 'app', roles: [ADMIN], load: () => import('../pages/admin/approvals/approvals.js') },
+  { path: '/admin/management', layout: 'app', roles: [ADMIN], load: () => import('../pages/admin/management/management.js') },
 
   // ---------- 404 (sempre a última) ----------
   { path: '*', layout: 'auth', public: true, load: () => import('../pages/errors/not-found/not-found.js') },

@@ -1,9 +1,15 @@
 const themeStorageKey = 'careertech-theme';
+export const THEME_EVENT = 'careertech:theme';
 const systemThemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
 function getStoredTheme() {
   const storedTheme = localStorage.getItem(themeStorageKey);
   return storedTheme === 'dark' || storedTheme === 'light' ? storedTheme : null;
+}
+
+function publishTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  document.dispatchEvent(new CustomEvent(THEME_EVENT, { detail: theme }));
 }
 
 export function getTheme() {
@@ -14,7 +20,7 @@ export function getTheme() {
 
 export function applyTheme() {
   const theme = getTheme();
-  document.documentElement.dataset.theme = theme;
+  publishTheme(theme);
   return theme;
 }
 
@@ -24,7 +30,7 @@ export function setTheme(theme) {
   }
 
   localStorage.setItem(themeStorageKey, theme);
-  document.documentElement.dataset.theme = theme;
+  publishTheme(theme);
   return theme;
 }
 

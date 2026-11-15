@@ -9,6 +9,7 @@ const shared = {
   aiChat: { label: 'Chat IA', path: '/ai-chat' },
   socialNetwork: { label: 'Rede social', path: '/social-network' },
   certifications: { label: 'Certificações', path: '/certifications' },
+  messages: { label: 'Mensagens', path: '/messages' },
   profile: { label: 'Perfil', path: '/profile' },
 };
 
@@ -23,6 +24,7 @@ export const menuByRole = {
     shared.aiChat,
     shared.socialNetwork,
     shared.certifications,
+    shared.messages,
     shared.profile,
   ],
   [ROLES.TEACHER]: [
@@ -38,9 +40,13 @@ export const menuByRole = {
     shared.aiChat,
     shared.socialNetwork,
     shared.certifications,
+    shared.messages,
     shared.profile,
   ],
   [ROLES.ADMIN]: [
+    { label: 'Início', path: '/admin/home' },
     { label: 'Usuários', path: '/admin/users' },
+    { label: 'Aprovações', path: '/admin/approvals' },
+    { label: 'Gerenciamento', path: '/admin/management' },
   ],
 };

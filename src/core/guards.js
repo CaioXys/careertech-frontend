@@ -2,7 +2,7 @@ import { ROLES } from './roles.js';
 
 /** Página inicial de cada profile, para onde ele vai depois do login. */
 export function getHomePath(user) {
-  return user?.role === ROLES.ADMIN ? '/admin/users' : '/home';
+  return user?.role === ROLES.ADMIN ? '/admin/home' : '/home';
 }
 
 /**

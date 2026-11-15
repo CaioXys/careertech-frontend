@@ -2,7 +2,7 @@ import html from './profile.html?raw';
 import './profile.css';
 import { auth } from '../../../core/auth.js';
 import { session } from '../../../core/session.js';
-import { getTheme, setTheme } from '../../../core/theme.js';
+import { getTheme, setTheme, THEME_EVENT } from '../../../core/theme.js';
 import { userInitials } from '../../../utils/user-initials.js';
 
 const roleNames = { student: 'Estudante', teacher: 'Professor', admin: 'Administrador' };
@@ -149,6 +149,10 @@ export default {
     form.addEventListener('submit', onSubmit);
 
     themeToggle.checked = getTheme() === 'dark';
+    const handleThemeChange = () => {
+      themeToggle.checked = getTheme() === 'dark';
+    };
+    document.addEventListener(THEME_EVENT, handleThemeChange);
     const settingToggles = [...root.querySelectorAll('.profile-page__switch-input')];
     const showToast = (text, tone = 'success', autoClose = true) => {
       clearTimeout(toastTimer);
@@ -202,6 +206,7 @@ export default {
       form.removeEventListener('input', onInput);
       form.removeEventListener('reset', onReset);
       form.removeEventListener('submit', onSubmit);
+      document.removeEventListener(THEME_EVENT, handleThemeChange);
       settingToggles.forEach((toggle) => toggle.removeEventListener('change', onSettingChange));
       toastClose.removeEventListener('click', dismissToast);
       clearTimeout(toastTimer);

@@ -1,0 +1,113 @@
+<section class="admin-home-page" aria-labelledby="admin-home-title">
+  <header class="admin-home-page__welcome">
+    <div>
+      <p class="admin-home-page__eyebrow">PAINEL ADMINISTRATIVO</p>
+      <h1 id="admin-home-title">Olá, <span data-admin-name>administrador(a)</span>!</h1>
+      <p class="admin-home-page__intro">Acompanhe a visão geral da plataforma e acesse as funções administrativas.</p>
+    </div>
+    <span class="admin-home-page__welcome-mark" aria-hidden="true">
+      <svg viewBox="0 0 96 96" fill="none">
+        <circle cx="48" cy="48" r="39" fill="var(--action-soft)" />
+        <path d="M31 60V38m17 22V28m17 32V46" stroke="var(--action)" stroke-width="4" stroke-linecap="round" />
+        <path d="M28 66h40" stroke="var(--progress)" stroke-width="4" stroke-linecap="round" />
+      </svg>
+    </span>
+  </header>
+
+  <p class="admin-home-page__notice" data-notice role="status" aria-live="polite" hidden></p>
+
+  <section class="admin-home-page__metrics" aria-label="Indicadores da plataforma">
+    <article class="admin-home-page__metric">
+      <p>Usuários cadastrados</p>
+      <strong data-overview="totalUsuarios">—</strong>
+      <span>Total na plataforma</span>
+    </article>
+    <article class="admin-home-page__metric">
+      <p>Novos cadastros</p>
+      <strong data-overview="novosCadastros">—</strong>
+      <span>Últimos 30 dias</span>
+    </article>
+    <article class="admin-home-page__metric">
+      <p>Cursos ativos</p>
+      <strong data-overview="cursosAtivos">—</strong>
+      <span>Publicados no catálogo</span>
+    </article>
+    <article class="admin-home-page__metric admin-home-page__metric--pending">
+      <p>Aprovações pendentes</p>
+      <strong data-overview="aprovacoesPendentes">—</strong>
+      <span>Professores aguardando análise</span>
+    </article>
+    <article class="admin-home-page__metric admin-home-page__metric--alert">
+      <p>Denúncias pendentes</p>
+      <strong data-overview="denunciasPendentes">—</strong>
+      <span>Conteúdos aguardando moderação</span>
+    </article>
+  </section>
+
+  <section class="admin-home-page__section" aria-labelledby="admin-shortcuts-title">
+    <div class="admin-home-page__section-heading">
+      <div>
+        <p class="admin-home-page__eyebrow">ACESSO RÁPIDO</p>
+        <h2 id="admin-shortcuts-title">Funções administrativas</h2>
+      </div>
+    </div>
+    <div class="admin-home-page__shortcut-grid">
+      <a class="admin-home-page__shortcut" href="#/admin/users">
+        <span class="admin-home-page__shortcut-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M3 20v-2a6 6 0 0 1 12 0v2m3-9a3 3 0 1 0 0-6m3 15v-2a6 6 0 0 0-3-5.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </span>
+        <span><strong>Gerenciador de usuários</strong><small>Consulte, bloqueie e desbloqueie contas</small></span>
+        <span class="admin-home-page__arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="admin-home-page__shortcut" href="#/admin/approvals">
+        <span class="admin-home-page__shortcut-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-5m-3 12H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9l5 5v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17" cy="17" r="4" stroke="currentColor" stroke-width="1.8"/></svg>
+        </span>
+        <span><strong>Aprovações de cadastro</strong><small>Analise documentos de professores</small></span>
+        <span class="admin-home-page__arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="admin-home-page__shortcut" href="#/admin/management">
+        <span class="admin-home-page__shortcut-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="8" cy="7" r="1.5" fill="currentColor"/><circle cx="15" cy="12" r="1.5" fill="currentColor"/><circle cx="10" cy="17" r="1.5" fill="currentColor"/></svg>
+        </span>
+        <span><strong>Gerenciamento</strong><small>Trilhas, cursos, vagas, mentorias e moderação</small></span>
+        <span class="admin-home-page__arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="admin-home-page__section admin-home-page__notices" aria-labelledby="admin-notices-title">
+    <form class="admin-home-page__notice-form" data-notice-form>
+      <div>
+        <p class="admin-home-page__eyebrow">COMUNICAÇÃO</p>
+        <h2 id="admin-notices-title">Publicar aviso na tela inicial</h2>
+        <p class="admin-home-page__hint">O aviso aparece para os usuários durante o período definido.</p>
+      </div>
+      <label>
+        <span>Título <span aria-hidden="true">*</span></span>
+        <input name="titulo" type="text" maxlength="80" required placeholder="Ex.: Manutenção programada" />
+      </label>
+      <label>
+        <span>Mensagem <span aria-hidden="true">*</span></span>
+        <textarea name="mensagem" rows="3" maxlength="255" required placeholder="Texto do comunicado"></textarea>
+      </label>
+      <div class="admin-home-page__notice-period">
+        <label>
+          <span>Início da exibição</span>
+          <input name="inicio" type="date" />
+        </label>
+        <label>
+          <span>Fim da exibição</span>
+          <input name="fim" type="date" />
+        </label>
+      </div>
+      <p class="admin-home-page__form-error" data-notice-error role="alert" hidden></p>
+      <button class="admin-home-page__button" type="submit">Publicar comunicado</button>
+    </form>
+
+    <div>
+      <h2>Comunicados publicados</h2>
+      <ul class="admin-home-page__notice-list" data-notice-list aria-live="polite"></ul>
+    </div>
+  </section>
+</section>

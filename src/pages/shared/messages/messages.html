@@ -1,0 +1,60 @@
+<section class="messages-page" aria-labelledby="messages-title">
+  <header class="messages-page__header">
+    <div>
+      <p class="messages-page__eyebrow">CONVERSAS</p>
+      <h1 id="messages-title">Mensagens</h1>
+      <p class="messages-page__intro">Converse com professores e colegas da plataforma.</p>
+    </div>
+    <button class="messages-page__button" type="button" data-new-conversation>Nova conversa</button>
+  </header>
+
+  <p class="messages-page__notice" data-notice role="status" aria-live="polite" hidden></p>
+
+  <div class="messages-page__layout">
+    <aside class="messages-page__sidebar" aria-labelledby="messages-list-title">
+      <div class="messages-page__sidebar-head">
+        <h2 id="messages-list-title">Conversas</h2>
+        <label class="messages-page__search">
+          <span class="messages-page__sr-only">Buscar conversa</span>
+          <input type="search" name="busca" maxlength="80" placeholder="Buscar por nome" autocomplete="off" data-conversation-search />
+        </label>
+      </div>
+      <ul class="messages-page__conversations" data-conversation-list aria-live="polite"></ul>
+      <p class="messages-page__empty" data-conversation-empty hidden>Nenhuma conversa encontrada.</p>
+    </aside>
+
+    <section class="messages-page__thread" aria-labelledby="messages-thread-title">
+      <p class="messages-page__placeholder" data-thread-empty>Selecione uma conversa para ver as mensagens.</p>
+
+      <div class="messages-page__thread-body" data-thread-body hidden>
+        <header class="messages-page__thread-head">
+          <span class="messages-page__avatar" data-contact-initials aria-hidden="true">—</span>
+          <div>
+            <h2 id="messages-thread-title" data-contact-name>—</h2>
+            <p data-contact-role>—</p>
+          </div>
+        </header>
+
+        <ol class="messages-page__messages" data-message-list aria-live="polite"></ol>
+
+        <form class="messages-page__composer" data-message-form>
+          <label class="messages-page__sr-only" for="messages-input">Escreva uma mensagem</label>
+          <textarea id="messages-input" name="texto" rows="1" maxlength="1000" required placeholder="Escreva uma mensagem…" data-message-input></textarea>
+          <button class="messages-page__button" type="submit">Enviar</button>
+        </form>
+        <p class="messages-page__form-error" data-message-error role="alert" hidden></p>
+      </div>
+    </section>
+  </div>
+
+  <dialog class="messages-page__dialog" data-new-dialog aria-labelledby="messages-new-title">
+    <div class="messages-page__dialog-body">
+      <header class="messages-page__dialog-head">
+        <h2 id="messages-new-title">Nova conversa</h2>
+        <button class="messages-page__icon-button" type="button" data-new-close aria-label="Fechar">×</button>
+      </header>
+      <p class="messages-page__hint">Escolha um contato para iniciar ou retomar uma conversa.</p>
+      <ul class="messages-page__contacts" data-contact-list></ul>
+    </div>
+  </dialog>
+</section>
