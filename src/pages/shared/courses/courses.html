@@ -1,43 +1,106 @@
 <section class="courses-page" aria-labelledby="courses-title">
-  <header class="courses-page__hero">
-    <div class="courses-page__hero-copy">
-      <span class="courses-page__eyebrow"><span></span> BIBLIOTECA DE CURSOS</span>
-      <h1 id="courses-title">Explore os cursos</h1>
-      <p>Encontre uma formação para dar o próximo passo na sua jornada.</p>
-    </div>
-    <div class="courses-page__orbit courses-page__orbit--one" aria-hidden="true"></div>
-    <div class="courses-page__orbit courses-page__orbit--two" aria-hidden="true"></div>
-    <div class="courses-page__path courses-page__path--one" aria-hidden="true">✦</div>
-    <div class="courses-page__path courses-page__path--two" aria-hidden="true">↗</div>
-  </header>
-
   <div class="courses-page__content-wrap">
-    <div class="courses-page__toolbar" role="search">
-      <label class="courses-page__field" for="courses-search">
-        <span>Buscar cursos</span>
-        <span class="courses-page__input-wrap">
-          <svg class="courses-page__search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.7" />
-            <path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
-          </svg>
-          <input
-            id="courses-search"
-            type="search"
-            placeholder="Digite o nome, a descrição ou a área do curso"
-            autocomplete="off"
-            aria-describedby="courses-count"
-          />
-        </span>
-      </label>
-      <p class="courses-page__count" id="courses-count" aria-live="polite"></p>
-    </div>
+    <header class="courses-page__hero">
+      <p class="courses-page__eyebrow">BIBLIOTECA DE CURSOS</p>
+      <h1 id="courses-title">Explore os cursos</h1>
+      <p class="courses-page__intro">Encontre uma formação para dar o próximo passo na sua jornada.</p>
+    </header>
 
-    <p class="courses-page__loading" role="status" hidden>Carregando cursos...</p>
-    <div class="courses-page__error" role="alert" hidden>
-      <p>Não foi possível carregar os cursos. Tente novamente.</p>
-      <button class="courses-page__retry" type="button">Tentar novamente</button>
+    <div class="courses-page__panel">
+      <section class="courses-page__recommendations" aria-labelledby="courses-recommendations-title">
+        <div class="courses-page__section-heading">
+          <h2 id="courses-recommendations-title">Próximos cursos recomendados</h2>
+          <p class="courses-page__recommendation-source-wrap">
+            Porque você concluiu:
+            <strong class="courses-page__recommendation-source" aria-live="polite"></strong>
+          </p>
+        </div>
+        <div class="courses-page__recommendation-list" aria-label="Cursos recomendados"></div>
+      </section>
+
+      <section class="courses-page__catalog" aria-labelledby="courses-catalog-title">
+        <div class="courses-page__catalog-heading">
+          <div class="courses-page__section-heading">
+            <h2 id="courses-catalog-title">Todos os cursos</h2>
+            <p class="courses-page__selected-area">Todos os cursos</p>
+          </div>
+          <div class="courses-page__area-switcher">
+            <div class="courses-page__area-options" role="group" aria-label="Selecionar área de cursos">
+              <button
+                class="courses-page__area-button courses-page__area-button--development"
+                type="button"
+                data-course-area="development"
+                aria-label="Mostrar cursos de Desenvolvimento"
+                aria-pressed="false"
+                title="Desenvolvimento"
+              >
+                <span class="courses-page__area-dot" aria-hidden="true"></span>
+                <span class="courses-page__area-tooltip" aria-hidden="true">Desenvolvimento</span>
+              </button>
+              <button
+                class="courses-page__area-button courses-page__area-button--data"
+                type="button"
+                data-course-area="data"
+                aria-label="Mostrar cursos de Banco de dados"
+                aria-pressed="false"
+                title="Banco de dados"
+              >
+                <span class="courses-page__area-dot" aria-hidden="true"></span>
+                <span class="courses-page__area-tooltip" aria-hidden="true">Banco de dados</span>
+              </button>
+              <button
+                class="courses-page__area-button courses-page__area-button--infrastructure"
+                type="button"
+                data-course-area="infrastructure"
+                aria-label="Mostrar cursos de Infraestrutura"
+                aria-pressed="false"
+                title="Infraestrutura"
+              >
+                <span class="courses-page__area-dot" aria-hidden="true"></span>
+                <span class="courses-page__area-tooltip" aria-hidden="true">Infraestrutura</span>
+              </button>
+              <button
+                class="courses-page__area-button courses-page__area-button--all"
+                type="button"
+                data-course-area="all"
+                aria-label="Mostrar todos os cursos"
+                aria-pressed="true"
+                title="Todos os cursos"
+              >
+                <span class="courses-page__area-dot" aria-hidden="true"></span>
+                <span class="courses-page__area-tooltip" aria-hidden="true">Todos os cursos</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="courses-page__toolbar" role="search">
+          <label class="courses-page__field" for="courses-search">
+            <span>Buscar cursos nesta área</span>
+            <span class="courses-page__input-wrap">
+              <svg class="courses-page__search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.7" />
+                <path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+              </svg>
+              <input
+                id="courses-search"
+                type="search"
+                placeholder="Digite o nome ou a descrição do curso"
+                autocomplete="off"
+                aria-describedby="courses-count"
+              />
+            </span>
+          </label>
+          <p class="courses-page__count" id="courses-count" aria-live="polite"></p>
+        </div>
+
+        <p class="courses-page__loading" role="status" hidden>Carregando cursos...</p>
+        <div class="courses-page__error" role="alert" hidden>
+          <p>Não foi possível carregar os cursos. Tente novamente.</p>
+          <button class="courses-page__retry" type="button">Tentar novamente</button>
+        </div>
+        <div class="courses-page__list" aria-label="Cursos disponíveis" aria-busy="false"></div>
+        <p class="courses-page__empty" role="status" hidden></p>
+      </section>
     </div>
-    <div class="courses-page__list" aria-label="Cursos disponíveis" aria-busy="false"></div>
-    <p class="courses-page__empty" role="status" hidden></p>
   </div>
 </section>
