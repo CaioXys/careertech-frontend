@@ -1,7 +1,345 @@
-/* Estilos da tela "Rede social".
-   Tudo dentro de .social-network-page, senão o CSS vaza para as outras telas
-   (em SPA, o CSS importado continua na página depois de trocar de tela).
-   Use as variáveis do Design System (src/styles/tokens.css): var(--color-primary)... */
 .social-network-page {
-  /* seus estilos aqui. CSS nesting é aceito: .x { h1 { ... } } */
+  min-height: 100%;
+  padding: var(--spacing-4) var(--spacing-3) var(--spacing-6);
+  background: var(--page);
+  color: var(--ink);
+}
+
+.social-network-page__content {
+  width: min(100%, 720px);
+  margin: 0 auto;
+}
+
+.social-network-page__composer {
+  margin-bottom: var(--spacing-4);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  box-shadow: var(--shadow-overlay);
+}
+
+.social-network-page__composer-main {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3);
+}
+
+.social-network-page__composer-avatar {
+  display: grid;
+  width: var(--button-height);
+  height: var(--button-height);
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: var(--radius-pill);
+  background: var(--xp);
+  color: var(--ink);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+}
+
+.social-network-page__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.social-network-page__composer-input {
+  width: 100%;
+  min-width: 0;
+  min-height: var(--button-height);
+  padding: var(--spacing-2) 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  line-height: var(--line-height-body);
+  overflow-y: hidden;
+  resize: none;
+}
+
+.social-network-page__composer-input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.social-network-page__composer-input:focus-visible {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: var(--focus-offset);
+}
+
+.social-network-page__composer-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-2);
+  padding: 0 var(--spacing-3) var(--spacing-2);
+}
+
+.social-network-page__attachment {
+  position: relative;
+  min-width: 0;
+  min-height: var(--button-height);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  padding: 0 var(--spacing-2);
+  border: 0;
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--text-2);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+}
+
+.social-network-page__attachment:hover {
+  background: var(--action-soft);
+  color: var(--action);
+}
+
+.social-network-page__attachment:focus-within {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: var(--focus-offset);
+}
+
+.social-network-page__attachment svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.social-network-page__file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.social-network-page__attachment-status {
+  grid-column: 1 / -1;
+  min-width: 0;
+  color: var(--muted);
+  font-size: var(--font-size-12);
+  overflow-wrap: anywhere;
+}
+
+.social-network-page__attachment-status:empty {
+  display: none;
+}
+
+.social-network-page__feed {
+  display: grid;
+  gap: var(--spacing-4);
+}
+
+.social-network-page__post {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+
+.social-network-page__post-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-4);
+}
+
+.social-network-page__avatar {
+  display: grid;
+  width: var(--button-height);
+  height: var(--button-height);
+  flex: 0 0 auto;
+  place-items: center;
+  border: 3px solid var(--action-soft);
+  border-radius: var(--radius-pill);
+  background: var(--action);
+  color: #ffffff;
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+}
+
+.social-network-page__author {
+  min-width: 0;
+}
+
+.social-network-page__author h2 {
+  margin: 0;
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+  overflow-wrap: anywhere;
+}
+
+.social-network-page__time {
+  display: block;
+  margin-top: var(--spacing-1);
+  color: var(--muted);
+  font-size: var(--font-size-12);
+}
+
+.social-network-page__post-copy {
+  margin: 0;
+  padding: 0 var(--spacing-4) var(--spacing-4);
+  color: var(--text-2);
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-body);
+}
+
+.social-network-page__media {
+  display: block;
+  width: 100%;
+  max-height: 420px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--surface-2);
+}
+
+.social-network-page__post-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2) var(--spacing-4);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-top: 1px solid var(--line);
+  color: var(--text-2);
+  font-size: var(--font-size-12);
+}
+
+.social-network-page__engagement {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.social-network-page__like-button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.social-network-page__like-button:hover {
+  color: var(--action);
+}
+
+.social-network-page__like-button:focus-visible {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: var(--focus-offset);
+}
+
+.social-network-page__like-button[aria-pressed='true'] .social-network-page__engagement-icon {
+  color: var(--error);
+}
+
+.social-network-page__like-button[aria-pressed='true'] .social-network-page__engagement-icon path {
+  fill: currentColor;
+}
+
+.social-network-page__engagement-icon {
+  color: var(--action);
+  width: var(--font-size-20);
+  height: var(--font-size-20);
+  flex: 0 0 auto;
+  fill: transparent;
+}
+
+.social-network-page__comments {
+  display: grid;
+  gap: var(--spacing-2);
+  margin: 0;
+  padding: 0 var(--spacing-3);
+  list-style: none;
+}
+
+.social-network-page__comment {
+  display: grid;
+  grid-template-columns: var(--spacing-6) minmax(0, 1fr);
+  column-gap: var(--spacing-3);
+  row-gap: var(--spacing-1);
+  align-items: start;
+  padding: var(--spacing-1) 0;
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-body);
+}
+
+.social-network-page__comment-avatar {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  display: grid;
+  width: var(--spacing-6);
+  height: var(--spacing-6);
+  place-items: center;
+  border-radius: var(--radius-pill);
+  background: var(--action-soft);
+  color: var(--action);
+}
+
+.social-network-page__comment-avatar svg {
+  width: 65%;
+  height: 65%;
+}
+
+.social-network-page__comment-author {
+  grid-column: 2;
+  color: var(--ink);
+  font-weight: var(--font-weight-semibold);
+}
+
+.social-network-page__comment-copy {
+  grid-column: 2;
+  min-width: 0;
+  color: var(--text-2);
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 640px) {
+  .social-network-page {
+    padding: var(--spacing-5) var(--spacing-4) var(--spacing-7);
+  }
+
+  .social-network-page__composer-main {
+    padding: var(--spacing-3) var(--spacing-5);
+  }
+
+  .social-network-page__composer-actions {
+    padding-right: var(--spacing-5);
+    padding-bottom: var(--spacing-2);
+    padding-left: var(--spacing-5);
+  }
+
+  .social-network-page__attachment {
+    justify-content: flex-start;
+    padding-right: var(--spacing-3);
+    padding-left: var(--spacing-3);
+    font-size: var(--font-size-14);
+  }
+
+  .social-network-page__post-header,
+  .social-network-page__comments {
+    padding-right: var(--spacing-5);
+    padding-left: var(--spacing-5);
+  }
+
+  .social-network-page__comments {
+    padding-right: var(--spacing-4);
+    padding-left: var(--spacing-4);
+  }
+
+  .social-network-page__post-copy {
+    padding-right: var(--spacing-5);
+    padding-left: var(--spacing-5);
+  }
 }
