@@ -1,12 +1,160 @@
 <!--
-  TELA: Área do teacher
+  TELA: Área do professor
   Requisitos: Professor RF048
   Onde editar:
     - Estrutura (HTML)   -> teacher-dashboard.html   (este arquivo)
     - Estilos (CSS)      -> teacher-dashboard.css
     - Comportamento (JS) -> teacher-dashboard.js
 -->
-<section class="teacher-dashboard-page">
-  <h1>Área do teacher</h1>
-  <p>Tela ainda não criada. Edite <code>src/pages/teacher/teacher-dashboard/teacher-dashboard.html</code>.</p>
+<section class="teacher-dashboard-page" aria-labelledby="teacher-dashboard-title">
+  <header class="teacher-dashboard-page__header">
+    <div>
+      <p class="teacher-dashboard-page__eyebrow">ÁREA DO PROFESSOR</p>
+      <h1 id="teacher-dashboard-title">Olá, <span data-teacher-name>professor(a)</span></h1>
+      <p class="teacher-dashboard-page__intro" data-today>Organize suas turmas, aulas e avaliações em um só lugar.</p>
+    </div>
+    <div class="teacher-dashboard-page__header-actions">
+      <a class="teacher-dashboard-page__btn teacher-dashboard-page__btn--primary" href="#/teacher/lessons?novo=1">Nova aula</a>
+      <a class="teacher-dashboard-page__btn teacher-dashboard-page__btn--secondary" href="#/teacher/assignments-assessments?novo=1">Nova avaliação</a>
+    </div>
+  </header>
+
+  <div class="teacher-dashboard-page__skeleton" data-loading role="status" aria-live="polite">
+    <p class="teacher-dashboard-page__skeleton-label">Carregando sua área…</p>
+    <div class="teacher-dashboard-page__skeleton-stats">
+      <article class="teacher-dashboard-page__skeleton-stat"><span class="skeleton-avatar"></span><span class="teacher-dashboard-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-title"></span><span class="skeleton-line"></span></span></article>
+      <article class="teacher-dashboard-page__skeleton-stat"><span class="skeleton-avatar"></span><span class="teacher-dashboard-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-title"></span><span class="skeleton-line"></span></span></article>
+      <article class="teacher-dashboard-page__skeleton-stat"><span class="skeleton-avatar"></span><span class="teacher-dashboard-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-title"></span><span class="skeleton-line"></span></span></article>
+      <article class="teacher-dashboard-page__skeleton-stat"><span class="skeleton-avatar"></span><span class="teacher-dashboard-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-title"></span><span class="skeleton-line"></span></span></article>
+    </div>
+    <div class="teacher-dashboard-page__skeleton-grid">
+      <article class="teacher-dashboard-page__skeleton-panel">
+        <span class="skeleton-title"></span><span class="skeleton-line short"></span>
+        <div class="teacher-dashboard-page__skeleton-rows">
+          <span class="teacher-dashboard-page__skeleton-row"><span class="skeleton-avatar"></span><span class="teacher-dashboard-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-line"></span></span></span>
+          <span class="teacher-dashboard-page__skeleton-row"><span class="skeleton-avatar"></span><span class="teacher-dashboard-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-line"></span></span></span>
+          <span class="teacher-dashboard-page__skeleton-row"><span class="skeleton-avatar"></span><span class="teacher-dashboard-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-line"></span></span></span>
+        </div>
+      </article>
+      <article class="teacher-dashboard-page__skeleton-panel">
+        <span class="skeleton-title"></span><span class="skeleton-line short"></span>
+        <div class="teacher-dashboard-page__skeleton-rows">
+          <span class="teacher-dashboard-page__skeleton-row"><span class="skeleton-avatar"></span><span class="teacher-dashboard-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-line"></span></span></span>
+          <span class="teacher-dashboard-page__skeleton-row"><span class="skeleton-avatar"></span><span class="teacher-dashboard-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-line"></span></span></span>
+          <span class="teacher-dashboard-page__skeleton-row"><span class="skeleton-avatar"></span><span class="teacher-dashboard-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-line"></span></span></span>
+        </div>
+      </article>
+      <article class="teacher-dashboard-page__skeleton-panel">
+        <span class="skeleton-title"></span><span class="skeleton-line short"></span>
+        <div class="teacher-dashboard-page__skeleton-rows">
+          <span class="teacher-dashboard-page__skeleton-row"><span class="skeleton-avatar"></span><span class="teacher-dashboard-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-line"></span></span></span>
+          <span class="teacher-dashboard-page__skeleton-row"><span class="skeleton-avatar"></span><span class="teacher-dashboard-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-line"></span></span></span>
+          <span class="teacher-dashboard-page__skeleton-row"><span class="skeleton-avatar"></span><span class="teacher-dashboard-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-line"></span></span></span>
+        </div>
+      </article>
+      <article class="teacher-dashboard-page__skeleton-panel">
+        <span class="skeleton-title"></span><span class="skeleton-line short"></span>
+        <div class="teacher-dashboard-page__skeleton-rows">
+          <span class="teacher-dashboard-page__skeleton-row"><span class="skeleton-avatar"></span><span class="teacher-dashboard-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-line"></span></span></span>
+          <span class="teacher-dashboard-page__skeleton-row"><span class="skeleton-avatar"></span><span class="teacher-dashboard-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-line"></span></span></span>
+          <span class="teacher-dashboard-page__skeleton-row"><span class="skeleton-avatar"></span><span class="teacher-dashboard-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-line"></span></span></span>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="teacher-dashboard-page__error" data-error role="alert" hidden>
+    <p>Não foi possível carregar a área do professor.</p>
+    <button class="teacher-dashboard-page__btn teacher-dashboard-page__btn--secondary" type="button" data-retry>Tentar novamente</button>
+  </div>
+
+  <div class="teacher-dashboard-page__content" data-content hidden>
+    <section class="teacher-dashboard-page__stats" aria-label="Resumo da atuação">
+      <article class="teacher-dashboard-page__stat">
+        <span class="teacher-dashboard-page__stat-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 19V7a2 2 0 0 1 2-2h9l5 5v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M14 5v6h6M8 14h8M8 17h5"/></svg>
+        </span>
+        <div>
+          <p>Turmas ativas</p>
+          <strong data-stat-classes>—</strong>
+          <small data-stat-classes-meta>—</small>
+        </div>
+      </article>
+      <article class="teacher-dashboard-page__stat">
+        <span class="teacher-dashboard-page__stat-icon teacher-dashboard-page__stat-icon--progress" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0M16 5.5a3 3 0 0 1 0 5.8M18 20a5.6 5.6 0 0 0-2-4.3"/></svg>
+        </span>
+        <div>
+          <p>Alunos acompanhados</p>
+          <strong data-stat-students>—</strong>
+          <small data-stat-students-meta>—</small>
+        </div>
+      </article>
+      <article class="teacher-dashboard-page__stat">
+        <span class="teacher-dashboard-page__stat-icon teacher-dashboard-page__stat-icon--xp" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15Z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20M8 7h8M8 11h5"/></svg>
+        </span>
+        <div>
+          <p>Aulas publicadas</p>
+          <strong data-stat-lessons>—</strong>
+          <small data-stat-lessons-meta>—</small>
+        </div>
+      </article>
+      <article class="teacher-dashboard-page__stat">
+        <span class="teacher-dashboard-page__stat-icon teacher-dashboard-page__stat-icon--error" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M9 3h6l1 3h3v15H5V6h3l1-3Z"/><path d="m9 13 2 2 4-4"/></svg>
+        </span>
+        <div>
+          <p>Para corrigir</p>
+          <strong data-stat-reviews>—</strong>
+          <small data-stat-reviews-meta>—</small>
+        </div>
+      </article>
+    </section>
+
+    <div class="teacher-dashboard-page__grid">
+      <section class="teacher-dashboard-page__panel" aria-labelledby="dashboard-agenda-title">
+        <header class="teacher-dashboard-page__panel-head">
+          <div>
+            <h2 id="dashboard-agenda-title">Próximas aulas</h2>
+            <p>Agenda das turmas em andamento.</p>
+          </div>
+          <a class="teacher-dashboard-page__link" href="#/teacher/classes">Ver turmas</a>
+        </header>
+        <ul class="teacher-dashboard-page__agenda" data-agenda></ul>
+      </section>
+
+      <section class="teacher-dashboard-page__panel" aria-labelledby="dashboard-reviews-title">
+        <header class="teacher-dashboard-page__panel-head">
+          <div>
+            <h2 id="dashboard-reviews-title">Avaliações para corrigir</h2>
+            <p>Entregas aguardando sua correção.</p>
+          </div>
+          <a class="teacher-dashboard-page__link" href="#/teacher/assignments-assessments">Ver avaliações</a>
+        </header>
+        <ul class="teacher-dashboard-page__reviews" data-reviews></ul>
+      </section>
+
+      <section class="teacher-dashboard-page__panel" aria-labelledby="dashboard-classes-title">
+        <header class="teacher-dashboard-page__panel-head">
+          <div>
+            <h2 id="dashboard-classes-title">Suas turmas</h2>
+            <p>Progresso médio dos alunos por turma.</p>
+          </div>
+          <a class="teacher-dashboard-page__link" href="#/teacher/classes">Gerenciar</a>
+        </header>
+        <ul class="teacher-dashboard-page__classes" data-classes></ul>
+      </section>
+
+      <section class="teacher-dashboard-page__panel" aria-labelledby="dashboard-attention-title">
+        <header class="teacher-dashboard-page__panel-head">
+          <div>
+            <h2 id="dashboard-attention-title">Alunos que precisam de atenção</h2>
+            <p>Menor progresso ou acesso recente abaixo do esperado.</p>
+          </div>
+          <a class="teacher-dashboard-page__link" href="#/teacher/students">Ver alunos</a>
+        </header>
+        <ul class="teacher-dashboard-page__attention" data-attention></ul>
+      </section>
+    </div>
+  </div>
 </section>

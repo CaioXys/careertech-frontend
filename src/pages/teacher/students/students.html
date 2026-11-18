@@ -6,7 +6,154 @@
     - Estilos (CSS)      -> students.css
     - Comportamento (JS) -> students.js
 -->
-<section class="students-page">
-  <h1>Alunos e progresso</h1>
-  <p>Tela ainda não criada. Edite <code>src/pages/teacher/students/students.html</code>.</p>
+<section class="students-page" aria-labelledby="students-title">
+  <header class="students-page__header">
+    <div>
+      <p class="students-page__eyebrow">ACOMPANHAMENTO</p>
+      <h1 id="students-title">Alunos e progresso</h1>
+      <p class="students-page__intro">Acompanhe o desempenho, a participação e o avanço dos alunos nas suas turmas.</p>
+    </div>
+    <button class="students-page__btn students-page__btn--secondary" type="button" data-export>Exportar relatório</button>
+  </header>
+
+  <section class="students-page__summary" aria-label="Resumo dos alunos">
+    <article>
+      <span>Alunos</span>
+      <strong data-summary-total>—</strong>
+      <small data-summary-total-meta>—</small>
+    </article>
+    <article>
+      <span>Em dia</span>
+      <strong data-summary-ontrack>—</strong>
+      <small>Progresso esperado</small>
+    </article>
+    <article>
+      <span>Precisam de atenção</span>
+      <strong data-summary-attention>—</strong>
+      <small>Atenção ou risco</small>
+    </article>
+    <article>
+      <span>Progresso médio</span>
+      <strong data-summary-progress>—</strong>
+      <small data-summary-progress-meta>—</small>
+    </article>
+  </section>
+
+  <form class="students-page__filters" data-filters role="search">
+    <label class="students-page__search-field">
+      <span>Buscar aluno</span>
+      <span class="students-page__search-wrap">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+        <input name="busca" type="search" maxlength="80" placeholder="Nome, e-mail ou turma" autocomplete="off" />
+      </span>
+    </label>
+    <label>
+      <span>Turma</span>
+      <select name="classId" data-class-filter>
+        <option value="">Todas as turmas</option>
+      </select>
+    </label>
+    <label>
+      <span>Situação</span>
+      <select name="status">
+        <option value="">Todas as situações</option>
+        <option value="em_dia">Em dia</option>
+        <option value="atencao">Atenção</option>
+        <option value="risco">Em risco</option>
+        <option value="concluido">Concluído</option>
+      </select>
+    </label>
+    <p class="students-page__count" data-count role="status" aria-live="polite">Carregando…</p>
+  </form>
+
+  <p class="students-page__notice" data-notice role="status" aria-live="polite" hidden></p>
+  <div class="students-page__skeleton" data-loading role="status" aria-live="polite">
+    <p class="students-page__skeleton-label">Carregando alunos…</p>
+    <div class="students-page__skeleton-table">
+      <div class="students-page__skeleton-row students-page__skeleton-row--head"><span class="skeleton-line"></span><span class="skeleton-line"></span><span class="skeleton-line"></span><span class="skeleton-line"></span><span class="skeleton-line"></span><span class="skeleton-line"></span></div>
+      <div class="students-page__skeleton-row"><span class="students-page__skeleton-student"><span class="skeleton-avatar"></span><span class="students-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-line"></span></span></span><span class="students-page__skeleton-copy"><span class="skeleton-line"></span><span class="skeleton-line short"></span></span><span class="students-page__skeleton-copy"><span class="skeleton-line"></span><span class="skeleton-block"></span></span><span class="skeleton-line"></span><span class="skeleton-badge"></span><span class="skeleton-button"></span></div>
+      <div class="students-page__skeleton-row"><span class="students-page__skeleton-student"><span class="skeleton-avatar"></span><span class="students-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-line"></span></span></span><span class="students-page__skeleton-copy"><span class="skeleton-line"></span><span class="skeleton-line short"></span></span><span class="students-page__skeleton-copy"><span class="skeleton-line"></span><span class="skeleton-block"></span></span><span class="skeleton-line"></span><span class="skeleton-badge"></span><span class="skeleton-button"></span></div>
+      <div class="students-page__skeleton-row"><span class="students-page__skeleton-student"><span class="skeleton-avatar"></span><span class="students-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-line"></span></span></span><span class="students-page__skeleton-copy"><span class="skeleton-line"></span><span class="skeleton-line short"></span></span><span class="students-page__skeleton-copy"><span class="skeleton-line"></span><span class="skeleton-block"></span></span><span class="skeleton-line"></span><span class="skeleton-badge"></span><span class="skeleton-button"></span></div>
+      <div class="students-page__skeleton-row"><span class="students-page__skeleton-student"><span class="skeleton-avatar"></span><span class="students-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-line"></span></span></span><span class="students-page__skeleton-copy"><span class="skeleton-line"></span><span class="skeleton-line short"></span></span><span class="students-page__skeleton-copy"><span class="skeleton-line"></span><span class="skeleton-block"></span></span><span class="skeleton-line"></span><span class="skeleton-badge"></span><span class="skeleton-button"></span></div>
+      <div class="students-page__skeleton-row"><span class="students-page__skeleton-student"><span class="skeleton-avatar"></span><span class="students-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-line"></span></span></span><span class="students-page__skeleton-copy"><span class="skeleton-line"></span><span class="skeleton-line short"></span></span><span class="students-page__skeleton-copy"><span class="skeleton-line"></span><span class="skeleton-block"></span></span><span class="skeleton-line"></span><span class="skeleton-badge"></span><span class="skeleton-button"></span></div>
+      <div class="students-page__skeleton-row"><span class="students-page__skeleton-student"><span class="skeleton-avatar"></span><span class="students-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-line"></span></span></span><span class="students-page__skeleton-copy"><span class="skeleton-line"></span><span class="skeleton-line short"></span></span><span class="students-page__skeleton-copy"><span class="skeleton-line"></span><span class="skeleton-block"></span></span><span class="skeleton-line"></span><span class="skeleton-badge"></span><span class="skeleton-button"></span></div>
+      <div class="students-page__skeleton-row"><span class="students-page__skeleton-student"><span class="skeleton-avatar"></span><span class="students-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-line"></span></span></span><span class="students-page__skeleton-copy"><span class="skeleton-line"></span><span class="skeleton-line short"></span></span><span class="students-page__skeleton-copy"><span class="skeleton-line"></span><span class="skeleton-block"></span></span><span class="skeleton-line"></span><span class="skeleton-badge"></span><span class="skeleton-button"></span></div>
+      <div class="students-page__skeleton-row"><span class="students-page__skeleton-student"><span class="skeleton-avatar"></span><span class="students-page__skeleton-copy"><span class="skeleton-line short"></span><span class="skeleton-line"></span></span></span><span class="students-page__skeleton-copy"><span class="skeleton-line"></span><span class="skeleton-line short"></span></span><span class="students-page__skeleton-copy"><span class="skeleton-line"></span><span class="skeleton-block"></span></span><span class="skeleton-line"></span><span class="skeleton-badge"></span><span class="skeleton-button"></span></div>
+    </div>
+  </div>
+  <div class="students-page__error" data-error role="alert" hidden>
+    <p>Não foi possível carregar os alunos.</p>
+    <button class="students-page__btn students-page__btn--secondary" type="button" data-retry>Tentar novamente</button>
+  </div>
+  <div class="students-page__empty" data-empty hidden>
+    <h2>Nenhum aluno encontrado</h2>
+    <p data-empty-text>Revise a busca ou os filtros para ver outros alunos.</p>
+    <button class="students-page__btn students-page__btn--secondary" type="button" data-clear-filters>Limpar filtros</button>
+  </div>
+
+  <div class="students-page__table-card" data-table-card hidden>
+    <div class="students-page__table-wrap">
+      <table>
+        <caption class="students-page__sr-only">Alunos e progresso nas turmas</caption>
+        <thead>
+          <tr>
+            <th scope="col">Aluno</th>
+            <th scope="col">Turma</th>
+            <th scope="col">Progresso</th>
+            <th scope="col">Média</th>
+            <th scope="col">Presença</th>
+            <th scope="col">Último acesso</th>
+            <th scope="col">Situação</th>
+            <th scope="col"><span class="students-page__sr-only">Ações</span></th>
+          </tr>
+        </thead>
+        <tbody data-student-rows></tbody>
+      </table>
+    </div>
+  </div>
+
+  <dialog class="students-page__dialog" data-student-dialog aria-labelledby="student-dialog-title">
+    <div class="students-page__detail">
+      <header class="students-page__dialog-head">
+        <div class="students-page__student-head">
+          <span class="students-page__avatar" data-detail-avatar aria-hidden="true">—</span>
+          <div>
+            <p class="students-page__eyebrow">DETALHES DO ALUNO</p>
+            <h2 id="student-dialog-title" data-detail-name>Aluno</h2>
+            <p data-detail-email></p>
+          </div>
+        </div>
+        <button class="students-page__icon-button" type="button" data-detail-close aria-label="Fechar detalhes do aluno">×</button>
+      </header>
+
+      <div class="students-page__detail-class">
+        <span data-detail-class>Turma</span>
+        <span class="students-page__status" data-detail-status>—</span>
+      </div>
+
+      <div class="students-page__detail-progress">
+        <div>
+          <span>Progresso no curso</span>
+          <strong data-detail-progress-value>—</strong>
+        </div>
+        <div class="students-page__track" data-detail-progress role="progressbar" aria-label="Progresso do aluno" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <span></span>
+        </div>
+      </div>
+
+      <dl class="students-page__detail-metrics">
+        <div><dt>Média</dt><dd data-detail-grade>—</dd></div>
+        <div><dt>Presença</dt><dd data-detail-attendance>—</dd></div>
+        <div><dt>Aulas concluídas</dt><dd data-detail-lessons>—</dd></div>
+        <div><dt>Último acesso</dt><dd data-detail-access>—</dd></div>
+      </dl>
+
+      <p class="students-page__detail-note" data-detail-note></p>
+
+      <div class="students-page__dialog-actions">
+        <a class="students-page__btn students-page__btn--secondary" data-detail-message href="#/messages">Enviar mensagem</a>
+        <button class="students-page__btn students-page__btn--primary" type="button" data-detail-close-footer>Fechar</button>
+      </div>
+    </div>
+  </dialog>
 </section>

@@ -1,7 +1,534 @@
-/* Estilos da tela "Área do teacher".
-   Tudo dentro de .teacher-dashboard-page, senão o CSS vaza para as outras telas
-   (em SPA, o CSS importado continua na página depois de trocar de tela).
-   Use as variáveis do Design System (src/styles/tokens.css): var(--color-primary)... */
 .teacher-dashboard-page {
-  /* seus estilos aqui. CSS nesting é aceito: .x { h1 { ... } } */
+  width: min(100%, 76rem);
+  margin: 0 auto;
+  color: var(--ink);
+}
+
+.teacher-dashboard-page [hidden] {
+  display: none !important;
+}
+
+.teacher-dashboard-page__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-5);
+}
+
+.teacher-dashboard-page__eyebrow {
+  margin: 0 0 var(--spacing-1);
+  color: var(--action);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+}
+
+.teacher-dashboard-page h1 {
+  margin: 0;
+  font-size: clamp(var(--font-size-24), 3vw, var(--font-size-32));
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+  letter-spacing: -0.02em;
+}
+
+.teacher-dashboard-page__intro {
+  margin: var(--spacing-2) 0 0;
+  color: var(--text-2);
+  font-size: var(--font-size-14);
+}
+
+.teacher-dashboard-page__header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+}
+
+.teacher-dashboard-page__btn {
+  min-height: var(--button-height);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  padding: 0 var(--spacing-4);
+  border: 1px solid var(--action);
+  border-radius: var(--radius-card);
+  background: var(--action);
+  color: #fff;
+  font: inherit;
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.teacher-dashboard-page__btn:hover {
+  border-color: var(--action-hover);
+  background: var(--action-hover);
+}
+
+.teacher-dashboard-page__btn--secondary {
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.teacher-dashboard-page__btn--secondary:hover {
+  border-color: var(--action);
+  background: var(--action-soft);
+}
+
+.teacher-dashboard-page__btn:focus-visible,
+.teacher-dashboard-page__link:focus-visible {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: var(--focus-offset);
+}
+
+.teacher-dashboard-page__loading,
+.teacher-dashboard-page__empty {
+  margin: 0;
+  padding: var(--spacing-5) 0;
+  color: var(--muted);
+  font-size: var(--font-size-14);
+}
+
+.teacher-dashboard-page__skeleton {
+  display: grid;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+}
+
+.teacher-dashboard-page__skeleton-label {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--font-size-14);
+}
+
+.teacher-dashboard-page__skeleton-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--spacing-3);
+}
+
+.teacher-dashboard-page__skeleton-stat {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+  padding: var(--spacing-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+
+.teacher-dashboard-page__skeleton-stat .skeleton-avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-control);
+}
+
+.teacher-dashboard-page__skeleton-copy {
+  display: grid;
+  flex: 1;
+  gap: var(--spacing-2);
+  min-width: 0;
+  align-content: center;
+}
+
+.teacher-dashboard-page__skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: var(--spacing-3);
+}
+
+.teacher-dashboard-page__skeleton-panel {
+  display: grid;
+  gap: var(--spacing-2);
+  padding: var(--spacing-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+
+.teacher-dashboard-page__skeleton-rows {
+  display: grid;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-2);
+}
+
+.teacher-dashboard-page__skeleton-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding-top: var(--spacing-2);
+  border-top: 1px solid var(--line);
+}
+
+.teacher-dashboard-page__skeleton-row:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.teacher-dashboard-page__skeleton-row .skeleton-avatar {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.teacher-dashboard-page__error {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+  padding: var(--spacing-4);
+  border: 1px solid var(--error);
+  border-radius: var(--radius-card);
+  background: var(--error-soft);
+  color: var(--error-text);
+  font-size: var(--font-size-14);
+}
+
+.teacher-dashboard-page__error p {
+  margin: 0;
+}
+
+.teacher-dashboard-page__stats {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-4);
+}
+
+.teacher-dashboard-page__stat {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+  padding: var(--spacing-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+
+.teacher-dashboard-page__stat-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: var(--radius-control);
+  background: var(--action-soft);
+  color: var(--action);
+}
+
+.teacher-dashboard-page__stat-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.teacher-dashboard-page__stat-icon--progress {
+  background: var(--progress-soft);
+  color: var(--progress-text);
+}
+
+.teacher-dashboard-page__stat-icon--xp {
+  background: var(--xp-soft);
+  color: var(--xp-text);
+}
+
+.teacher-dashboard-page__stat-icon--error {
+  background: var(--error-soft);
+  color: var(--error-text);
+}
+
+.teacher-dashboard-page__stat p {
+  margin: 0;
+  color: var(--text-2);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+}
+
+.teacher-dashboard-page__stat strong {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+}
+
+.teacher-dashboard-page__stat small {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: var(--font-size-12);
+}
+
+.teacher-dashboard-page__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--spacing-4);
+}
+
+.teacher-dashboard-page__panel {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+
+.teacher-dashboard-page__panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+  padding: var(--spacing-4) var(--spacing-4) 0;
+}
+
+.teacher-dashboard-page__panel-head h2 {
+  margin: 0;
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+}
+
+.teacher-dashboard-page__panel-head p {
+  margin: var(--spacing-1) 0 0;
+  color: var(--muted);
+  font-size: var(--font-size-12);
+}
+
+.teacher-dashboard-page__link {
+  flex: 0 0 auto;
+  padding: var(--spacing-1) 0;
+  color: var(--action);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+}
+
+.teacher-dashboard-page__link:hover {
+  color: var(--action-hover);
+  text-decoration: underline;
+}
+
+.teacher-dashboard-page__agenda,
+.teacher-dashboard-page__reviews,
+.teacher-dashboard-page__classes,
+.teacher-dashboard-page__attention {
+  display: grid;
+  gap: 0;
+  margin: var(--spacing-3) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.teacher-dashboard-page__agenda li,
+.teacher-dashboard-page__reviews li,
+.teacher-dashboard-page__classes li,
+.teacher-dashboard-page__attention li {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-top: 1px solid var(--line);
+}
+
+.teacher-dashboard-page__date {
+  width: 3rem;
+  height: 3.25rem;
+  display: grid;
+  flex: 0 0 auto;
+  align-content: center;
+  justify-items: center;
+  border-radius: var(--radius-control);
+  background: var(--action-soft);
+  color: var(--action);
+}
+
+.teacher-dashboard-page__date strong {
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+}
+
+.teacher-dashboard-page__date small {
+  margin-top: 2px;
+  font-size: 0.625rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.06em;
+}
+
+.teacher-dashboard-page__item-body {
+  min-width: 0;
+  flex: 1;
+}
+
+.teacher-dashboard-page__item-body strong {
+  display: block;
+  overflow: hidden;
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.teacher-dashboard-page__item-body span,
+.teacher-dashboard-page__item-body small {
+  display: block;
+  margin-top: 2px;
+  color: var(--text-2);
+  font-size: var(--font-size-12);
+}
+
+.teacher-dashboard-page__item-body small {
+  color: var(--muted);
+}
+
+.teacher-dashboard-page__tag {
+  flex: 0 0 auto;
+  padding: 2px var(--spacing-2);
+  border-radius: var(--radius-pill);
+  background: var(--surface-2);
+  color: var(--text-2);
+  font-size: 0.6875rem;
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+}
+
+.teacher-dashboard-page__review-progress {
+  flex: 0 0 7rem;
+  display: grid;
+  gap: var(--spacing-1);
+  text-align: right;
+}
+
+.teacher-dashboard-page__review-progress small {
+  color: var(--text-2);
+  font-size: var(--font-size-12);
+  font-variant-numeric: tabular-nums;
+}
+
+.teacher-dashboard-page__track {
+  height: 6px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--surface-3);
+}
+
+.teacher-dashboard-page__track span {
+  height: 100%;
+  display: block;
+  border-radius: inherit;
+  background: var(--progress);
+}
+
+.teacher-dashboard-page__class-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  margin-top: var(--spacing-1);
+  color: var(--progress-text);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+}
+
+.teacher-dashboard-page__class-status::before {
+  width: 0.5rem;
+  height: 0.5rem;
+  content: '';
+  border-radius: var(--radius-pill);
+  background: var(--progress);
+}
+
+.teacher-dashboard-page__class-status--planejada {
+  color: var(--xp-text);
+}
+
+.teacher-dashboard-page__class-status--planejada::before {
+  background: var(--xp);
+}
+
+.teacher-dashboard-page__class-status--encerrada {
+  color: var(--muted);
+}
+
+.teacher-dashboard-page__class-status--encerrada::before {
+  background: var(--muted);
+}
+
+.teacher-dashboard-page__class-progress {
+  flex: 0 0 6.5rem;
+  display: grid;
+  gap: var(--spacing-1);
+  text-align: right;
+}
+
+.teacher-dashboard-page__class-progress b {
+  color: var(--progress-text);
+  font-size: var(--font-size-12);
+  font-variant-numeric: tabular-nums;
+}
+
+.teacher-dashboard-page__avatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: var(--radius-pill);
+  background: var(--surface-2);
+  color: var(--text-2);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+}
+
+.teacher-dashboard-page__attention li a {
+  flex: 0 0 auto;
+  color: var(--action);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+}
+
+.teacher-dashboard-page__attention li a:hover {
+  text-decoration: underline;
+}
+
+.teacher-dashboard-page__attention li a:focus-visible {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: var(--focus-offset);
+}
+
+.teacher-dashboard-page__risk {
+  color: var(--error-text) !important;
+}
+
+@media (min-width: 560px) {
+  .teacher-dashboard-page__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .teacher-dashboard-page__stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .teacher-dashboard-page__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .teacher-dashboard-page *,
+  .teacher-dashboard-page *::before,
+  .teacher-dashboard-page *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

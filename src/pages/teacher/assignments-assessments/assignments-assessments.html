@@ -6,7 +6,183 @@
     - Estilos (CSS)      -> assignments-assessments.css
     - Comportamento (JS) -> assignments-assessments.js
 -->
-<section class="assignments-assessments-page">
-  <h1>Atividades e avaliações</h1>
-  <p>Tela ainda não criada. Edite <code>src/pages/teacher/assignments-assessments/assignments-assessments.html</code>.</p>
+<section class="assignments-assessments-page" aria-labelledby="assessments-title">
+  <header class="assignments-assessments-page__header">
+    <div>
+      <p class="assignments-assessments-page__eyebrow">ACOMPANHAMENTO</p>
+      <h1 id="assessments-title">Atividades e avaliações</h1>
+      <p class="assignments-assessments-page__intro">Crie avaliações, acompanhe as entregas e registre as correções.</p>
+    </div>
+    <button class="assignments-assessments-page__btn assignments-assessments-page__btn--primary" type="button" data-new-assessment>Nova avaliação</button>
+  </header>
+
+  <section class="assignments-assessments-page__summary" aria-label="Resumo das avaliações">
+    <article>
+      <span>Em aberto</span>
+      <strong data-summary-open>—</strong>
+      <small>Recebendo entregas</small>
+    </article>
+    <article>
+      <span>Em correção</span>
+      <strong data-summary-grading>—</strong>
+      <small data-summary-grading-meta>—</small>
+    </article>
+    <article>
+      <span>Média geral</span>
+      <strong data-summary-average>—</strong>
+      <small>Avaliações já corrigidas</small>
+    </article>
+  </section>
+
+  <form class="assignments-assessments-page__filters" data-filters role="search">
+    <label class="assignments-assessments-page__search-field">
+      <span>Buscar avaliação</span>
+      <span class="assignments-assessments-page__search-wrap">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+        <input name="busca" type="search" maxlength="80" placeholder="Título, turma ou descrição" autocomplete="off" />
+      </span>
+    </label>
+    <label>
+      <span>Turma</span>
+      <select name="classId" data-class-filter>
+        <option value="">Todas as turmas</option>
+      </select>
+    </label>
+    <label>
+      <span>Status</span>
+      <select name="status">
+        <option value="">Todos os status</option>
+        <option value="aberta">Aberta</option>
+        <option value="em_correcao">Em correção</option>
+        <option value="agendada">Agendada</option>
+        <option value="encerrada">Encerrada</option>
+      </select>
+    </label>
+    <p class="assignments-assessments-page__count" data-count role="status" aria-live="polite">Carregando…</p>
+  </form>
+
+  <p class="assignments-assessments-page__notice" data-notice role="status" aria-live="polite" hidden></p>
+  <div class="assignments-assessments-page__skeleton" data-loading role="status" aria-live="polite">
+    <p class="assignments-assessments-page__skeleton-label">Carregando avaliações…</p>
+    <div class="assignments-assessments-page__skeleton-grid">
+      <article class="assignments-assessments-page__skeleton-card"><div class="assignments-assessments-page__skeleton-card-top"><span class="skeleton-badge"></span><span class="skeleton-badge"></span></div><span class="skeleton-title"></span><span class="skeleton-line short"></span><span class="skeleton-line"></span><span class="skeleton-line short"></span><span class="skeleton-block"></span><div class="assignments-assessments-page__skeleton-card-actions"><span class="skeleton-button"></span><span class="skeleton-button"></span></div></article>
+      <article class="assignments-assessments-page__skeleton-card"><div class="assignments-assessments-page__skeleton-card-top"><span class="skeleton-badge"></span><span class="skeleton-badge"></span></div><span class="skeleton-title"></span><span class="skeleton-line short"></span><span class="skeleton-line"></span><span class="skeleton-line short"></span><span class="skeleton-block"></span><div class="assignments-assessments-page__skeleton-card-actions"><span class="skeleton-button"></span><span class="skeleton-button"></span></div></article>
+      <article class="assignments-assessments-page__skeleton-card"><div class="assignments-assessments-page__skeleton-card-top"><span class="skeleton-badge"></span><span class="skeleton-badge"></span></div><span class="skeleton-title"></span><span class="skeleton-line short"></span><span class="skeleton-line"></span><span class="skeleton-line short"></span><span class="skeleton-block"></span><div class="assignments-assessments-page__skeleton-card-actions"><span class="skeleton-button"></span><span class="skeleton-button"></span></div></article>
+      <article class="assignments-assessments-page__skeleton-card"><div class="assignments-assessments-page__skeleton-card-top"><span class="skeleton-badge"></span><span class="skeleton-badge"></span></div><span class="skeleton-title"></span><span class="skeleton-line short"></span><span class="skeleton-line"></span><span class="skeleton-line short"></span><span class="skeleton-block"></span><div class="assignments-assessments-page__skeleton-card-actions"><span class="skeleton-button"></span><span class="skeleton-button"></span></div></article>
+      <article class="assignments-assessments-page__skeleton-card"><div class="assignments-assessments-page__skeleton-card-top"><span class="skeleton-badge"></span><span class="skeleton-badge"></span></div><span class="skeleton-title"></span><span class="skeleton-line short"></span><span class="skeleton-line"></span><span class="skeleton-line short"></span><span class="skeleton-block"></span><div class="assignments-assessments-page__skeleton-card-actions"><span class="skeleton-button"></span><span class="skeleton-button"></span></div></article>
+      <article class="assignments-assessments-page__skeleton-card"><div class="assignments-assessments-page__skeleton-card-top"><span class="skeleton-badge"></span><span class="skeleton-badge"></span></div><span class="skeleton-title"></span><span class="skeleton-line short"></span><span class="skeleton-line"></span><span class="skeleton-line short"></span><span class="skeleton-block"></span><div class="assignments-assessments-page__skeleton-card-actions"><span class="skeleton-button"></span><span class="skeleton-button"></span></div></article>
+    </div>
+  </div>
+  <div class="assignments-assessments-page__error" data-error role="alert" hidden>
+    <p>Não foi possível carregar as avaliações.</p>
+    <button class="assignments-assessments-page__btn assignments-assessments-page__btn--secondary" type="button" data-retry>Tentar novamente</button>
+  </div>
+  <div class="assignments-assessments-page__empty" data-empty hidden>
+    <h2>Nenhuma avaliação encontrada</h2>
+    <p data-empty-text>Revise a busca ou os filtros para ver outras avaliações.</p>
+    <button class="assignments-assessments-page__btn assignments-assessments-page__btn--secondary" type="button" data-clear-filters>Limpar filtros</button>
+  </div>
+
+  <div class="assignments-assessments-page__grid" data-assessment-list aria-live="polite"></div>
+
+  <dialog class="assignments-assessments-page__dialog" data-assessment-dialog aria-labelledby="assessment-dialog-title">
+    <form method="dialog" data-assessment-form>
+      <header class="assignments-assessments-page__dialog-head">
+        <div>
+          <p class="assignments-assessments-page__eyebrow">NOVA AVALIAÇÃO</p>
+          <h2 id="assessment-dialog-title">Criar avaliação</h2>
+          <p>Defina o formato, o prazo e o peso na nota da turma.</p>
+        </div>
+        <button class="assignments-assessments-page__icon-button" type="button" data-close-dialog aria-label="Fechar formulário de avaliação">×</button>
+      </header>
+
+      <div class="assignments-assessments-page__fields">
+        <label class="assignments-assessments-page__field--full">
+          <span>Título <em aria-hidden="true">*</em></span>
+          <input name="title" type="text" maxlength="100" required placeholder="Ex.: Atividade: layout responsivo" />
+        </label>
+        <label>
+          <span>Turma <em aria-hidden="true">*</em></span>
+          <select name="classId" required data-assessment-class>
+            <option value="">Carregando turmas…</option>
+          </select>
+        </label>
+        <label>
+          <span>Tipo</span>
+          <select name="type">
+            <option value="atividade">Atividade</option>
+            <option value="prova">Prova</option>
+            <option value="projeto">Projeto</option>
+          </select>
+        </label>
+        <label>
+          <span>Prazo de entrega <em aria-hidden="true">*</em></span>
+          <input name="dueDate" type="datetime-local" required />
+        </label>
+        <label>
+          <span>Peso na nota (%)</span>
+          <input name="weight" type="number" min="0" max="100" step="1" value="20" />
+        </label>
+        <label>
+          <span>Status</span>
+          <select name="status">
+            <option value="aberta">Aberta</option>
+            <option value="agendada">Agendada</option>
+            <option value="em_correcao">Em correção</option>
+          </select>
+        </label>
+        <label class="assignments-assessments-page__field--full">
+          <span>Orientações</span>
+          <textarea name="description" rows="3" maxlength="500" placeholder="Explique o que deve ser entregue e os critérios de avaliação."></textarea>
+        </label>
+      </div>
+
+      <p class="assignments-assessments-page__form-error" data-form-error role="alert" hidden></p>
+
+      <div class="assignments-assessments-page__dialog-actions">
+        <button class="assignments-assessments-page__btn assignments-assessments-page__btn--secondary" type="button" data-cancel-dialog>Cancelar</button>
+        <button class="assignments-assessments-page__btn assignments-assessments-page__btn--primary" type="submit" data-submit-assessment>Criar avaliação</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="assignments-assessments-page__dialog assignments-assessments-page__dialog--submissions" data-submissions-dialog aria-labelledby="submissions-title">
+    <div class="assignments-assessments-page__submissions">
+      <header class="assignments-assessments-page__dialog-head">
+        <div>
+          <p class="assignments-assessments-page__eyebrow">ENTREGAS E CORREÇÕES</p>
+          <h2 id="submissions-title" data-submissions-title>Avaliação</h2>
+          <p data-submissions-meta></p>
+        </div>
+        <button class="assignments-assessments-page__icon-button" type="button" data-submissions-close aria-label="Fechar entregas">×</button>
+      </header>
+
+      <section class="assignments-assessments-page__submission-summary" aria-label="Resumo das entregas">
+        <div><span>Entregas</span><strong data-submissions-count>—</strong></div>
+        <div><span>Corrigidas</span><strong data-submissions-graded>—</strong></div>
+        <div><span>Média</span><strong data-submissions-average>—</strong></div>
+      </section>
+
+      <p class="assignments-assessments-page__submission-notice" data-submissions-notice role="status" aria-live="polite" hidden></p>
+      <p class="assignments-assessments-page__submissions-loading" data-submissions-loading>Carregando entregas…</p>
+      <div class="assignments-assessments-page__table-wrap" data-submissions-table hidden>
+        <table>
+          <caption class="assignments-assessments-page__sr-only">Entregas da avaliação</caption>
+          <thead>
+            <tr>
+              <th scope="col">Aluno</th>
+              <th scope="col">Envio</th>
+              <th scope="col">Status</th>
+              <th scope="col">Nota</th>
+            </tr>
+          </thead>
+          <tbody data-submission-rows></tbody>
+        </table>
+      </div>
+
+      <div class="assignments-assessments-page__dialog-actions">
+        <button class="assignments-assessments-page__btn assignments-assessments-page__btn--secondary" type="button" data-submissions-close-footer>Fechar</button>
+      </div>
+    </div>
+  </dialog>
 </section>

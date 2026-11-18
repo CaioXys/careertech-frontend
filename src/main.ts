@@ -4,6 +4,8 @@ import { applyTheme } from './core/theme.js';
 import './styles/reset.css';
 import './styles/tokens.css';
 import './styles/base.css';
+import './styles/toast.css';
+import './styles/skeleton.css';
 
 applyTheme();
 

@@ -6,7 +6,178 @@
     - Estilos (CSS)      -> lessons.css
     - Comportamento (JS) -> lessons.js
 -->
-<section class="lessons-page">
-  <h1>Aulas e conteúdos</h1>
-  <p>Tela ainda não criada. Edite <code>src/pages/teacher/lessons/lessons.html</code>.</p>
+<section class="lessons-page" aria-labelledby="lessons-title">
+  <header class="lessons-page__header">
+    <div>
+      <p class="lessons-page__eyebrow">CONTEÚDO</p>
+      <h1 id="lessons-title">Aulas e conteúdos</h1>
+      <p class="lessons-page__intro">Crie, organize e publique as aulas das suas turmas.</p>
+    </div>
+    <button class="lessons-page__btn lessons-page__btn--primary" type="button" data-new-lesson>Nova aula</button>
+  </header>
+
+  <section class="lessons-page__summary" aria-label="Resumo das aulas">
+    <article>
+      <span>Publicadas</span>
+      <strong data-summary-published>—</strong>
+      <small>Visíveis para os alunos</small>
+    </article>
+    <article>
+      <span>Rascunhos</span>
+      <strong data-summary-drafts>—</strong>
+      <small>Em preparação</small>
+    </article>
+    <article>
+      <span>Agendadas</span>
+      <strong data-summary-scheduled>—</strong>
+      <small>Com data futura</small>
+    </article>
+  </section>
+
+  <form class="lessons-page__filters" data-filters role="search">
+    <label class="lessons-page__search-field">
+      <span>Buscar aula</span>
+      <span class="lessons-page__search-wrap">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+        <input name="busca" type="search" maxlength="80" placeholder="Título, módulo ou turma" autocomplete="off" />
+      </span>
+    </label>
+    <label>
+      <span>Turma</span>
+      <select name="classId" data-class-filter>
+        <option value="">Todas as turmas</option>
+      </select>
+    </label>
+    <label>
+      <span>Status</span>
+      <select name="status">
+        <option value="">Todos os status</option>
+        <option value="publicada">Publicada</option>
+        <option value="rascunho">Rascunho</option>
+        <option value="agendada">Agendada</option>
+      </select>
+    </label>
+    <p class="lessons-page__count" data-count role="status" aria-live="polite">Carregando…</p>
+  </form>
+
+  <p class="lessons-page__notice" data-notice role="status" aria-live="polite" hidden></p>
+  <div class="lessons-page__skeleton" data-loading role="status" aria-live="polite">
+    <p class="lessons-page__skeleton-label">Carregando aulas…</p>
+    <div class="lessons-page__skeleton-table">
+      <div class="lessons-page__skeleton-row lessons-page__skeleton-row--head"><span class="skeleton-line"></span><span class="skeleton-line short"></span><span class="skeleton-line short"></span><span class="skeleton-line short"></span></div>
+      <div class="lessons-page__skeleton-row"><span class="skeleton-line"></span><span class="skeleton-line"></span><span class="skeleton-badge"></span><span class="skeleton-button"></span></div>
+      <div class="lessons-page__skeleton-row"><span class="skeleton-line"></span><span class="skeleton-line short"></span><span class="skeleton-badge"></span><span class="skeleton-button"></span></div>
+      <div class="lessons-page__skeleton-row"><span class="skeleton-line"></span><span class="skeleton-line"></span><span class="skeleton-badge"></span><span class="skeleton-button"></span></div>
+      <div class="lessons-page__skeleton-row"><span class="skeleton-line"></span><span class="skeleton-line short"></span><span class="skeleton-badge"></span><span class="skeleton-button"></span></div>
+      <div class="lessons-page__skeleton-row"><span class="skeleton-line"></span><span class="skeleton-line"></span><span class="skeleton-badge"></span><span class="skeleton-button"></span></div>
+      <div class="lessons-page__skeleton-row"><span class="skeleton-line"></span><span class="skeleton-line short"></span><span class="skeleton-badge"></span><span class="skeleton-button"></span></div>
+    </div>
+  </div>
+  <div class="lessons-page__error" data-error role="alert" hidden>
+    <p>Não foi possível carregar as aulas.</p>
+    <button class="lessons-page__btn lessons-page__btn--secondary" type="button" data-retry>Tentar novamente</button>
+  </div>
+  <div class="lessons-page__empty" data-empty hidden>
+    <h2>Nenhuma aula encontrada</h2>
+    <p data-empty-text>Revise a busca ou os filtros para ver outras aulas.</p>
+    <button class="lessons-page__btn lessons-page__btn--secondary" type="button" data-clear-filters>Limpar filtros</button>
+  </div>
+
+  <div class="lessons-page__table-card" data-table-card hidden>
+    <div class="lessons-page__table-wrap">
+      <table>
+        <caption class="lessons-page__sr-only">Aulas e conteúdos das turmas</caption>
+        <thead>
+          <tr>
+            <th scope="col">Aula</th>
+            <th scope="col">Turma</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Duração</th>
+            <th scope="col">Status</th>
+            <th scope="col">Atualização</th>
+            <th scope="col"><span class="lessons-page__sr-only">Ações</span></th>
+          </tr>
+        </thead>
+        <tbody data-lesson-rows></tbody>
+      </table>
+    </div>
+  </div>
+
+  <dialog class="lessons-page__dialog" data-lesson-dialog aria-labelledby="lesson-dialog-title">
+    <form method="dialog" data-lesson-form>
+      <header class="lessons-page__dialog-head">
+        <div>
+          <p class="lessons-page__eyebrow" data-dialog-eyebrow>NOVA AULA</p>
+          <h2 id="lesson-dialog-title" data-dialog-title>Criar aula</h2>
+          <p>Organize o conteúdo e defina quando ele fica disponível.</p>
+        </div>
+        <button class="lessons-page__icon-button" type="button" data-close-dialog aria-label="Fechar formulário de aula">×</button>
+      </header>
+
+      <div class="lessons-page__fields">
+        <label class="lessons-page__field--full">
+          <span>Título da aula <em aria-hidden="true">*</em></span>
+          <input name="title" type="text" maxlength="100" required placeholder="Ex.: Layouts responsivos com CSS Grid" />
+        </label>
+        <label>
+          <span>Turma <em aria-hidden="true">*</em></span>
+          <select name="classId" required data-lesson-class>
+            <option value="">Carregando turmas…</option>
+          </select>
+        </label>
+        <label>
+          <span>Módulo <em aria-hidden="true">*</em></span>
+          <input name="module" type="text" maxlength="60" required placeholder="Ex.: Módulo 3 · Layouts" />
+        </label>
+        <label>
+          <span>Tipo de conteúdo</span>
+          <select name="type">
+            <option value="video">Vídeo</option>
+            <option value="leitura">Leitura</option>
+            <option value="pratica">Prática</option>
+          </select>
+        </label>
+        <label>
+          <span>Duração estimada (min)</span>
+          <input name="durationMin" type="number" min="1" max="600" step="1" value="30" />
+        </label>
+        <label>
+          <span>Status</span>
+          <select name="status" data-lesson-status>
+            <option value="rascunho">Rascunho</option>
+            <option value="publicada">Publicada</option>
+            <option value="agendada">Agendada</option>
+          </select>
+        </label>
+        <label>
+          <span>Publicação / agendamento</span>
+          <input name="publishedAt" type="datetime-local" data-published-at />
+        </label>
+        <label class="lessons-page__field--full">
+          <span>Resumo</span>
+          <textarea name="summary" rows="3" maxlength="500" placeholder="Descreva o que os alunos vão aprender nesta aula."></textarea>
+        </label>
+      </div>
+
+      <p class="lessons-page__form-error" data-form-error role="alert" hidden></p>
+
+      <div class="lessons-page__dialog-actions">
+        <button class="lessons-page__btn lessons-page__btn--secondary" type="button" data-cancel-dialog>Cancelar</button>
+        <button class="lessons-page__btn lessons-page__btn--primary" type="submit" data-submit-lesson>Salvar aula</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="lessons-page__dialog lessons-page__dialog--confirm" data-delete-dialog aria-labelledby="delete-dialog-title">
+    <div class="lessons-page__confirm">
+      <span class="lessons-page__confirm-icon" aria-hidden="true">!</span>
+      <h2 id="delete-dialog-title">Excluir esta aula?</h2>
+      <p data-delete-description>A aula será removida do conteúdo da turma.</p>
+      <small>Esta ação não pode ser desfeita.</small>
+      <div class="lessons-page__dialog-actions">
+        <button class="lessons-page__btn lessons-page__btn--secondary" type="button" data-cancel-delete>Manter aula</button>
+        <button class="lessons-page__btn lessons-page__btn--danger" type="button" data-confirm-delete>Excluir aula</button>
+      </div>
+    </div>
+  </dialog>
 </section>

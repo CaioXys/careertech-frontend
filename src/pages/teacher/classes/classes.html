@@ -6,7 +6,189 @@
     - Estilos (CSS)      -> classes.css
     - Comportamento (JS) -> classes.js
 -->
-<section class="classes-page">
-  <h1>Turmas</h1>
-  <p>Tela ainda não criada. Edite <code>src/pages/teacher/classes/classes.html</code>.</p>
+<section class="classes-page" aria-labelledby="classes-title">
+  <header class="classes-page__header">
+    <div>
+      <p class="classes-page__eyebrow">ORGANIZAÇÃO</p>
+      <h1 id="classes-title">Turmas</h1>
+      <p class="classes-page__intro">Acompanhe as turmas que você conduz, o progresso dos alunos e as próximas aulas.</p>
+    </div>
+    <button class="classes-page__btn classes-page__btn--primary" type="button" data-new-class>Nova turma</button>
+  </header>
+
+  <section class="classes-page__summary" aria-label="Resumo das turmas">
+    <article>
+      <span>Turmas</span>
+      <strong data-summary-classes>—</strong>
+      <small data-summary-classes-meta>—</small>
+    </article>
+    <article>
+      <span>Alunos</span>
+      <strong data-summary-students>—</strong>
+      <small data-summary-students-meta>—</small>
+    </article>
+    <article>
+      <span>Progresso médio</span>
+      <strong data-summary-progress>—</strong>
+      <small data-summary-progress-meta>—</small>
+    </article>
+  </section>
+
+  <form class="classes-page__filters" data-filters role="search">
+    <label class="classes-page__search-field">
+      <span>Buscar turma</span>
+      <span class="classes-page__search-wrap">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+        <input name="busca" type="search" maxlength="80" placeholder="Nome, curso ou código" autocomplete="off" />
+      </span>
+    </label>
+    <label>
+      <span>Situação</span>
+      <select name="status">
+        <option value="">Todas as situações</option>
+        <option value="ativa">Ativa</option>
+        <option value="planejada">Planejada</option>
+        <option value="encerrada">Encerrada</option>
+      </select>
+    </label>
+    <p class="classes-page__count" data-count role="status" aria-live="polite">Carregando…</p>
+  </form>
+
+  <p class="classes-page__notice" data-notice role="status" aria-live="polite" hidden></p>
+  <div class="classes-page__skeleton" data-loading role="status" aria-live="polite">
+    <p class="classes-page__skeleton-label">Carregando turmas…</p>
+    <div class="classes-page__skeleton-grid">
+      <article class="classes-page__skeleton-card"><div class="classes-page__skeleton-card-top"><span class="skeleton-badge"></span><span class="skeleton-line short"></span></div><span class="skeleton-title"></span><span class="skeleton-line"></span><span class="skeleton-line short"></span><span class="skeleton-line"></span><span class="skeleton-block"></span><div class="classes-page__skeleton-card-actions"><span class="skeleton-button"></span><span class="skeleton-button"></span></div></article>
+      <article class="classes-page__skeleton-card"><div class="classes-page__skeleton-card-top"><span class="skeleton-badge"></span><span class="skeleton-line short"></span></div><span class="skeleton-title"></span><span class="skeleton-line"></span><span class="skeleton-line short"></span><span class="skeleton-line"></span><span class="skeleton-block"></span><div class="classes-page__skeleton-card-actions"><span class="skeleton-button"></span><span class="skeleton-button"></span></div></article>
+      <article class="classes-page__skeleton-card"><div class="classes-page__skeleton-card-top"><span class="skeleton-badge"></span><span class="skeleton-line short"></span></div><span class="skeleton-title"></span><span class="skeleton-line"></span><span class="skeleton-line short"></span><span class="skeleton-line"></span><span class="skeleton-block"></span><div class="classes-page__skeleton-card-actions"><span class="skeleton-button"></span><span class="skeleton-button"></span></div></article>
+      <article class="classes-page__skeleton-card"><div class="classes-page__skeleton-card-top"><span class="skeleton-badge"></span><span class="skeleton-line short"></span></div><span class="skeleton-title"></span><span class="skeleton-line"></span><span class="skeleton-line short"></span><span class="skeleton-line"></span><span class="skeleton-block"></span><div class="classes-page__skeleton-card-actions"><span class="skeleton-button"></span><span class="skeleton-button"></span></div></article>
+      <article class="classes-page__skeleton-card"><div class="classes-page__skeleton-card-top"><span class="skeleton-badge"></span><span class="skeleton-line short"></span></div><span class="skeleton-title"></span><span class="skeleton-line"></span><span class="skeleton-line short"></span><span class="skeleton-line"></span><span class="skeleton-block"></span><div class="classes-page__skeleton-card-actions"><span class="skeleton-button"></span><span class="skeleton-button"></span></div></article>
+      <article class="classes-page__skeleton-card"><div class="classes-page__skeleton-card-top"><span class="skeleton-badge"></span><span class="skeleton-line short"></span></div><span class="skeleton-title"></span><span class="skeleton-line"></span><span class="skeleton-line short"></span><span class="skeleton-line"></span><span class="skeleton-block"></span><div class="classes-page__skeleton-card-actions"><span class="skeleton-button"></span><span class="skeleton-button"></span></div></article>
+    </div>
+  </div>
+  <div class="classes-page__error" data-error role="alert" hidden>
+    <p>Não foi possível carregar as turmas.</p>
+    <button class="classes-page__btn classes-page__btn--secondary" type="button" data-retry>Tentar novamente</button>
+  </div>
+  <div class="classes-page__empty" data-empty hidden>
+    <h2>Nenhuma turma encontrada</h2>
+    <p data-empty-text>Revise a busca ou os filtros para ver outras turmas.</p>
+    <button class="classes-page__btn classes-page__btn--secondary" type="button" data-clear-filters>Limpar filtros</button>
+  </div>
+  <div class="classes-page__grid" data-class-list aria-live="polite"></div>
+
+  <dialog class="classes-page__dialog" data-class-dialog aria-labelledby="class-dialog-title">
+    <form method="dialog" data-class-form>
+      <header class="classes-page__dialog-head">
+        <div>
+          <p class="classes-page__eyebrow">NOVA TURMA</p>
+          <h2 id="class-dialog-title">Cadastrar turma</h2>
+          <p>Defina o curso, o período e os encontros da turma.</p>
+        </div>
+        <button class="classes-page__icon-button" type="button" data-close-dialog aria-label="Fechar cadastro de turma">×</button>
+      </header>
+
+      <div class="classes-page__fields">
+        <label class="classes-page__field--full">
+          <span>Nome da turma <em aria-hidden="true">*</em></span>
+          <input name="name" type="text" maxlength="80" required placeholder="Ex.: Front-end: HTML e CSS" />
+        </label>
+        <label class="classes-page__field--full">
+          <span>Curso vinculado <em aria-hidden="true">*</em></span>
+          <select name="courseId" required data-course-select>
+            <option value="">Carregando cursos…</option>
+          </select>
+        </label>
+        <label>
+          <span>Código da turma <em aria-hidden="true">*</em></span>
+          <input name="code" type="text" maxlength="24" required placeholder="Ex.: FE-2026.3-T1" />
+        </label>
+        <label>
+          <span>Período <em aria-hidden="true">*</em></span>
+          <input name="period" type="text" maxlength="12" required value="2026.3" />
+        </label>
+        <label>
+          <span>Turno</span>
+          <select name="shift">
+            <option>Manhã</option>
+            <option>Tarde</option>
+            <option selected>Noite</option>
+          </select>
+        </label>
+        <label>
+          <span>Modalidade</span>
+          <select name="modality">
+            <option>Presencial</option>
+            <option>Remoto</option>
+            <option>Híbrido</option>
+          </select>
+        </label>
+        <label class="classes-page__field--full">
+          <span>Horário dos encontros <em aria-hidden="true">*</em></span>
+          <input name="schedule" type="text" maxlength="60" required placeholder="Ex.: Ter e Qui · 19h – 21h" />
+        </label>
+        <label>
+          <span>Sala ou ambiente</span>
+          <input name="room" type="text" maxlength="40" placeholder="Ex.: Laboratório 3" />
+        </label>
+        <label>
+          <span>Início</span>
+          <input name="startDate" type="date" />
+        </label>
+        <label>
+          <span>Término</span>
+          <input name="endDate" type="date" />
+        </label>
+      </div>
+
+      <p class="classes-page__form-error" data-form-error role="alert" hidden></p>
+
+      <div class="classes-page__dialog-actions">
+        <button class="classes-page__btn classes-page__btn--secondary" type="button" data-cancel-dialog>Cancelar</button>
+        <button class="classes-page__btn classes-page__btn--primary" type="submit" data-submit-class>Criar turma</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="classes-page__dialog classes-page__dialog--detail" data-detail-dialog aria-labelledby="class-detail-title">
+    <div class="classes-page__detail">
+      <header class="classes-page__dialog-head">
+        <div>
+          <p class="classes-page__eyebrow">DETALHES DA TURMA</p>
+          <h2 id="class-detail-title" data-detail-name>Turma</h2>
+          <p data-detail-code></p>
+        </div>
+        <button class="classes-page__icon-button" type="button" data-detail-close aria-label="Fechar detalhes da turma">×</button>
+      </header>
+
+      <dl class="classes-page__detail-grid">
+        <div><dt>Curso</dt><dd data-detail-course></dd></div>
+        <div><dt>Situação</dt><dd data-detail-status></dd></div>
+        <div><dt>Período e turno</dt><dd data-detail-period></dd></div>
+        <div><dt>Horário</dt><dd data-detail-schedule></dd></div>
+        <div><dt>Sala</dt><dd data-detail-room></dd></div>
+        <div><dt>Modalidade</dt><dd data-detail-modality></dd></div>
+        <div><dt>Início</dt><dd data-detail-start></dd></div>
+        <div><dt>Término</dt><dd data-detail-end></dd></div>
+      </dl>
+
+      <div class="classes-page__detail-progress">
+        <div>
+          <span>Progresso médio da turma</span>
+          <strong data-detail-progress-value>—</strong>
+        </div>
+        <div class="classes-page__track" data-detail-progress role="progressbar" aria-label="Progresso médio da turma" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <span></span>
+        </div>
+        <small data-detail-students-count>—</small>
+      </div>
+
+      <p class="classes-page__next-lesson" data-detail-next></p>
+
+      <div class="classes-page__dialog-actions">
+        <a class="classes-page__btn classes-page__btn--secondary" data-detail-lessons href="#/teacher/lessons">Aulas da turma</a>
+        <a class="classes-page__btn classes-page__btn--primary" data-detail-students href="#/teacher/students">Ver alunos</a>
+      </div>
+    </div>
+  </dialog>
 </section>
