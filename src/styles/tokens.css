@@ -25,8 +25,16 @@
   --action-hover: #4338ca;
   --action-pressed: #3730a3;
   --action-soft: #eef2ff;
+  --action-text: var(--action);
   --focus: #a5b4fc;
   --hero-start: #0f172a;
+
+  --sidebar-surface: var(--surface);
+  --surface-tile: var(--surface-2);
+  --track: var(--surface-3);
+  --banner-indigo: var(--action-soft);
+  --banner-teal: var(--progress-soft);
+  --banner-amber: var(--xp-soft);
 
   /* Estados semânticos */
   --progress: #14b8a6;
@@ -80,6 +88,8 @@
   /* Nomes legados usados pelo esqueleto atual. */
   --color-primary: var(--action);
   --color-primary-contrast: #ffffff;
+  --on-action: #ffffff;
+  --on-accent: #0f172a;
   --color-bg: var(--page);
   --color-surface: var(--surface);
   --color-text: var(--ink);
@@ -101,34 +111,44 @@
 html[data-theme='dark'] {
   color-scheme: dark;
 
-  --canvas: #020617;
-  --page: #070b1c;
-  --surface: #0f172a;
-  --surface-2: #111b30;
-  --surface-3: #1e293b;
-  --ink: #f8fafc;
-  --text-2: #cbd5e1;
-  --muted: #94a3b8;
-  --line: #29364a;
+  --canvas: #050816;
+  --page: #0b1020;
+  --surface: #121a30;
+  --surface-2: #18224a;
+  --surface-3: #26325c;
+  --ink: #f1f5ff;
+  --text-2: #c3cce4;
+  --muted: #a3afcb;
+  --line: #243055;
 
   --action: #4f46e5;
   --action-hover: #4338ca;
-  --action-pressed: #3730a3;
-  --action-soft: #1e1b4b;
+  --action-pressed: #312798;
+  --action-soft: #312e81;
+  --action-text: #a5b4fc;
   --focus: #a5b4fc;
   --hero-start: #0f172a;
 
-  --progress: #14b8a6;
-  --progress-text: #5eead4;
-  --progress-soft: #0f292b;
-  --xp: #f59e0b;
-  --xp-text: #fcd34d;
-  --xp-soft: #33220b;
+  --sidebar-surface: #0f1730;
+  --surface-tile: #18224a;
+  --track: #26325c;
+  --banner-indigo: #312e81;
+  --banner-teal: #134e4a;
+  --banner-amber: #7c2d12;
+
+  --progress: #2dd4bf;
+  --progress-text: #2dd4bf;
+  --progress-soft: #134e4a;
+  --xp: #fbbf24;
+  --xp-text: #fbbf24;
+  --xp-soft: #31302f;
   --error: #ef4444;
   --error-text: #fca5a5;
   --error-hover: #b91c1c;
   --error-soft: #351a20;
 
   --color-primary-contrast: #ffffff;
-  --shadow-overlay: 0 4px 16px rgb(0 0 0 / 16%);
+  --on-action: #ffffff;
+  --on-accent: #0f172a;
+  --shadow-overlay: 0 8px 24px rgb(0 0 0 / 24%);
 }

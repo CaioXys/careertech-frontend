@@ -15,6 +15,25 @@
         <h2 data-profile-name>Seu nome</h2>
         <p data-profile-email>seu@email.com</p>
         <span class="profile-page__role" data-profile-role>Estudante</span>
+        <div class="profile-page__xp" data-profile-progress hidden>
+          <div class="profile-page__xp-heading">
+            <span>Experiência</span>
+            <strong data-profile-xp>650 XP</strong>
+          </div>
+          <div class="profile-page__xp-meta">
+            <span data-profile-level>Nível 4</span>
+            <span data-profile-next-level>100 XP para o nível 5</span>
+          </div>
+          <span
+            class="profile-page__xp-track"
+            role="progressbar"
+            aria-label="Progresso de experiência"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+            data-profile-xp-track
+          ><span data-profile-xp-bar></span></span>
+        </div>
         <div class="profile-page__summary-divider"></div>
         <p class="profile-page__summary-note">Este perfil ajuda a personalizar sua experiência de aprendizagem.</p>
       </aside>
@@ -54,6 +73,14 @@
               <button class="profile-page__button" type="submit"><span>Salvar alterações</span><span aria-hidden="true">→</span></button>
             </div>
           </form>
+        </section>
+
+        <section class="profile-page__card" data-profile-medals hidden aria-labelledby="profile-medals-title">
+          <div class="profile-page__card-heading">
+            <div><p class="profile-page__eyebrow">CONQUISTAS</p><h2 id="profile-medals-title">Medalhas e experiência</h2></div>
+            <span class="profile-page__medals-count" data-profile-medals-summary>0 de 4 conquistadas</span>
+          </div>
+          <div class="profile-page__medal-grid" data-profile-medals-list></div>
         </section>
 
         <section class="profile-page__card profile-page__settings" aria-labelledby="profile-settings-title">

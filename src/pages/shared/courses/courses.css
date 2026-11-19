@@ -364,7 +364,7 @@
   align-self: flex-start;
   padding: var(--spacing-1) var(--spacing-2);
   border-radius: var(--radius-pill);
-  color: var(--action);
+  color: var(--action-text);
   background: var(--action-soft);
   font-size: var(--font-size-12);
   font-weight: var(--font-weight-semibold);

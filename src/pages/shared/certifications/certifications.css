@@ -122,7 +122,7 @@
   padding: 0 var(--spacing-4);
   border: 1px solid var(--action);
   border-radius: var(--radius-control);
-  color: var(--surface);
+  color: var(--on-action);
   background: var(--action);
   font: inherit;
   font-size: var(--button-font-size);

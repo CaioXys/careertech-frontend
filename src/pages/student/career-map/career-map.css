@@ -20,7 +20,7 @@
 
 .career-map-page__eyebrow {
   margin: 0 0 var(--spacing-2);
-  color: var(--action);
+  color: var(--action-text);
   font-size: var(--font-size-12);
   font-weight: var(--font-weight-semibold);
   letter-spacing: 0.08em;
@@ -71,16 +71,19 @@
 .career-map-page__path-button--development,
 .career-map-page__track--development {
   --career-map-path-color: var(--action);
+  --career-map-path-text: var(--action-text);
 }
 
 .career-map-page__path-button--data,
 .career-map-page__track--data {
   --career-map-path-color: var(--progress);
+  --career-map-path-text: var(--progress-text);
 }
 
 .career-map-page__path-button--infrastructure,
 .career-map-page__track--infrastructure {
   --career-map-path-color: var(--xp);
+  --career-map-path-text: var(--xp-text);
 }
 
 .career-map-page__path-dot {
@@ -152,7 +155,7 @@
 
 .career-map-page__track-heading h2 {
   margin: 0;
-  color: var(--career-map-path-color);
+  color: var(--career-map-path-text, var(--action-text));
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-semibold);
 }
@@ -243,13 +246,13 @@
 
 .career-map-page__module--completed .career-map-page__module-marker {
   background: var(--progress);
-  color: var(--surface);
+  color: var(--on-accent);
   box-shadow: 0 0 0 1px var(--progress);
 }
 
 .career-map-page__module--progress .career-map-page__module-marker {
   background: var(--action);
-  color: var(--surface);
+  color: var(--on-action);
   box-shadow: 0 0 0 1px var(--action);
 }
 
@@ -315,7 +318,7 @@
   border: 1px solid var(--action);
   border-radius: var(--radius-control);
   background: var(--action);
-  color: var(--surface);
+  color: var(--on-action);
   font: inherit;
   font-size: var(--button-font-size);
   font-weight: var(--button-font-weight);
@@ -353,7 +356,7 @@
   padding: var(--spacing-1) var(--spacing-2);
   border-radius: var(--radius-pill);
   background: var(--action-soft);
-  color: var(--action);
+  color: var(--action-text);
   font-size: var(--font-size-12);
   font-weight: var(--font-weight-semibold);
 }

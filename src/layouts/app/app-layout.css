@@ -101,7 +101,7 @@
   color: #fff;
   background: var(--error);
   border-radius: var(--radius-pill);
-  box-shadow: 0 0 0 2px var(--surface);
+  box-shadow: 0 0 0 2px var(--sidebar-surface);
   font-size: 0.6875rem;
   font-weight: var(--font-weight-semibold);
   line-height: 1;
@@ -127,6 +127,14 @@
   color: var(--action);
   background: var(--action-soft);
   font-weight: var(--font-weight-medium);
+}
+
+html[data-theme='dark'] .app-sidebar__link[aria-current='page'] {
+  color: var(--ink);
+}
+
+html[data-theme='dark'] .app-sidebar__link[aria-current='page'] img {
+  filter: brightness(0) invert(1);
 }
 
 .app-sidebar__link:focus-visible {
@@ -168,11 +176,30 @@
   width: 2.5rem;
   height: 2.5rem;
   place-items: center;
-  background: #ffb31f;
+  background: var(--xp);
   border-radius: var(--radius-pill);
-  color: var(--ink);
+  color: var(--on-accent);
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-semibold);
+}
+
+.app-sidebar__avatar-wrap[data-level]::after {
+  position: absolute;
+  right: -0.4rem;
+  bottom: -0.25rem;
+  display: grid;
+  min-width: 1.35rem;
+  height: 1.35rem;
+  padding: 0 0.25rem;
+  place-items: center;
+  border: 2px solid var(--surface);
+  border-radius: var(--radius-pill);
+  background: var(--action);
+  color: var(--on-action);
+  content: attr(data-level);
+  font-size: 0.625rem;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
 }
 
 .app-sidebar__user {
@@ -197,6 +224,16 @@
 .app-sidebar__user strong {
   overflow: hidden;
   font-weight: var(--font-weight-medium);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-sidebar__user-level {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.6875rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -503,6 +540,14 @@ html[data-theme='dark'] .app-theme__compact .app-theme__icon--dark {
     color: var(--action);
     background: var(--action-soft);
     font-weight: var(--font-weight-medium);
+  }
+
+  html[data-theme='dark'] .app-mobile-nav__link[aria-current='page'] {
+    color: var(--ink);
+  }
+
+  html[data-theme='dark'] .app-mobile-nav__link[aria-current='page'] img {
+    filter: brightness(0) invert(1);
   }
 
   .app-mobile-nav__link:focus-visible {

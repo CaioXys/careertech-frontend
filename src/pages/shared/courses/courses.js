@@ -80,13 +80,15 @@ export default {
   title: 'Cursos',
   html,
 
-  mount(root) {
+  mount(root, ctx) {
     const list = root.querySelector('.courses-page__list');
     const recommendations = root.querySelector('.courses-page__recommendation-list');
     const recommendationSource = root.querySelector('.courses-page__recommendation-source');
     const areaButtons = root.querySelector('.courses-page__area-options');
     const selectedAreaLabel = root.querySelector('.courses-page__selected-area');
     const search = root.querySelector('#courses-search');
+    const initialSearch = ctx?.query?.get('busca')?.trim().slice(0, 120) ?? '';
+    if (initialSearch && search) search.value = initialSearch;
     const empty = root.querySelector('.courses-page__empty');
     const count = root.querySelector('.courses-page__count');
     const loading = root.querySelector('.courses-page__loading');

@@ -5,6 +5,8 @@ import { menuByRole } from '../../core/menu.js';
 import { navigate } from '../../core/navigate.js';
 import { getTheme, setTheme, THEME_EVENT } from '../../core/theme.js';
 import { getUnreadCount, MESSAGES_UNREAD_EVENT } from '../../services/messages.service.js';
+import { getStudentProgress } from '../../services/student-progress.service.js';
+import { STUDENT_PROGRESS_EVENT } from '../../utils/career-quiz-storage.js';
 import { userInitials } from '../../utils/user-initials.js';
 
 const sidebarAssets = [
@@ -144,8 +146,29 @@ export default {
     const userMenuItems = menuByRole[user?.role] ?? [];
     const profileItem = userMenuItems.find((item) => item.path === '/profile');
 
+    const userAvatar = root.querySelector('[data-user-initials]');
+    const userLevel = root.querySelector('[data-user-level]');
+
     root.querySelector('[data-user-name]').textContent = user?.name ?? '';
-    root.querySelector('[data-user-initials]').textContent = userInitials(user?.name ?? user?.nome);
+    userAvatar.textContent = userInitials(user?.name ?? user?.nome);
+
+    let progressActive = true;
+    const loadStudentProgress = () => {
+      if (user?.role !== 'student') return;
+      getStudentProgress(user)
+        .then((progress) => {
+          if (!progressActive) return;
+          userAvatar.dataset.level = String(progress.level);
+          userLevel.textContent = `Nível ${progress.level} · ${progress.xp} XP`;
+          userLevel.hidden = false;
+        })
+        .catch((cause) => {
+          console.error('Erro ao carregar progresso do aluno:', cause);
+        });
+    };
+
+    loadStudentProgress();
+    document.addEventListener(STUDENT_PROGRESS_EVENT, loadStudentProgress);
 
     const sidebarTheme = root.querySelector('[data-sidebar-theme]');
     const mobileTheme = root.querySelector('[data-mobile-theme]');
@@ -379,8 +402,10 @@ export default {
     return {
       outlet: root.querySelector('[data-outlet]'),
       destroy: () => {
+        progressActive = false;
         window.removeEventListener('hashchange', handleHashChange);
         document.removeEventListener(THEME_EVENT, handleThemeChange);
+        document.removeEventListener(STUDENT_PROGRESS_EVENT, loadStudentProgress);
         document.removeEventListener(MESSAGES_UNREAD_EVENT, handleUnreadChange);
         mobileNav.removeEventListener('click', handleMobileNavClick);
         moreDialog.removeEventListener('click', handleMoreDialogClick);

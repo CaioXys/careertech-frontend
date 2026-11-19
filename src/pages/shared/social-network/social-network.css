@@ -34,7 +34,7 @@
   place-items: center;
   border-radius: var(--radius-pill);
   background: var(--xp);
-  color: var(--ink);
+  color: var(--on-accent);
   font-size: var(--font-size-12);
   font-weight: var(--font-weight-semibold);
 }

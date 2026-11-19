@@ -419,7 +419,7 @@
   padding: 2px var(--spacing-2);
   border-radius: var(--radius-pill);
   background: var(--action-soft);
-  color: var(--action);
+  color: var(--action-text);
   font-size: var(--font-size-12);
   font-weight: var(--font-weight-semibold);
 }

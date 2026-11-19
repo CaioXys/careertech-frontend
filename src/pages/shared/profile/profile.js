@@ -3,10 +3,42 @@ import './profile.css';
 import { auth } from '../../../core/auth.js';
 import { session } from '../../../core/session.js';
 import { getTheme, setTheme, THEME_EVENT } from '../../../core/theme.js';
+import { getStudentProgress } from '../../../services/student-progress.service.js';
 import { userInitials } from '../../../utils/user-initials.js';
 
 const roleNames = { student: 'Estudante', teacher: 'Professor', admin: 'Administrador' };
 const settingUpdateDelay = 450;
+
+const medalIcons = {
+  'first-course': `
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M6 3v18m0-9h11l-2 3 2 3H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  `,
+  logic: `
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M9.5 4.5A3 3 0 0 0 4.2 6.3 3.5 3.5 0 0 0 5 13v4a3 3 0 0 0 3 3h1.5V4.5Zm5 0a3 3 0 0 1 5.3 1.8A3.5 3.5 0 0 1 19 13v4a3 3 0 0 1-3 3h-1.5V4.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+      <path d="M12 5v14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+    </svg>
+  `,
+  'career-quiz': `
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" />
+      <path d="m15.5 8.5-2 5-5 2 2-5 5-2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+    </svg>
+  `,
+  'interface-builder': `
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="m8 8-4 4 4 4m8-8 4 4-4 4m-2-12-4 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  `,
+};
+
+const fallbackMedalIcon = `
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+  </svg>
+`;
 
 function waitForSettingUpdate() {
   return new Promise((resolve) => setTimeout(resolve, settingUpdateDelay));
@@ -58,6 +90,9 @@ export default {
    */
   mount(root) {
     const user = auth.getUser() ?? {};
+    const profileAvatar = root.querySelector('[data-profile-initials]');
+    const progressPanel = root.querySelector('[data-profile-progress]');
+    const medalsPanel = root.querySelector('[data-profile-medals]');
     const form = root.querySelector('.profile-page__form');
     const message = root.querySelector('[data-profile-message]');
     const nameInput = form.elements.name;
@@ -96,6 +131,70 @@ export default {
     cpfInput.value = formatCpf(user.cpf);
     roleInput.value = roleNames[user.role] ?? 'Conta CareerTech';
     showUser(user);
+
+    let progressActive = true;
+
+    const renderMedals = (progress) => {
+      const list = root.querySelector('[data-profile-medals-list]');
+      const summary = root.querySelector('[data-profile-medals-summary]');
+      list.replaceChildren(...progress.medals.map((medal) => {
+        const item = document.createElement('article');
+        item.className = `profile-page__medal profile-page__medal--${medal.unlocked ? 'unlocked' : 'locked'}`;
+        item.dataset.profileMedal = medal.id;
+
+        const icon = document.createElement('span');
+        icon.className = 'profile-page__medal-icon';
+        icon.innerHTML = medalIcons[medal.id] ?? fallbackMedalIcon;
+
+        const copy = document.createElement('div');
+        copy.className = 'profile-page__medal-copy';
+
+        const title = document.createElement('strong');
+        title.textContent = medal.title;
+
+        const description = document.createElement('small');
+        description.textContent = medal.description;
+
+        const status = document.createElement('span');
+        status.className = 'profile-page__medal-status';
+        status.textContent = medal.unlocked
+          ? `Conquistada · +${medal.rewardXp} XP`
+          : `+${medal.rewardXp} XP · ${medal.progress}% concluído`;
+
+        copy.append(title, description, status);
+        item.append(icon, copy);
+        return item;
+      }));
+
+      summary.textContent = `${progress.unlockedMedals} de ${progress.totalMedals} conquistadas`;
+      medalsPanel.hidden = false;
+    };
+
+    const renderStudentProgress = (progress) => {
+      profileAvatar.dataset.level = String(progress.level);
+      profileAvatar.title = `Nível ${progress.level} · ${progress.xp} XP`;
+
+      root.querySelector('[data-profile-xp]').textContent = `${progress.xp} XP`;
+      root.querySelector('[data-profile-level]').textContent = `Nível ${progress.level}`;
+      root.querySelector('[data-profile-next-level]').textContent = `${progress.missingXp} XP para o nível ${progress.level + 1}`;
+
+      const track = root.querySelector('[data-profile-xp-track]');
+      track.setAttribute('aria-valuenow', String(progress.levelProgress));
+      root.querySelector('[data-profile-xp-bar]').style.width = `${progress.levelProgress}%`;
+
+      progressPanel.hidden = false;
+      renderMedals(progress);
+    };
+
+    if (user.role === 'student') {
+      getStudentProgress(user)
+        .then((progress) => {
+          if (progressActive) renderStudentProgress(progress);
+        })
+        .catch((cause) => {
+          console.error('Erro ao carregar progresso do perfil:', cause);
+        });
+    }
 
     const onPhoneInput = () => { phoneInput.value = formatPhone(phoneInput.value); };
     const onInput = () => {
@@ -202,6 +301,7 @@ export default {
     toastClose.addEventListener('click', dismissToast);
 
     return () => {
+      progressActive = false;
       phoneInput.removeEventListener('input', onPhoneInput);
       form.removeEventListener('input', onInput);
       form.removeEventListener('reset', onReset);

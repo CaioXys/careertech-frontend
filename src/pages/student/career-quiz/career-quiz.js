@@ -1,6 +1,7 @@
 import html from './career-quiz.html?raw';
 import './career-quiz.css';
 import { auth } from '../../../core/auth.js';
+import { careerQuizStorageKey, notifyStudentProgressChanged } from '../../../utils/career-quiz-storage.js';
 
 const questions = [
   {
@@ -86,8 +87,6 @@ const areas = {
   organizado: { title: 'Organizado e planejador', description: 'Estruturar tarefas, acompanhar processos e transformar planos em entregas pode ser algo que você valoriza.', examples: 'Administração, operações, finanças e planejamento' },
 };
 
-const storageKey = (user) => `careertech:career-quiz:${user?.id ?? user?.email ?? 'student'}`;
-
 export default {
   title: 'Questionário vocacional',
   html,
@@ -171,7 +170,8 @@ export default {
         row.append(copy, track);
         return row;
       }));
-      localStorage.setItem(storageKey(user), JSON.stringify({ answers, completedAt: new Date().toISOString() }));
+      localStorage.setItem(careerQuizStorageKey(user), JSON.stringify({ answers, scores, completedAt: new Date().toISOString() }));
+      notifyStudentProgressChanged();
       showView('result');
     };
 
@@ -220,7 +220,7 @@ export default {
 
     let saved;
     try {
-      saved = JSON.parse(localStorage.getItem(storageKey(user)) ?? 'null');
+      saved = JSON.parse(localStorage.getItem(careerQuizStorageKey(user)) ?? 'null');
     } catch {
       saved = null;
     }
