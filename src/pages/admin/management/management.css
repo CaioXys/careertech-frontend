@@ -7,7 +7,7 @@
 .management-page__header { margin: 0 0 var(--spacing-4); }
 .management-page__eyebrow {
   margin: 0 0 var(--spacing-1);
-  color: var(--action);
+  color: var(--action-text);
   font-size: var(--font-size-12);
   font-weight: var(--font-weight-semibold);
   letter-spacing: .08em;
@@ -38,7 +38,7 @@
   cursor: pointer;
 }
 .management-page__tab:hover { background: var(--surface); }
-.management-page__tab[aria-selected="true"] { border-color: var(--line); background: var(--surface); color: var(--action); font-weight: var(--font-weight-semibold); }
+.management-page__tab[aria-selected="true"] { border-color: var(--line); background: var(--surface); color: var(--action-text); font-weight: var(--font-weight-semibold); }
 
 .management-page__panel {
   overflow: hidden;
@@ -113,7 +113,7 @@
   cursor: pointer;
 }
 .management-page__row-actions button:hover { background: var(--surface-2); }
-.management-page__row-actions .management-page__action--primary { border-color: var(--action); color: var(--action); }
+.management-page__row-actions .management-page__action--primary { border-color: var(--action); color: var(--action-text); }
 .management-page__row-actions .management-page__action--primary:hover { background: var(--action-soft); }
 .management-page__row-actions .management-page__action--danger { border-color: var(--error); color: var(--error-text); }
 .management-page__row-actions .management-page__action--danger:hover { background: var(--error-soft); }

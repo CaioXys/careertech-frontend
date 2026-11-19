@@ -7,7 +7,7 @@
 .users-page__header { margin: 0 0 var(--spacing-5); }
 .users-page__eyebrow {
   margin: 0 0 var(--spacing-1);
-  color: var(--action);
+  color: var(--action-text);
   font-size: var(--font-size-12);
   font-weight: var(--font-weight-semibold);
   letter-spacing: .08em;
@@ -82,14 +82,14 @@
 .users-page__id, .users-page__date { color: var(--muted); white-space: nowrap; }
 .users-page__role, .users-page__status { display: inline-flex; align-items: center; min-height: 1.75rem; padding: 0 var(--spacing-2); border-radius: var(--radius-pill); font-size: var(--font-size-12); font-weight: var(--font-weight-medium); white-space: nowrap; }
 .users-page__role { background: var(--surface-2); color: var(--text-2); }
-.users-page__role--professor { background: var(--action-soft); color: var(--action); }
+.users-page__role--professor { background: var(--action-soft); color: var(--action-text); }
 .users-page__role--admin { background: var(--surface-3); color: var(--ink); }
 .users-page__status--pendente { background: var(--xp-soft); color: var(--xp-text); }
 .users-page__status--ativo { background: var(--progress-soft); color: var(--progress-text); }
 .users-page__status--bloqueado, .users-page__status--rejeitado { background: var(--error-soft); color: var(--error-text); }
 .users-page__actions { min-width: 12rem; white-space: nowrap; }
 .users-page__action { min-height: 2.25rem; margin: 2px var(--spacing-1) 2px 0; padding: 0 var(--spacing-2); border: 1px solid var(--line); border-radius: var(--radius-control); background: var(--surface); color: var(--ink); font-size: var(--font-size-12); font-weight: var(--font-weight-semibold); cursor: pointer; }
-.users-page__action--primary { border-color: var(--action); color: var(--action); }
+.users-page__action--primary { border-color: var(--action); color: var(--action-text); }
 .users-page__action--primary:hover { background: var(--action-soft); }
 .users-page__action--danger { border-color: var(--error); color: var(--error-text); }
 .users-page__action--danger:hover { background: var(--error-soft); }
@@ -99,7 +99,7 @@
 .users-page__no-action { color: var(--muted); font-size: var(--font-size-12); }
 .users-page__message-row td { padding: var(--spacing-6); color: var(--muted); text-align: center; }
 .users-page__pagination { display: flex; align-items: center; justify-content: flex-end; gap: var(--spacing-2); padding: var(--spacing-4) var(--spacing-5); border-top: 1px solid var(--line); }
-.users-page__page-button { min-height: 2.5rem; background: var(--surface); color: var(--action); }
+.users-page__page-button { min-height: 2.5rem; background: var(--surface); color: var(--action-text); }
 .users-page__page-button:disabled { border-color: var(--line); color: var(--muted); cursor: not-allowed; }
 .users-page__page-info { margin: 0 var(--spacing-2); color: var(--muted); font-size: var(--font-size-12); }
 .users-page__dialog { width: min(100% - 2rem, 30rem); padding: 0; border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--surface); color: var(--ink); box-shadow: var(--shadow-overlay); }

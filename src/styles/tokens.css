@@ -26,6 +26,7 @@
   --action-pressed: #3730a3;
   --action-soft: #eef2ff;
   --action-text: var(--action);
+  --action-text-hover: var(--action-hover);
   --focus: #a5b4fc;
   --hero-start: #0f172a;
 
@@ -125,7 +126,8 @@ html[data-theme='dark'] {
   --action-hover: #4338ca;
   --action-pressed: #312798;
   --action-soft: #312e81;
-  --action-text: #a5b4fc;
+  --action-text: #c7d2fe;
+  --action-text-hover: #e0e7ff;
   --focus: #a5b4fc;
   --hero-start: #0f172a;
 

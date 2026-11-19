@@ -19,7 +19,7 @@
 
 .lessons-page__eyebrow {
   margin: 0 0 var(--spacing-1);
-  color: var(--action);
+  color: var(--action-text);
   font-size: var(--font-size-12);
   font-weight: var(--font-weight-semibold);
   letter-spacing: 0.08em;
@@ -409,7 +409,7 @@
 
 .lessons-page__type--pratica {
   background: var(--action-soft);
-  color: var(--action);
+  color: var(--action-text);
 }
 
 .lessons-page__status {

@@ -100,7 +100,7 @@
 
 .social-network-page__attachment:hover {
   background: var(--action-soft);
-  color: var(--action);
+  color: var(--action-text);
 }
 
 .social-network-page__attachment:focus-within {
@@ -232,7 +232,7 @@
 }
 
 .social-network-page__like-button:hover {
-  color: var(--action);
+  color: var(--action-text);
 }
 
 .social-network-page__like-button:focus-visible {
@@ -249,7 +249,7 @@
 }
 
 .social-network-page__engagement-icon {
-  color: var(--action);
+  color: var(--action-text);
   width: var(--font-size-20);
   height: var(--font-size-20);
   flex: 0 0 auto;
@@ -284,7 +284,7 @@
   place-items: center;
   border-radius: var(--radius-pill);
   background: var(--action-soft);
-  color: var(--action);
+  color: var(--action-text);
 }
 
 .social-network-page__comment-avatar svg {

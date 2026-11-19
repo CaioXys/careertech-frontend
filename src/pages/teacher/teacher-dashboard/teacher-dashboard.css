@@ -19,7 +19,7 @@
 
 .teacher-dashboard-page__eyebrow {
   margin: 0 0 var(--spacing-1);
-  color: var(--action);
+  color: var(--action-text);
   font-size: var(--font-size-12);
   font-weight: var(--font-weight-semibold);
   letter-spacing: 0.08em;
@@ -217,7 +217,7 @@
   place-items: center;
   border-radius: var(--radius-control);
   background: var(--action-soft);
-  color: var(--action);
+  color: var(--action-text);
 }
 
 .teacher-dashboard-page__stat-icon svg {
@@ -304,14 +304,14 @@
 .teacher-dashboard-page__link {
   flex: 0 0 auto;
   padding: var(--spacing-1) 0;
-  color: var(--action);
+  color: var(--action-text);
   font-size: var(--font-size-12);
   font-weight: var(--font-weight-semibold);
   text-decoration: none;
 }
 
 .teacher-dashboard-page__link:hover {
-  color: var(--action-hover);
+  color: var(--action-text-hover);
   text-decoration: underline;
 }
 
@@ -347,7 +347,7 @@
   justify-items: center;
   border-radius: var(--radius-control);
   background: var(--action-soft);
-  color: var(--action);
+  color: var(--action-text);
 }
 
 .teacher-dashboard-page__date strong {
@@ -489,7 +489,7 @@
 
 .teacher-dashboard-page__attention li a {
   flex: 0 0 auto;
-  color: var(--action);
+  color: var(--action-text);
   font-size: var(--font-size-12);
   font-weight: var(--font-weight-semibold);
   text-decoration: none;

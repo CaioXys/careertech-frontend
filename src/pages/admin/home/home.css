@@ -17,7 +17,7 @@
 }
 .admin-home-page__eyebrow {
   margin: 0 0 var(--spacing-1);
-  color: var(--action);
+  color: var(--action-text);
   font-size: var(--font-size-12);
   font-weight: var(--font-weight-semibold);
   letter-spacing: .08em;
@@ -74,12 +74,12 @@
   height: 2.75rem;
   border-radius: var(--radius-control);
   background: var(--action-soft);
-  color: var(--action);
+  color: var(--action-text);
 }
 .admin-home-page__shortcut-icon svg { width: 1.4rem; height: 1.4rem; }
 .admin-home-page__shortcut strong { display: block; font-size: var(--font-size-14); font-weight: var(--font-weight-semibold); }
 .admin-home-page__shortcut small { display: block; margin-top: 2px; color: var(--muted); font-size: var(--font-size-12); }
-.admin-home-page__arrow { margin-left: auto; color: var(--action); }
+.admin-home-page__arrow { margin-left: auto; color: var(--action-text); }
 
 .admin-home-page__notices {
   display: grid;

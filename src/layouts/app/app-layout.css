@@ -124,7 +124,7 @@
 }
 
 .app-sidebar__link[aria-current='page'] {
-  color: var(--action);
+  color: var(--action-text);
   background: var(--action-soft);
   font-weight: var(--font-weight-medium);
 }
@@ -537,7 +537,7 @@ html[data-theme='dark'] .app-theme__compact .app-theme__icon--dark {
   }
 
   .app-mobile-nav__link[aria-current='page'] {
-    color: var(--action);
+    color: var(--action-text);
     background: var(--action-soft);
     font-weight: var(--font-weight-medium);
   }

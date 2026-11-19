@@ -19,7 +19,7 @@
 
 .assignments-assessments-page__eyebrow {
   margin: 0 0 var(--spacing-1);
-  color: var(--action);
+  color: var(--action-text);
   font-size: var(--font-size-12);
   font-weight: var(--font-weight-semibold);
   letter-spacing: 0.08em;
@@ -359,7 +359,7 @@
 
 .assignments-assessments-page__type {
   background: var(--action-soft);
-  color: var(--action);
+  color: var(--action-text);
 }
 
 .assignments-assessments-page__type--projeto {
@@ -393,7 +393,7 @@
 
 .assignments-assessments-page__status--agendada {
   background: var(--action-soft);
-  color: var(--action);
+  color: var(--action-text);
 }
 
 .assignments-assessments-page__status--encerrada {

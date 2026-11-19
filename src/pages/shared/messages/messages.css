@@ -14,7 +14,7 @@
 }
 .messages-page__eyebrow {
   margin: 0 0 var(--spacing-1);
-  color: var(--action);
+  color: var(--action-text);
   font-size: var(--font-size-12);
   font-weight: var(--font-weight-semibold);
   letter-spacing: .08em;
@@ -72,7 +72,7 @@
   height: 2.5rem;
   border-radius: var(--radius-pill);
   background: var(--action-soft);
-  color: var(--action);
+  color: var(--action-text);
   font-size: var(--font-size-12);
   font-weight: var(--font-weight-semibold);
 }

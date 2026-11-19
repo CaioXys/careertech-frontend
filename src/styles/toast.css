@@ -55,7 +55,7 @@
 
 .toast--info .toast__icon {
   background: var(--action-soft);
-  color: var(--action);
+  color: var(--action-text);
 }
 
 .toast__body {

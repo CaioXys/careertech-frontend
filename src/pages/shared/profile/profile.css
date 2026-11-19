@@ -47,7 +47,7 @@
   place-items: center;
   border-radius: 20px;
   background: var(--action-soft);
-  color: var(--action);
+  color: var(--action-text);
   font-size: 30px;
 }
 
@@ -472,7 +472,7 @@
   place-items: center;
   border-radius: var(--radius-control);
   background: var(--surface);
-  color: var(--action);
+  color: var(--action-text);
 }
 
 .profile-page__tip strong {

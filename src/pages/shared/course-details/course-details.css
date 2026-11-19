@@ -16,14 +16,14 @@
   align-items: center;
   gap: var(--spacing-2);
   min-height: var(--button-height);
-  color: var(--action);
+  color: var(--action-text);
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-semibold);
   text-decoration: none;
 }
 
 .course-details-page__back:hover {
-  color: var(--action-hover);
+  color: var(--action-text-hover);
 }
 
 .course-details-page__back:focus-visible,
@@ -97,7 +97,7 @@
 }
 
 .course-details-page__eyebrow {
-  color: var(--action);
+  color: var(--action-text);
   font-size: var(--font-size-12);
   font-weight: var(--font-weight-semibold);
 }
