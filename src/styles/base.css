@@ -7,6 +7,13 @@ body {
   background: var(--color-bg);
 }
 
+dialog:not(.app-mobile-more) {
+  position: fixed;
+  inset: 0;
+  height: fit-content;
+  margin: auto;
+}
+
 :focus-visible {
   outline: var(--focus-width) solid var(--focus);
   outline-offset: var(--focus-offset);
