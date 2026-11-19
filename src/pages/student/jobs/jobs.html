@@ -1,0 +1,128 @@
+<section class="jobs-page" aria-labelledby="jobs-title">
+  <div class="jobs-page__content">
+    <header class="jobs-page__header">
+      <p class="jobs-page__eyebrow">VAGAS E OPORTUNIDADES</p>
+      <h1 id="jobs-title">Vagas para você</h1>
+      <p class="jobs-page__intro">Encontre oportunidades que combinam com sua trilha, seus interesses e o que você está aprendendo.</p>
+    </header>
+
+    <aside class="jobs-page__recommendation" data-jobs-recommendation hidden aria-labelledby="jobs-recommendation-title">
+      <span class="jobs-page__recommendation-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="m12 3 2.4 5.2 5.6.7-4.1 3.9 1 5.6-4.9-2.7-4.9 2.7 1-5.6L4 8.9l5.6-.7L12 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+        </svg>
+      </span>
+      <div class="jobs-page__recommendation-copy">
+        <strong id="jobs-recommendation-title" data-jobs-recommendation-title>Oportunidades recomendadas</strong>
+        <p data-jobs-recommendation-copy></p>
+      </div>
+      <button class="jobs-page__recommendation-button" data-jobs-recommended-toggle type="button" aria-pressed="false">Ver recomendadas</button>
+    </aside>
+
+    <div class="jobs-page__toolbar" role="search" aria-label="Buscar e filtrar vagas">
+      <label class="jobs-page__field jobs-page__field--search" for="jobs-search">
+        <span>Buscar vaga</span>
+        <span class="jobs-page__input-wrap">
+          <svg class="jobs-page__search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.7" />
+            <path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+          </svg>
+          <input id="jobs-search" data-jobs-search type="search" placeholder="Cargo, empresa ou tecnologia" autocomplete="off" />
+        </span>
+      </label>
+      <label class="jobs-page__field" for="jobs-area">
+        <span>Área</span>
+        <select id="jobs-area" data-jobs-area>
+          <option value="">Todas as áreas</option>
+        </select>
+      </label>
+      <label class="jobs-page__field" for="jobs-level">
+        <span>Nível</span>
+        <select id="jobs-level" data-jobs-level>
+          <option value="">Todos os níveis</option>
+        </select>
+      </label>
+      <label class="jobs-page__field" for="jobs-location">
+        <span>Localidade</span>
+        <select id="jobs-location" data-jobs-location>
+          <option value="">Todas as localidades</option>
+        </select>
+      </label>
+      <button class="jobs-page__clear" data-jobs-clear type="button" hidden>Limpar filtros</button>
+    </div>
+
+    <div class="jobs-page__result-bar">
+      <p class="jobs-page__count" data-jobs-count aria-live="polite"></p>
+      <span class="jobs-page__result-note">Vagas demonstrativas do protótipo</span>
+    </div>
+
+    <p class="jobs-page__loading" data-jobs-loading role="status">Carregando vagas...</p>
+    <div class="jobs-page__error" data-jobs-error role="alert" hidden>
+      <p>Não foi possível carregar as vagas. Tente novamente.</p>
+      <button class="jobs-page__retry" data-jobs-retry type="button">Tentar novamente</button>
+    </div>
+    <p class="jobs-page__empty" data-jobs-empty role="status" hidden></p>
+    <div class="jobs-page__grid" data-jobs-list aria-busy="true"></div>
+  </div>
+
+  <dialog class="jobs-page__dialog" data-job-dialog aria-labelledby="job-dialog-title">
+    <div class="jobs-page__dialog-panel">
+      <header class="jobs-page__dialog-header">
+        <span class="jobs-page__company-logo jobs-page__company-logo--large" data-job-dialog-initials aria-hidden="true"></span>
+        <div class="jobs-page__dialog-heading">
+          <p class="jobs-page__dialog-eyebrow" data-job-dialog-area></p>
+          <h2 id="job-dialog-title" data-job-dialog-title></h2>
+          <p data-job-dialog-company></p>
+        </div>
+        <button class="jobs-page__dialog-close" data-job-close type="button" aria-label="Fechar detalhes da vaga">×</button>
+      </header>
+
+      <div class="jobs-page__dialog-body">
+        <ul class="jobs-page__dialog-meta" data-job-dialog-meta aria-label="Informações da vaga"></ul>
+        <p class="jobs-page__dialog-summary" data-job-dialog-summary></p>
+
+        <section class="jobs-page__dialog-section">
+          <h3>Sobre a vaga</h3>
+          <p data-job-dialog-description></p>
+        </section>
+        <section class="jobs-page__dialog-section">
+          <h3>Responsabilidades</h3>
+          <ul data-job-dialog-responsibilities></ul>
+        </section>
+        <section class="jobs-page__dialog-section">
+          <h3>Requisitos</h3>
+          <ul data-job-dialog-requirements></ul>
+        </section>
+        <section class="jobs-page__dialog-section" data-job-dialog-desirable-section>
+          <h3>Diferenciais</h3>
+          <ul data-job-dialog-desirable></ul>
+        </section>
+        <section class="jobs-page__dialog-section">
+          <h3>Benefícios</h3>
+          <ul data-job-dialog-benefits></ul>
+        </section>
+        <section class="jobs-page__dialog-section">
+          <h3>Tecnologias e habilidades</h3>
+          <div class="jobs-page__skill-list" data-job-dialog-skills></div>
+        </section>
+        <aside class="jobs-page__referral" data-job-dialog-referral hidden>
+          <span class="jobs-page__referral-icon" aria-hidden="true">✳</span>
+          <div>
+            <strong data-job-dialog-referral-name></strong>
+            <p data-job-dialog-referral-note></p>
+          </div>
+        </aside>
+        <p class="jobs-page__dialog-note">Esta vaga é demonstrativa. Nenhuma candidatura ou redirecionamento real será enviado pelo protótipo.</p>
+      </div>
+
+      <footer class="jobs-page__dialog-footer">
+        <p data-job-dialog-feedback role="status" aria-live="polite"></p>
+        <div class="jobs-page__dialog-actions">
+          <button class="jobs-page__button jobs-page__button--quiet" data-job-favorite type="button" aria-pressed="false"><span>Favoritar</span></button>
+          <button class="jobs-page__button jobs-page__button--quiet" data-job-external type="button">Abrir link externo</button>
+          <button class="jobs-page__button" data-job-apply type="button">Candidatar-se</button>
+        </div>
+      </footer>
+    </div>
+  </dialog>
+</section>

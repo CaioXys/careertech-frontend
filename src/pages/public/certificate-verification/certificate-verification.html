@@ -1,0 +1,40 @@
+<section class="certificate-verification-page" aria-labelledby="certificate-verification-title">
+  <header class="certificate-verification-page__topbar">
+    <a class="certificate-verification-page__brand" href="#/login" aria-label="CareerTech — ir para o login">
+      <span class="certificate-verification-page__brand-mark" aria-hidden="true">CT</span>
+      <span>career<span>tech</span></span>
+    </a>
+    <a class="certificate-verification-page__back" href="#/login">Ir para o login</a>
+  </header>
+
+  <main class="certificate-verification-page__card">
+    <span class="certificate-verification-page__icon" aria-hidden="true">
+      <svg viewBox="0 0 48 48" fill="none">
+        <path d="M24 5 40 11v11c0 10.4-6.7 17.5-16 21-9.3-3.5-16-10.6-16-21V11L24 5Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" />
+        <path d="m16 24 6 6 11-12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </span>
+    <p class="certificate-verification-page__eyebrow">VALIDAÇÃO PÚBLICA</p>
+    <h1 id="certificate-verification-title">Verifique um certificado</h1>
+    <p class="certificate-verification-page__intro">Digite o código que aparece no certificado para confirmar a autenticidade e consultar os dados de emissão.</p>
+
+    <form class="certificate-verification-page__form" data-verification-form novalidate>
+      <label class="certificate-verification-page__field" for="certificate-code">
+        <span>Código do certificado</span>
+        <input id="certificate-code" name="code" type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="Ex.: CT-2026-LOGICA-2B7C" maxlength="80" aria-describedby="certificate-code-hint certificate-code-message" data-verification-code required />
+      </label>
+      <p class="certificate-verification-page__hint" id="certificate-code-hint">O código não diferencia letras maiúsculas de minúsculas.</p>
+      <p class="certificate-verification-page__message" id="certificate-code-message" data-verification-message role="alert" aria-live="assertive"></p>
+      <button class="certificate-verification-page__submit" data-verification-submit type="submit">
+        <span data-verification-submit-label>Verificar certificado</span>
+        <span class="certificate-verification-page__spinner" data-verification-spinner aria-hidden="true" hidden></span>
+      </button>
+    </form>
+
+    <p class="certificate-verification-page__demo">Código de exemplo: <button type="button" data-verification-demo>CT-2026-LOGICA-2B7C</button></p>
+
+    <section class="certificate-verification-page__result" data-verification-result aria-live="polite" hidden></section>
+
+    <p class="certificate-verification-page__note">Esta consulta é demonstrativa e faz parte do protótipo CareerTech. Nenhum certificado oficial é emitido por esta tela.</p>
+  </main>
+</section>

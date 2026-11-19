@@ -2,6 +2,8 @@ import html from './certifications.html?raw';
 import './certifications.css';
 import { auth } from '../../../core/auth.js';
 import { listCourses } from '../../../services/courses.service.js';
+import { certificateCodesByCourseId } from '../../../mocks/certificates.js';
+import { toastError, toastSuccess } from '../../../core/toast.js';
 
 const classroomLimit = 6;
 const inProgressValues = [75, 55, 35, 20];
@@ -129,6 +131,115 @@ function createDownloadIcon() {
   return icon;
 }
 
+function createLinkIcon() {
+  const icon = createSvgElement('svg', {
+    viewBox: '0 0 48 48',
+    'aria-hidden': 'true',
+  });
+  icon.append(
+    createSvgElement('path', { d: 'M20 28 28 20' }),
+    createSvgElement('path', { d: 'M17 31a8 8 0 0 1 0-11l5-5a8 8 0 0 1 11 11l-2 2' }),
+    createSvgElement('path', { d: 'M31 17a8 8 0 0 1 0 11l-5 5a8 8 0 0 1-11-11l2-2' }),
+  );
+  return icon;
+}
+
+function createExternalIcon() {
+  const icon = createSvgElement('svg', {
+    viewBox: '0 0 48 48',
+    'aria-hidden': 'true',
+  });
+  icon.append(
+    createSvgElement('path', { d: 'M20 12H10v26h26V28' }),
+    createSvgElement('path', { d: 'M27 10h11v11M38 10 23 25' }),
+  );
+  return icon;
+}
+
+function getCertificateCode(course) {
+  return certificateCodesByCourseId[String(course.id)] ?? null;
+}
+
+function getVerificationUrl(code) {
+  const url = new URL(window.location.href);
+  url.hash = `/certificates/verify/${encodeURIComponent(code)}`;
+  return url.href;
+}
+
+async function copyCertificateLink(course) {
+  const code = getCertificateCode(course);
+  if (!code) {
+    toastError('Este certificado ainda não possui um código de verificação.');
+    return;
+  }
+
+  const link = getVerificationUrl(code);
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(link);
+    } else {
+      throw new Error('Clipboard indisponível');
+    }
+    toastSuccess('Link de verificação copiado.');
+  } catch {
+    const field = document.createElement('textarea');
+    field.value = link;
+    field.setAttribute('readonly', '');
+    field.style.position = 'fixed';
+    field.style.opacity = '0';
+    document.body.append(field);
+    field.select();
+    const copied = document.execCommand('copy');
+    field.remove();
+    if (copied) {
+      toastSuccess('Link de verificação copiado.');
+    } else {
+      toastError('Não foi possível copiar o link. Tente novamente.');
+    }
+  }
+}
+
+function openCertificateVerification(course) {
+  const code = getCertificateCode(course);
+  if (!code) {
+    toastError('Este certificado ainda não possui um código de verificação.');
+    return;
+  }
+  window.location.hash = `/certificates/verify/${encodeURIComponent(code)}`;
+}
+
+function createCertificateAction(label, icon, onClick) {
+  const button = document.createElement('button');
+  button.className = 'certifications-page__action';
+  button.type = 'button';
+  button.append(icon, createTextElement('span', '', label));
+  button.addEventListener('click', onClick);
+  return button;
+}
+
+function createCompletedActions(course) {
+  const code = getCertificateCode(course);
+  if (!code) return null;
+
+  const actions = document.createElement('div');
+  actions.className = 'certifications-page__actions';
+  const codeLabel = document.createElement('p');
+  codeLabel.className = 'certifications-page__code';
+  codeLabel.append(
+    createTextElement('span', '', 'Código de verificação'),
+    createTextElement('strong', '', code),
+  );
+  const buttons = document.createElement('div');
+  buttons.className = 'certifications-page__action-list';
+  buttons.append(
+    createCertificateAction('Baixar', createDownloadIcon(), () => downloadCertificate(course)),
+    createCertificateAction('Copiar link', createLinkIcon(), () => copyCertificateLink(course)),
+    createCertificateAction('Verificar', createExternalIcon(), () => openCertificateVerification(course)),
+  );
+  actions.append(codeLabel, buttons);
+  return actions;
+}
+
 function createCertificateCard(certificate) {
   const { course, status, progress } = certificate;
   const completed = status === 'completed';
@@ -186,17 +297,11 @@ function createCertificateCard(certificate) {
   }
   cover.append(createTextElement('h2', 'certifications-page__cover-title', course.title));
 
-  if (completed) {
-    const download = document.createElement('button');
-    download.className = 'certifications-page__download';
-    download.type = 'button';
-    download.setAttribute('aria-label', `Baixar certificado de ${course.title}`);
-    download.append(createDownloadIcon());
-    download.addEventListener('click', () => downloadCertificate(course));
-    cover.append(download);
-  }
-
   card.append(cover);
+  if (completed) {
+    const actions = createCompletedActions(course);
+    if (actions) card.append(actions);
+  }
   return card;
 }
 

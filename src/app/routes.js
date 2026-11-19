@@ -21,6 +21,8 @@ export const routes = [
   { path: '/login', layout: 'auth', public: true, guestOnly: true, load: () => import('../pages/auth/login/login.js') },
   { path: '/register', layout: 'auth', public: true, guestOnly: true, load: () => import('../pages/auth/register/register.js') },
   { path: '/forgot-password', layout: 'auth', public: true, guestOnly: true, load: () => import('../pages/auth/forgot-password/forgot-password.js') },
+  { path: '/certificates/verify/:code', layout: 'auth', public: true, load: () => import('../pages/public/certificate-verification/certificate-verification.js') },
+  { path: '/certificates/verify', layout: 'auth', public: true, load: () => import('../pages/public/certificate-verification/certificate-verification.js') },
 
   // ---------- Aluno + Professor (telas compartilhadas) ----------
   { path: '/home', layout: 'app', roles: STUDENT_AND_TEACHER, load: () => import('../pages/shared/home/home.js') },
@@ -38,6 +40,7 @@ export const routes = [
   // ---------- Somente Aluno ----------
   { path: '/career-quiz', layout: 'app', roles: [STUDENT], load: () => import('../pages/student/career-quiz/career-quiz.js') },
   { path: '/career-map', layout: 'app', roles: [STUDENT], load: () => import('../pages/student/career-map/career-map.js') },
+  { path: '/jobs', layout: 'app', roles: [STUDENT], load: () => import('../pages/student/jobs/jobs.js') },
 
   // ---------- Somente Professor ----------
   { path: '/teacher/dashboard', layout: 'app', roles: [TEACHER], load: () => import('../pages/teacher/teacher-dashboard/teacher-dashboard.js') },

@@ -83,6 +83,7 @@
 .certifications-page__filter:focus-visible,
 .certifications-page__retry:focus-visible,
 .certifications-page__download:focus-visible,
+.certifications-page__action:focus-visible,
 .certifications-page__card--progress:focus-visible {
   outline: var(--focus-width) solid var(--focus);
   outline-offset: var(--focus-offset);
@@ -310,6 +311,91 @@
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 2;
+}
+
+.certifications-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3);
+  border-top: 1px solid var(--line);
+}
+
+.certifications-page__code {
+  display: grid;
+  min-width: 0;
+  gap: var(--spacing-1);
+  margin: 0;
+}
+
+.certifications-page__code span {
+  color: var(--muted);
+  font-size: var(--font-size-12);
+}
+
+.certifications-page__code strong {
+  overflow-wrap: anywhere;
+  color: var(--ink);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.04em;
+}
+
+.certifications-page__action-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+}
+
+.certifications-page__action {
+  display: inline-flex;
+  min-height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-1);
+  padding: 0 var(--spacing-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  color: var(--text-2);
+  background: var(--surface);
+  font: inherit;
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+}
+
+.certifications-page__action:hover {
+  border-color: var(--action);
+  color: var(--action-text);
+  background: var(--action-soft);
+}
+
+.certifications-page__action svg {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.6;
+}
+
+@media (max-width: 420px) {
+  .certifications-page__actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .certifications-page__action-list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .certifications-page__action {
+    width: 100%;
+  }
 }
 
 @media (hover: hover) {

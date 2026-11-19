@@ -97,6 +97,7 @@ Os RFs referem-se ao documento de requisitos (a numeração se repete entre perf
 |---|---|---|
 | `career-quiz/` | `#/career-quiz` | RF011 |
 | `career-map/` | `#/career-map` | RF019-020 |
+| `jobs/` | `#/jobs` | RN53-057 |
 
 **Somente Professor** (`src/pages/teacher/`)
 
@@ -117,6 +118,12 @@ Os RFs referem-se ao documento de requisitos (a numeração se repete entre perf
 | `approvals/` | `#/admin/approvals` | ADM RF006-008 · RNF035-036 · RN126-131 |
 | `management/` | `#/admin/management` | ADM RF009-017 · RN185-196, RN233 |
 
+**Públicas adicionais**
+
+| Pasta | Rota | Requisitos |
+|---|---|---|
+| `certificate-verification/` | `#/certificates/verify/:code` | RN59 |
+
 ### Relação de telas por perfil (briefing)
 
 Nesta relação, **Usuário** corresponde ao perfil **Aluno** usado pelo sistema. Login é um fluxo compartilhado, com acesso definido pelo perfil da conta; cadastro é oferecido a Aluno e Professor. **Sair** é uma ação do layout da área logada, não uma tela.
@@ -124,10 +131,10 @@ Nesta relação, **Usuário** corresponde ao perfil **Aluno** usado pelo sistema
 | Perfil do briefing | Telas e ações previstas | Rotas e requisitos mapeados |
 |---|---|---|
 | Administrador | Login, início, gerenciador de usuário, aprovações, gerenciamento e sair | `#/login` (ADM RF001-002); `#/admin/home` (RN156-158); `#/admin/users` (ADM RF002-004); `#/admin/approvals` (ADM RF006-008); `#/admin/management` (ADM RF009-017); sair pelo layout (ADM RF018) |
-| Usuário (Aluno) | Login, cadastro, início, perfil, questionário de vocação, cursos, mapa de carreira, chat com IA, mensagens, salas de aula, rede social, jogos, certificações e sair | `#/login` (RF001-003); `#/register` (RF004-007); `#/home` (RF009); `#/profile` (RF010); `#/career-quiz` (RF011); `#/courses` (RF012, RF014-015); `#/career-map` (RF019-020); `#/ai-chat` (RF021); `#/messages` (RF018, RN43); `#/classrooms` (RF016-018); `#/social-network` (RF023-029); `#/games` (RF022); `#/certifications` (RF030); sair pelo layout (RF031) |
-| Professor | Login, cadastro, início, perfil, cursos, chat com IA, mensagens, salas de aula, rede social, certificações e sair | `#/login` (Prof. RF032-036); `#/register` (RF037-040); `#/home` (RF041); `#/profile` (RF042); `#/courses` (RF043); `#/ai-chat` (RF057); `#/messages` (RF018, RN43); `#/classrooms` (RF046-047); `#/social-network` (RF059-065); `#/certifications` (RF066); sair pelo layout (RF067) |
+| Usuário (Aluno) | Login, cadastro, início, perfil, questionário de vocação, cursos, mapa de carreira, vagas, chat com IA, mensagens, salas de aula, rede social, jogos, certificações e sair | `#/login` (RF001-003); `#/register` (RF004-007); `#/home` (RF009); `#/profile` (RF010); `#/career-quiz` (RF011); `#/courses` (RF012, RF014-015); `#/career-map` (RF019-020); `#/jobs` (RN53-057); `#/ai-chat` (RF021); `#/messages` (RF018, RN43); `#/classrooms` (RF016-018); `#/social-network` (RF023-029); `#/games` (RF022); `#/certifications` (RF030); sair pelo layout (RF031) |
+| Professor | Login, cadastro, início, perfil, cursos, chat com IA, mensagens, salas de aula, rede social, jogos, certificações e sair | `#/login` (Prof. RF032-036); `#/register` (RF037-040); `#/home` (RF041); `#/profile` (RF042); `#/courses` (RF043); `#/ai-chat` (RF057); `#/messages` (RF018, RN43); `#/classrooms` (RF046-047); `#/social-network` (RF059-065); `#/games` (RF058); `#/certifications` (RF066); sair pelo layout (RF067) |
 
-**Diferenças entre a lista do briefing e o diagrama UML de caso de uso:** o diagrama também permite Jogos ao Professor (RF058), embora essa tela não esteja na lista enviada. Ele contém casos de uso para Área do professor, Turmas, Aulas, Avaliações e Alunos (RF048-056). As aprovações (ADM RF006-008) e o gerenciamento (ADM RF009-017) são telas separadas do Gerenciador de usuário. O chat entre usuários (RF018, RN43) aparece como tela de Mensagens, embora não conste na lista de telas do briefing. Recuperação de senha também está mapeada para Aluno (RF006) e Professor (RF035), embora não apareça na lista enviada.
+**Diferenças entre a lista do briefing e o diagrama UML de caso de uso:** o diagrama também permite Jogos ao Professor (RF058), embora essa tela não esteja na lista enviada. Ele contém casos de uso para Área do professor, Turmas, Aulas, Avaliações e Alunos (RF048-056). As aprovações (ADM RF006-008) e o gerenciamento (ADM RF009-017) são telas separadas do Gerenciador de usuário. O chat entre usuários (RF018, RN43) aparece como tela de Mensagens, embora não conste na lista de telas do briefing. Vagas (RN53-057) foram adicionadas ao protótipo como tela própria do aluno. Recuperação de senha também está mapeada para Aluno (RF006) e Professor (RF035), embora não apareça na lista enviada.
 
 **Erro** — `src/pages/errors/not-found/` (rota inexistente, 404).
 

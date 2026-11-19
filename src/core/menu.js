@@ -18,6 +18,7 @@ export const menuByRole = {
     shared.home,
     { label: 'Questionário', path: '/career-quiz' },
     { label: 'Mapa de carreira', path: '/career-map' },
+    { label: 'Vagas', path: '/jobs' },
     shared.courses,
     shared.classrooms,
     shared.games,
