@@ -1,5 +1,7 @@
 import html from './app-layout.html?raw';
 import './app-layout.css';
+import assistantHtml from '../../pages/shared/ai-chat/ai-chat.html?raw';
+import '../../pages/shared/ai-chat/ai-chat.css';
 import { auth } from '../../core/auth.js';
 import { menuByRole } from '../../core/menu.js';
 import { navigate } from '../../core/navigate.js';
@@ -127,8 +129,18 @@ export default {
   html,
 
   mount(root) {
+    const assistantTemplate = document.createElement('template');
+    assistantTemplate.innerHTML = assistantHtml.trim();
+    root.append(assistantTemplate.content);
+
     const user = auth.getUser();
     const appLayout = root.querySelector('.app-layout');
+    const assistantPanel = root.querySelector('[data-chat-panel]');
+    const assistantMessages = root.querySelector('[data-chat-messages]');
+    const assistantForm = root.querySelector('[data-chat-form]');
+    const assistantInput = root.querySelector('[data-chat-input]');
+    const assistantCloseButton = root.querySelector('[data-chat-close]');
+    const assistantOpenButton = root.querySelector('[data-chat-open]');
     const nav = root.querySelector('[data-nav]');
     const items = menuByRole[user?.role] ?? [];
     const primaryItems = items.slice(0, 5);
@@ -148,6 +160,58 @@ export default {
 
     const userAvatar = root.querySelector('[data-user-initials]');
     const userLevel = root.querySelector('[data-user-level]');
+
+    const scrollAssistantToLatest = () => {
+      assistantMessages.scrollTop = assistantMessages.scrollHeight;
+    };
+
+    const appendAssistantMessage = (text, type) => {
+      const message = document.createElement('p');
+      message.className = `ai-chat-page__message ai-chat-page__message--${type}`;
+      message.textContent = text;
+      assistantMessages.append(message);
+    };
+
+    const handleAssistantSubmit = (event) => {
+      event.preventDefault();
+      const text = assistantInput.value.trim();
+      if (!text) {
+        assistantInput.value = '';
+        return;
+      }
+
+      appendAssistantMessage(text, 'student');
+      assistantInput.value = '';
+
+      const thinking = document.createElement('p');
+      thinking.className = 'ai-chat-page__thinking';
+      thinking.setAttribute('role', 'status');
+      thinking.textContent = 'Pensando…';
+      assistantMessages.append(thinking);
+      scrollAssistantToLatest();
+      assistantInput.focus();
+    };
+
+    const openAssistant = () => {
+      assistantPanel.hidden = false;
+      assistantOpenButton.hidden = true;
+      assistantOpenButton.setAttribute('aria-expanded', 'true');
+      assistantInput.focus();
+      scrollAssistantToLatest();
+    };
+
+    const closeAssistant = () => {
+      assistantPanel.hidden = true;
+      assistantOpenButton.hidden = false;
+      assistantOpenButton.setAttribute('aria-expanded', 'false');
+      assistantOpenButton.focus();
+    };
+
+    assistantForm.addEventListener('submit', handleAssistantSubmit);
+    assistantOpenButton.addEventListener('click', openAssistant);
+    assistantCloseButton.addEventListener('click', closeAssistant);
+    document.addEventListener('careertech:assistant-open', openAssistant);
+    scrollAssistantToLatest();
 
     root.querySelector('[data-user-name]').textContent = user?.name ?? '';
     userAvatar.textContent = userInitials(user?.name ?? user?.nome);
@@ -407,6 +471,10 @@ export default {
         document.removeEventListener(THEME_EVENT, handleThemeChange);
         document.removeEventListener(STUDENT_PROGRESS_EVENT, loadStudentProgress);
         document.removeEventListener(MESSAGES_UNREAD_EVENT, handleUnreadChange);
+        document.removeEventListener('careertech:assistant-open', openAssistant);
+        assistantForm.removeEventListener('submit', handleAssistantSubmit);
+        assistantOpenButton.removeEventListener('click', openAssistant);
+        assistantCloseButton.removeEventListener('click', closeAssistant);
         mobileNav.removeEventListener('click', handleMobileNavClick);
         moreDialog.removeEventListener('click', handleMoreDialogClick);
         moreDialog.removeEventListener('close', handleMoreDialogClose);
