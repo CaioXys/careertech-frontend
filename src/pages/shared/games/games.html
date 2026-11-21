@@ -1,12 +1,192 @@
-<!--
-  TELA: Jogos
-  Requisitos: Aluno RF022 | Professor RF058
-  Onde editar:
-    - Estrutura (HTML)   -> games.html   (este arquivo)
-    - Estilos (CSS)      -> games.css
-    - Comportamento (JS) -> games.js
--->
 <section class="games-page">
-  <h1>Jogos</h1>
-  <p>Tela ainda não criada. Edite <code>src/pages/shared/games/games.html</code>.</p>
+  <div class="games-page__shell">
+    <div data-games-view="list" class="games-page__list-view">
+      <header class="games-page__header">
+        <div>
+          <p class="games-page__eyebrow">APRENDA JOGANDO</p>
+          <h1>Jogos</h1>
+          <p class="games-page__subtitle">Escolha uma matéria e avance pelos desafios.</p>
+        </div>
+      </header>
+
+      <p class="games-page__completion" data-game-completion hidden></p>
+
+      <section class="games-page__metrics" aria-label="Resumo da consistência e sequência">
+        <article class="games-page__metric games-page__metric--week">
+          <span class="games-page__metric-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M7 3v4m10-4v4M4 9h16M6 5h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /><path d="M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" /></svg>
+          </span>
+          <div class="games-page__metric-summary">
+            <div class="games-page__metric-copy">
+              <p>Consistência semanal</p>
+              <strong data-week-count>5 de 7 dias</strong>
+            </div>
+            <div class="games-page__metric-copy games-page__metric-xp">
+              <p>Experiência acumulada</p>
+              <strong>450 XP</strong>
+            </div>
+          </div>
+          <div class="games-page__week" data-week-days role="group" aria-label="Dias praticados nesta semana"></div>
+        </article>
+        <article class="games-page__metric games-page__metric--streak" data-streak aria-label="Sequência atual: 12 dias">
+          <span class="games-page__metric-icon" aria-hidden="true">🔥</span>
+          <div class="games-page__metric-copy">
+            <p>Sequência atual</p>
+            <strong><span data-streak-count>12</span> dias</strong>
+          </div>
+          <span class="games-page__metric-note" data-streak-note>Pratique hoje para manter sua sequência.</span>
+        </article>
+      </section>
+
+      <section class="games-page__daily-card" data-daily-card aria-labelledby="games-daily-title">
+        <span class="games-page__daily-icon" aria-hidden="true">✦</span>
+        <span class="games-page__eyebrow">DESAFIO DO DIA</span>
+        <h2 class="games-page__daily-title" id="games-daily-title">Desafio do dia</h2>
+        <p class="games-page__daily-description" data-daily-description>Mantenha sua sequência respondendo a um exercício rápido.</p>
+        <button class="games-page__daily-button" type="button" data-daily-open>Iniciar exercício</button>
+        <span class="games-page__daily-completed" data-daily-completed hidden>Concluído</span>
+      </section>
+
+      <section class="games-page__subjects" aria-labelledby="games-subjects-title">
+        <div class="games-page__section-heading">
+          <div>
+            <p class="games-page__eyebrow">MATÉRIAS</p>
+            <h2 id="games-subjects-title">Escolha seu desafio</h2>
+          </div>
+        </div>
+        <div class="games-page__subject-list">
+          <article class="games-page__subject games-page__continue-card" data-subject-card="development">
+            <span class="games-page__continue-icon" aria-hidden="true">JS</span>
+            <div class="games-page__continue-copy">
+              <div class="games-page__subject-meta">
+                <p class="games-page__subject-status" data-subject-status>CONTINUAR JOGANDO</p>
+                <time class="games-page__subject-last-activity" data-subject-last-activity datetime="2026-11-20T14:32:00">Última atividade · 20 nov. 2026, 14:32</time>
+              </div>
+              <h3 class="games-page__subject-name">Desenvolvimento</h3>
+              <p class="games-page__subject-description">Desafio: pratique lógica e fundamentos de JavaScript.</p>
+            </div>
+            <button class="games-page__button games-page__subject-continue" type="button" data-game-subject="development">Continuar</button>
+            <div class="games-page__subject-details">
+              <div class="games-page__subject-progress-copy">
+                <span data-subject-progress-label>0 de 4 etapas</span>
+                <strong data-subject-progress-percent>0%</strong>
+              </div>
+              <div class="games-page__subject-progress-track" role="progressbar" aria-label="Progresso em Desenvolvimento" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0">
+                <span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+          </article>
+
+          <article class="games-page__subject games-page__continue-card" data-subject-card="database">
+            <span class="games-page__continue-icon" aria-hidden="true">DB</span>
+            <div class="games-page__continue-copy">
+              <div class="games-page__subject-meta">
+                <p class="games-page__subject-status" data-subject-status>CONTINUAR JOGANDO</p>
+                <time class="games-page__subject-last-activity" data-subject-last-activity datetime="2026-11-19T10:15:00">Última atividade · 19 nov. 2026, 10:15</time>
+              </div>
+              <h3 class="games-page__subject-name">Banco de dados</h3>
+              <p class="games-page__subject-description">Desafio: escreva consultas e filtre registros com SQL.</p>
+            </div>
+            <button class="games-page__button games-page__subject-continue" type="button" data-game-subject="database">Continuar</button>
+            <div class="games-page__subject-details">
+              <div class="games-page__subject-progress-copy">
+                <span data-subject-progress-label>0 de 4 etapas</span>
+                <strong data-subject-progress-percent>0%</strong>
+              </div>
+              <div class="games-page__subject-progress-track" role="progressbar" aria-label="Progresso em Banco de dados" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0">
+                <span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+          </article>
+
+          <article class="games-page__subject games-page__continue-card" data-subject-card="infrastructure">
+            <span class="games-page__continue-icon" aria-hidden="true">NW</span>
+            <div class="games-page__continue-copy">
+              <div class="games-page__subject-meta">
+                <p class="games-page__subject-status" data-subject-status>CONTINUAR JOGANDO</p>
+                <time class="games-page__subject-last-activity" data-subject-last-activity datetime="2026-11-18T16:40:00">Última atividade · 18 nov. 2026, 16:40</time>
+              </div>
+              <h3 class="games-page__subject-name">Infraestrutura</h3>
+              <p class="games-page__subject-description">Desafio: conheça redes, DNS e os serviços da web.</p>
+            </div>
+            <button class="games-page__button games-page__subject-continue" type="button" data-game-subject="infrastructure">Continuar</button>
+            <div class="games-page__subject-details">
+              <div class="games-page__subject-progress-copy">
+                <span data-subject-progress-label>0 de 4 etapas</span>
+                <strong data-subject-progress-percent>0%</strong>
+              </div>
+              <div class="games-page__subject-progress-track" role="progressbar" aria-label="Progresso em Infraestrutura" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0">
+                <span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+    </div>
+
+    <div data-games-view="game" class="games-page__game-view games-page__activity-card" hidden>
+      <header class="games-page__game-header">
+        <button class="games-page__back" type="button" data-game-back>
+          <span aria-hidden="true">←</span> Voltar
+        </button>
+        <div class="games-page__game-heading">
+          <p class="games-page__eyebrow" data-game-step-copy></p>
+          <div class="games-page__heading-row">
+            <h1 data-game-title></h1>
+            <a class="games-page__course-link" data-game-course-link hidden>
+              <span data-game-course-name></span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <ol class="games-page__steps" data-game-steps aria-label="Passos do desafio"></ol>
+
+      <article class="games-page__challenge">
+        <div class="games-page__exercise-layout">
+          <div class="games-page__exercise-content">
+            <p class="games-page__question" data-game-question tabindex="-1"></p>
+
+            <div class="games-page__sql-table" data-game-table hidden>
+              <table>
+                <thead><tr><th>nome</th><th>curso</th><th>nota</th></tr></thead>
+                <tbody>
+                  <tr><td>Ana</td><td>Python</td><td>9,0</td></tr>
+                  <tr><td>Diego</td><td>Python</td><td>6,7</td></tr>
+                  <tr><td>Eva</td><td>SQL</td><td>7,0</td></tr>
+                  <tr><td>Carla</td><td>SQL</td><td>8,5</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="games-page__code-wrapper" data-game-code-wrapper hidden>
+              <pre class="games-page__code" data-game-code></pre>
+            </div>
+
+            <h3 class="games-page__options-label">Selecione uma opção</h3>
+            <div class="games-page__options" data-game-options></div>
+
+            <p class="games-page__feedback" data-game-feedback hidden></p>
+            <strong class="games-page__xp" data-game-xp hidden>+50 XP</strong>
+
+            <div class="games-page__challenge-actions">
+              <button class="games-page__button" type="button" data-game-verify disabled>Verificar resposta</button>
+              <button class="games-page__button" type="button" data-game-next hidden>Próximo passo</button>
+            </div>
+          </div>
+
+          <aside class="games-page__console" data-game-console hidden aria-label="Resultado no console">
+            <div class="games-page__console-header">
+              <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+              <strong>console</strong>
+            </div>
+            <pre class="games-page__output" data-game-output></pre>
+          </aside>
+        </div>
+      </article>
+    </div>
+  </div>
+
 </section>
