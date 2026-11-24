@@ -447,6 +447,11 @@ export default {
     };
 
     const toggleProfileMenu = () => {
+      if (appLayout.dataset.collapsed === 'true') {
+        closeProfileMenu();
+        return;
+      }
+
       const willOpen = profileMenu.hidden;
       profileMenu.hidden = !willOpen;
       profileToggle.setAttribute('aria-expanded', String(willOpen));
@@ -455,7 +460,9 @@ export default {
     handleHashChange();
     window.addEventListener('hashchange', handleHashChange);
     sidebarToggle.addEventListener('click', () => {
-      setCollapsed(appLayout.dataset.collapsed !== 'true');
+      const collapsed = appLayout.dataset.collapsed !== 'true';
+      if (collapsed) closeProfileMenu();
+      setCollapsed(collapsed);
     });
     moreDialog.id = 'mobile-more-dialog';
     mobileNav.addEventListener('click', handleMobileNavClick);

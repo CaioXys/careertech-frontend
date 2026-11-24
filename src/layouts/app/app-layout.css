@@ -428,6 +428,10 @@ html[data-theme='dark'] .app-theme__compact .app-theme__icon--dark {
   display: none;
 }
 
+.app-layout[data-collapsed='true'] .app-sidebar__profile-menu {
+  display: none;
+}
+
 .app-layout[data-collapsed='true'] .app-sidebar__nav {
   padding-right: 0;
   padding-left: 0;
