@@ -6,6 +6,31 @@
   color: var(--ink);
 }
 
+.ai-chat-full-page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 64rem;
+  height: calc(100dvh - var(--spacing-4) - var(--spacing-4) - var(--spacing-2) - var(--spacing-5) - var(--spacing-5));
+  min-height: 24rem;
+  margin-inline: auto;
+  overflow: hidden;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+}
+
+.ai-chat-full-page .ai-chat-page__header h1 {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-semibold);
+}
+
 .ai-chat-page [hidden] {
   display: none !important;
 }
@@ -192,6 +217,14 @@
 .ai-chat-page__launcher:focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 2px;
+}
+
+@media (max-width: 767px) {
+  .ai-chat-full-page {
+    width: calc(100% - var(--spacing-4));
+    height: calc(100dvh - var(--spacing-3) - var(--spacing-3) - 5.5rem - env(safe-area-inset-bottom, 0px) - var(--spacing-4));
+    min-height: 20rem;
+  }
 }
 
 @keyframes ai-chat-thinking-pulse {

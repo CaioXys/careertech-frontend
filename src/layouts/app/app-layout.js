@@ -1,6 +1,6 @@
 import html from './app-layout.html?raw';
 import './app-layout.css';
-import assistantHtml from '../../pages/shared/ai-chat/ai-chat.html?raw';
+import assistantHtml from '../../pages/shared/ai-chat/ai-chat-widget.html?raw';
 import '../../pages/shared/ai-chat/ai-chat.css';
 import { auth } from '../../core/auth.js';
 import { menuByRole } from '../../core/menu.js';
@@ -193,6 +193,7 @@ export default {
     };
 
     const openAssistant = () => {
+      if (location.hash.slice(1).split('?')[0] === '/ai-chat') return;
       assistantPanel.hidden = false;
       assistantOpenButton.hidden = true;
       assistantOpenButton.setAttribute('aria-expanded', 'true');
@@ -427,6 +428,12 @@ export default {
 
     const handleHashChange = () => {
       updateActive();
+      const onAssistantPage = location.hash.slice(1).split('?')[0] === '/ai-chat';
+      assistantOpenButton.hidden = onAssistantPage;
+      if (onAssistantPage) {
+        assistantPanel.hidden = true;
+        assistantOpenButton.setAttribute('aria-expanded', 'false');
+      }
       closeMoreDialog();
     };
 
@@ -445,7 +452,7 @@ export default {
       profileToggle.setAttribute('aria-expanded', String(willOpen));
     };
 
-    updateActive();
+    handleHashChange();
     window.addEventListener('hashchange', handleHashChange);
     sidebarToggle.addEventListener('click', () => {
       setCollapsed(appLayout.dataset.collapsed !== 'true');

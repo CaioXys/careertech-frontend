@@ -1,26 +1,17 @@
-<section class="ai-chat-page">
-  <button class="ai-chat-page__launcher" type="button" data-chat-open aria-label="Abrir assistente" aria-controls="ai-chat-panel" aria-expanded="false">
-    <span aria-hidden="true">✦</span>
-  </button>
+<section class="ai-chat-full-page" aria-labelledby="ai-chat-full-title">
+  <header class="ai-chat-page__header">
+    <h1 id="ai-chat-full-title">Chat <span class="ai-chat-page__badge">IA</span></h1>
+  </header>
 
-  <section class="ai-chat-page__panel" id="ai-chat-panel" data-chat-panel role="dialog" aria-modal="false" aria-labelledby="ai-chat-title" hidden>
-    <header class="ai-chat-page__header">
-      <div>
-        <h1 id="ai-chat-title">Assistente <span class="ai-chat-page__badge">IA</span></h1>
-      </div>
-      <button class="ai-chat-page__close" type="button" data-chat-close aria-label="Fechar assistente">×</button>
-    </header>
+  <div class="ai-chat-page__messages" data-chat-messages role="log" aria-live="polite" aria-relevant="additions">
+    <p class="ai-chat-page__message ai-chat-page__message--student">Onde encontro os desafios da plataforma?</p>
+    <p class="ai-chat-page__message ai-chat-page__message--assistant">Acesse Games para continuar desafios por matéria e iniciar o desafio diário.</p>
+    <p class="ai-chat-page__message ai-chat-page__message--student">Como acompanho meu progresso?</p>
+    <p class="ai-chat-page__message ai-chat-page__message--assistant">Na página Início, você pode ver sua consistência semanal, sequência atual e XP total.</p>
+  </div>
 
-    <div class="ai-chat-page__messages" data-chat-messages role="log" aria-live="polite" aria-relevant="additions">
-      <p class="ai-chat-page__message ai-chat-page__message--student">Onde encontro os desafios da plataforma?</p>
-      <p class="ai-chat-page__message ai-chat-page__message--assistant">Acesse Games para continuar desafios por matéria e iniciar o desafio diário.</p>
-      <p class="ai-chat-page__message ai-chat-page__message--student">Como acompanho meu progresso?</p>
-      <p class="ai-chat-page__message ai-chat-page__message--assistant">Na página Início, você pode ver sua consistência semanal, sequência atual e XP total.</p>
-    </div>
-
-    <form class="ai-chat-page__form" data-chat-form>
-      <input class="ai-chat-page__input" type="text" data-chat-input aria-label="Digite sua mensagem" placeholder="Escreva sua mensagem" autocomplete="off" maxlength="1000">
-      <button class="ai-chat-page__send" type="submit">Enviar</button>
-    </form>
-  </section>
+  <form class="ai-chat-page__form" data-chat-form>
+    <input class="ai-chat-page__input" type="text" data-chat-input aria-label="Digite sua mensagem" placeholder="Escreva sua mensagem" autocomplete="off" maxlength="1000">
+    <button class="ai-chat-page__send" type="submit">Enviar</button>
+  </form>
 </section>
