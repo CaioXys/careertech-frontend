@@ -136,7 +136,7 @@ Nesta relação, **Usuário** corresponde ao perfil **Aluno** usado pelo sistema
 
 **Diferenças entre a lista do briefing e o diagrama UML de caso de uso:** o diagrama também permite Jogos ao Professor (RF058), embora essa tela não esteja na lista enviada. Ele contém casos de uso para Área do professor, Turmas, Aulas, Avaliações e Alunos (RF048-056). As aprovações (ADM RF006-008) e o gerenciamento (ADM RF009-017) são telas separadas do Gerenciador de usuário. O chat entre usuários (RF018, RN43) aparece como tela de Mensagens, embora não conste na lista de telas do briefing. Vagas (RN53-057) foram adicionadas ao protótipo como tela própria do aluno. Recuperação de senha também está mapeada para Aluno (RF006) e Professor (RF035), embora não apareça na lista enviada.
 
-**Erro** — `src/pages/errors/not-found/` (rota inexistente, 404).
+Rotas não mapeadas redirecionam para a tela inicial do usuário ou para o login.
 
 > Logout (RF031, RF067, RF018-ADM) é o botão "Sair" do layout `app`. O Administrador inicia em
 > `#/admin/home` e acessa usuários, aprovações e gerenciamento pelo menu lateral.

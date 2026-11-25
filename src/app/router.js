@@ -52,7 +52,13 @@ async function resolve() {
   }
 
   try {
-    const { route, params } = matchRoute(pathname);
+    const match = matchRoute(pathname);
+    if (!match) {
+      navigate(user ? getHomePath(user) : '/login', { replace: true });
+      return;
+    }
+
+    const { route, params } = match;
 
     // Guard: pode abrir esta rota?
     const access = checkAccess(route, user);

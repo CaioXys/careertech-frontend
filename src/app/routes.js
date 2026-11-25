@@ -10,7 +10,7 @@ import { ROLES } from '../core/roles.js';
  *   roles     perfis que podem abrir (se omitido, qualquer usuário logado)
  *   load      import dinâmico da tela (só baixa o código quando a rota é aberta)
  *
- * A ordem importa: a primeira rota que combina vence. A '*' (404) fica por último.
+ * A ordem importa: a primeira rota que combina vence.
  * Para criar uma tela nova:  npm run new:page -- grupo/name-da-tela
  */
 const { STUDENT, TEACHER, ADMIN } = ROLES;
@@ -55,6 +55,4 @@ export const routes = [
   { path: '/admin/approvals', layout: 'app', roles: [ADMIN], load: () => import('../pages/admin/approvals/approvals.js') },
   { path: '/admin/management', layout: 'app', roles: [ADMIN], load: () => import('../pages/admin/management/management.js') },
 
-  // ---------- 404 (sempre a última) ----------
-  { path: '*', layout: 'auth', public: true, load: () => import('../pages/errors/not-found/not-found.js') },
 ];
